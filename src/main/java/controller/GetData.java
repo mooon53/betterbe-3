@@ -10,7 +10,7 @@ public class GetData {
     private String host = "bronto.ewi.utwente.nl";
     private String dbName;
     private String url = "jdbc:postgresql://"
-            + host + ":6789/" + dbName;
+            + host + ":6789/" + dbName; //TODO: Why port 6789?
     private Connection connection;
     private Statement statement;
 
