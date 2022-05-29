@@ -1,23 +1,32 @@
 package model;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import org.json.simple.JSONObject;
 
-@XmlRootElement
 public class Car {
-    private String carId;
-    private String produtionDate;
+    private Long carId;
+    private String productionDate;
     private String make;
     private String model;
 
     public Car(){}
 
-    public Car(String carId, String produtionDate, String make, String model){
+    public Car(Long carId, String productionDate, String make, String model){
         this.carId = carId;
-        this.produtionDate = produtionDate;
+        this.productionDate = productionDate;
         this.make = make;
         this.model = model;
     }
-    public String getCarId() {
+
+    public JSONObject getCar() {
+        JSONObject response = new JSONObject();
+        response.put("carId", carId);
+        response.put("productionDate", productionDate);
+        response.put("make", make);
+        response.put("model", model);
+        return response;
+    }
+
+    public Long getCarId() {
         return carId;
     }
     public String getMake() {
@@ -26,11 +35,11 @@ public class Car {
     public String getModel() {
         return model;
     }
-    public String getProdutionDate() {
-        return produtionDate;
+    public String getProductionDate() {
+        return productionDate;
     }
 
-    public void setCarId(String carId) {
+    public void setCarId(Long carId) {
         this.carId = carId;
     }
     public void setMake(String make) {
@@ -39,7 +48,7 @@ public class Car {
     public void setModel(String model) {
         this.model = model;
     }
-    public void setProdutionDate(String produtionDate) {
-        this.produtionDate = produtionDate;
+    public void setProductionDate(String productionDate) {
+        this.productionDate = productionDate;
     }
 }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Configurator</title>
+    <script>
+        function onLoad() {
+            let getRequest = new XMLHttpRequest();
+            getRequest.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    let dropDown = document.getElementById("cars");
+                    let response = JSON.parse(this.responseText);
+                    for (let i = 0; i < response.length; i++) {
+                        let current = response[i];
+                        let option = `<option value=\"${current.carId}\">${current.make} ${current.model} ${current.productionDate}</option>`
+                        dropDown.innerHTML += option;
+                    }
+                }
+            }
+            getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/cars", true);
+            getRequest.setRequestHeader("Accept", "application/json");
+            getRequest.send();
+        }
+
+        function loadConfigurator(carId) {
+            if (carId !== "default") {
+                let getRequest = new XMLHttpRequest();
+                getRequest.onreadystatechange = function() {
+                    if (this.readyState === 4 && this.status === 200) {
+                        let response = JSON.parse(this.responseText);
+                        let options = response.options;
+                        let rules = response.rules;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="onLoad()">
+    <label for="cars">Choose a car:</label>
+
+    <select name="cars" id="cars" onchange="loadConfigurator(this.value)">
+        <option value="default" selected>Select a car...</option>
+    </select>
+</body>
+</html>

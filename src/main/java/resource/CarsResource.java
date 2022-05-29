@@ -22,10 +22,10 @@ public class CarsResource {
     Request request;
 
     @GET
-    @Produces(MediaType.TEXT_XML)
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Car> getCarList() {
         List<Car> cars = new ArrayList<>();
-        cars.addAll(CarDao.instance.getConfiguration().values());
+        cars.addAll(CarDao.instance.getCars().values());
         return cars;
     }
 
