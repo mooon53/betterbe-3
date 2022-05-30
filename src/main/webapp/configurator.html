@@ -22,24 +22,53 @@
             getRequest.send();
         }
 
-        function loadConfigurator(carId) {
+        function loadConfigurator() {
+            let carId = document.getElementById("cars").value;
             if (carId !== "default") {
                 let getRequest = new XMLHttpRequest();
                 getRequest.onreadystatechange = function() {
                     if (this.readyState === 4 && this.status === 200) {
                         let response = JSON.parse(this.responseText);
+                        let car = response.car;
                         let options = response.options;
                         let rules = response.rules;
+                        let table = `<p>${car.make} ${car.model} ${car.productionDate}</p>`
+                        document.getElementById("body").innerHTML+=table;
+                        let doneTypes = [];
+                        for (let i = 0; i < options.length; i++) {
+                            if (!doneTypes.includes(options[i].optionType)) {
+                                console.log(doneTypes);
+                                optionType = options[i].optionType;
+                                doneTypes.push(optionType);
+                                let typeOptions = []
+                                for (let n = 0; n < options.length; n++) {
+                                    if (options[n].optionType === optionType) {
+                                        typeOptions.push(options[n]);
+                                    }
+                                }
+                                let optionHTML = `<h3>`+optionType+`:</h3>
+                                <form id="`+optionType+`">`
+                                for (let j = 0; j < typeOptions.length; j++) {
+                                    let current = typeOptions[j];
+                                    optionHTML += `<input id="${current.value}" name="${current.optionType}" type="radio"> <label for="${current.value}">${current.value} ${current.price} - ${current.manufacturer}</label><br>`
+                                }
+                                optionHTML+=`</form>`;
+                                document.getElementById("body").innerHTML+=optionHTML;
+                            }
+                        }
                     }
                 }
+                getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/cars/"+carId, true);
+                getRequest.setRequestHeader("Accept", "application/json");
+                getRequest.send();
             }
         }
     </script>
 </head>
-<body onload="onLoad()">
+<body id="body" onload="onLoad()">
     <label for="cars">Choose a car:</label>
 
-    <select name="cars" id="cars" onchange="loadConfigurator(this.value)">
+    <select name="cars" id="cars" onchange="loadConfigurator()">
         <option value="default" selected>Select a car...</option>
     </select>
 </body>

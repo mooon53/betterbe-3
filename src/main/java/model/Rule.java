@@ -26,4 +26,8 @@ public class Rule {
     public Boolean getMandatory() {
         return mandatory;
     }
+
+    public Long getCarId() {
+        return carId;
+    }
 }
