@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Arrays;
+
 public class Rule {
     Long[] options;
     Boolean exclusive;
@@ -29,5 +31,15 @@ public class Rule {
 
     public Long getCarId() {
         return carId;
+    }
+
+    @Override
+    public String toString() {
+        return "Rule{" +
+                "options=" + Arrays.toString(options) +
+                ", exclusive=" + exclusive +
+                ", mandatory=" + mandatory +
+                ", carId=" + carId +
+                '}';
     }
 }

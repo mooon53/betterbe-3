@@ -41,11 +41,13 @@ public class CarResource {
         JSONObject carJSON = car.getCar();
         response.put("car", carJSON);
         List<Option> options = Database.getOptions(id);
+        System.out.println(Database.getOptions(id));
         System.out.println(options);
         JSONArray optionsJSON = new JSONArray(options);
         System.out.println(optionsJSON);
         response.put("options", optionsJSON);
         List<Rule> rules = Database.getRules(id);
+        System.out.println(Database.getRules(id));
         System.out.println(rules);
         JSONArray rulesJSON = new JSONArray(rules);
         System.out.println(rulesJSON);

@@ -77,4 +77,18 @@ public class Option {
     public Date getEndDate() {
         return endDate;
     }
+
+    @Override
+    public String toString() {
+        return "Option{" +
+                "id=" + id +
+                ", value='" + value + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", carID=" + carID +
+                ", optionType='" + optionType + '\'' +
+                ", price=" + price +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
+    }
 }

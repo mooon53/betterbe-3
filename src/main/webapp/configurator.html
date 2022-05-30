@@ -32,8 +32,8 @@
                         let car = response.car;
                         let options = response.options;
                         let rules = response.rules;
-                        let table = `<p>${car.make} ${car.model} ${car.productionDate}</p>`
-                        document.getElementById("body").innerHTML+=table;
+                        let carInfo = `<p>${car.make} ${car.model} ${car.productionDate}</p>`
+                        document.getElementById("configurator").innerHTML = carInfo;
                         let doneTypes = [];
                         for (let i = 0; i < options.length; i++) {
                             if (!doneTypes.includes(options[i].optionType)) {
@@ -53,7 +53,7 @@
                                     optionHTML += `<input id="${current.value}" name="${current.optionType}" type="radio"> <label for="${current.value}">${current.value} ${current.price} - ${current.manufacturer}</label><br>`
                                 }
                                 optionHTML+=`</form>`;
-                                document.getElementById("body").innerHTML+=optionHTML;
+                                document.getElementById("configurator").innerHTML+=optionHTML;
                             }
                         }
                     }
@@ -71,5 +71,6 @@
     <select name="cars" id="cars" onchange="loadConfigurator()">
         <option value="default" selected>Select a car...</option>
     </select>
+    <div id="configurator"></div>
 </body>
 </html>
