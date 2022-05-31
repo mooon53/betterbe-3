@@ -1,57 +1,60 @@
 package controller;
 
-import org.json.JSONArray;
-import org.json.simple.JSONObject;
-
-
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GetData {
-    private String host = "bronto.ewi.utwente.nl";
-    private String dbName;
-    private String url = "jdbc:postgresql://"
-            + host + ":6789/" + dbName; //TODO: Why port 6789?
-    private Connection connection;
-    private Statement statement;
+    private static Connection connection;
+    private static Statement statement;
+    private static final String username = "dab_di21222b_41";
+    private static final String password = "hGqSYm23uiZwibLy";
+    private static final String url = "jdbc:postgresql://bronto.ewi.utwente.nl/" + username + "?currentSchema=Test";
 
-
-    public GetData(String username, String password) {
+    private static void setup() {
         try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            System.err.println("Error loading driver " + e);
-        }
-        try {
-            this.connection = DriverManager.getConnection(this.url, username, password);
-            this.statement = connection.createStatement();
+            connection = DriverManager.getConnection(url, username, password);
+            statement = connection.createStatement();
         } catch (SQLException e) {
             System.err.println("Error connecting " + e);
         }
     }
 
-    public String jsonRequest(String query){
+    public static List<String> getOptions(Long carId) {
+        setup();
+        List<String> options = new ArrayList<>();
+        String query = "SELECT row_to_json(options)\n" +
+                "FROM Test.options\n" +
+                "WHERE car_id =" + carId;
         try {
-            ResultSet rs = this.statement.executeQuery(query);
-            JSONObject jsonObject = new JSONObject();
-            JSONArray jsonArray = new JSONArray();
-
-            while(rs.next()){
-                JSONObject config = new JSONObject();
-                //add key-value to json
-                config.put("ID", rs.getString("carId"));
-                config.put("Production_Date", rs.getString("productionDate"));
-                config.put("Make", rs.getString("make"));
-                config.put("Model", rs.getString("model"));
-                jsonArray.put(config);
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                options.add(resultSet.getString(1));
             }
-            jsonObject.put("Car_Data", jsonArray);
-            return jsonObject.toJSONString();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return options;
     }
 
+    public static List<String> getRules(Long carId) {
+        setup();
+        List<String> rules = new ArrayList<>();
+        String query = "SELECT row_to_json(rules)\n" +
+                "FROM Test.rules\n" +
+                "WHERE car_id =" + carId;
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                rules.add(resultSet.getString(1));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rules;
 
+
+    }
 }
 
 
