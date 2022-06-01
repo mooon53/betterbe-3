@@ -16,7 +16,7 @@
                     let car;
                     for (let i = 0; i < response.length; i++) {
                         let current = response[i];
-                        car = `<a href="configurator.html?carID=${current.carId}">${current.make} ${current.model} ${current.productionDate}</a>`;
+                        car = `<a href="configurator.html?carID=${current.carId}">${current.make} ${current.model} ${current.productionDate}</a><br>`;
                         dropDown.innerHTML += car;
                     }
                 }
