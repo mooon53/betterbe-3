@@ -53,7 +53,12 @@ public class GetData {
         }
         return rules;
 
-
+    }
+    public static List<String> getCar(){
+        setup();
+        List<String> car = new ArrayList<>();
+        String query = "SE";
+        return car;
     }
 }
 
