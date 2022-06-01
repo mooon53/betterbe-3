@@ -54,10 +54,20 @@ public class GetData {
         return rules;
 
     }
-    public static List<String> getCar(){
+    public static List<String> getCar(Long carId){
         setup();
         List<String> car = new ArrayList<>();
-        String query = "";
+        String query =  "SELECT row_to_json(car)\n" +
+                "FROM Test.car\n" +
+                "WHERE car_id =" + carId;
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                car.add(resultSet.getString(1));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return car;
     }
 }
