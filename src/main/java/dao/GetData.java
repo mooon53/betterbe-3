@@ -59,7 +59,7 @@ public class GetData {
         List<String> car = new ArrayList<>();
         String query =  "SELECT row_to_json(car)\n" +
                 "FROM Test.car\n" +
-                "WHERE car_id =" + carId;
+                "WHERE id =" + carId;
         try {
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
