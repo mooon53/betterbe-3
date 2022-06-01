@@ -1,4 +1,4 @@
-package controller;
+package dao;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ public class GetData {
     public static List<String> getCar(){
         setup();
         List<String> car = new ArrayList<>();
-        String query = "SE";
+        String query = "";
         return car;
     }
 }

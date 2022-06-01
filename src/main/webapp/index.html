@@ -5,8 +5,28 @@
     <title>Welcome</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="homepage.css">
+
+    <script>
+        function onLoad() {
+            let getRequest = new XMLHttpRequest();
+            getRequest.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    let dropDown = document.getElementById("cars");
+                    let response = JSON.parse(this.responseText);
+                    for (let i = 0; i < response.length; i++) {
+                        let current = response[i];
+                        let car = `<a href="configurator.html?id=${current.carId}">${current.make} ${current.model} ${current.productionDate}</a>`;
+                    dropDown.innerHTML += car;
+                    }
+                }
+            }
+            getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/cars", true);
+            getRequest.setRequestHeader("Accept", "application/json");
+            getRequest.send();
+        }
+    </script>
 </head>
-<body>
+<body id="body" onload="onLoad()">
 <div class=e2_2>
     <div class="e3_2"></div>
     <div class=e11_24>

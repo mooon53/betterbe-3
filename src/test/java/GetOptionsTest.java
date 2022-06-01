@@ -1,4 +1,4 @@
-import controller.GetData;
+import dao.GetData;
 
 public class GetOptionsTest {
     public static void main(String[] args) {

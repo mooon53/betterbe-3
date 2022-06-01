@@ -24,6 +24,7 @@ public class CarsResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Car> getCarList() {
+        System.out.println("get request for catalogue..");
         List<Car> cars = new ArrayList<>();
         cars.addAll(CarDao.instance.getCars().values());
         return cars;
