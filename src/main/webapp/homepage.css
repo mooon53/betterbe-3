@@ -46,15 +46,14 @@
 }
 .e4_2 {
     transform: rotate(-0.000005008956538086317deg);
-    width:279px;
+    width:271px;
     height:0px;
     position:absolute;
-    left:582px;
-    top:702px;
-}
-.e4_2 {
+    left:586.5px;
+    top:698.5px;
     border:7px solid rgba(17.00000088661909, 141.0000067949295, 240.00000089406967, 1);
 }
+
 .e7_13 {
     color:rgba(0, 0, 0, 1);
     width:225px;
@@ -110,3 +109,11 @@
     background-repeat:no-repeat;
     background-size:cover;
 }
+.e15_5 {
+    width:1284px;
+    height:725px;
+    position:absolute;
+    left:93px;
+    top:773px;
+}
+
