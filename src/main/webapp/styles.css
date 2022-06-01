@@ -4,50 +4,18 @@
 .e18_11 { 
 	background-color:rgba(255, 255, 255, 1);
 	width:1920px;
-	height:2635px;
+	height:1080px;
 	position:absolute;
 }
 .e18_14 { 
-	width:1978px;
-	height:1136px;
+	width:1920px;
+	height:1113px;
 	position:absolute;
 	left:0px;
-	top:-81px;
+	top:-30px;
 	background-image:url(images/red_landscape_edited_1.png);
 	background-repeat:no-repeat;
 	background-size:cover;
-}
-.e18_86 { 
-	background-color:rgba(231.00000143051147, 48.000000938773155, 83.00000265240669, 1);
-	width:1920px;
-	height:1028px;
-	position:absolute;
-	left:0px;
-	top:1054px;
-}
-.e18_88 { 
-	color:rgba(255, 255, 255, 1);
-	width:845px;
-	height:126px;
-	position:absolute;
-	left:538px;
-	top:1083px;
-	font-family:Poppins;
-	text-align:left;
-	font-size:40px;
-	letter-spacing:0;
-}
-.e18_91 { 
-	color:rgba(255, 255, 255, 1);
-	width:1177px;
-	height:126px;
-	position:absolute;
-	left:446px;
-	top:1182px;
-	font-family:Poppins;
-	text-align:left;
-	font-size:40px;
-	letter-spacing:0;
 }
 .e18_15 { 
 	color:rgba(255, 255, 255, 1);
@@ -101,7 +69,7 @@
 	height:151px;
 	position:absolute;
 	left:51px;
-	top:412px;
+	top:409px;
 }
 .e39_536 { 
 	color:rgba(255, 255, 255, 1);
@@ -136,7 +104,7 @@
 	height:135px;
 	position:absolute;
 	left:1035px;
-	top:227px;
+	top:243px;
 }
 .e39_539 { 
 	color:rgba(255, 255, 255, 1);
@@ -171,7 +139,7 @@
 	height:151px;
 	position:absolute;
 	left:1035px;
-	top:412px;
+	top:408px;
 }
 .e39_542 { 
 	color:rgba(255, 255, 255, 1);
@@ -276,20 +244,10 @@
 	height:68px;
 	position:absolute;
 	left:51px;
-	top:892px;
+	top:960px;
 	background-image:url(images/fc_logo_better_be_tagline_1.png);
 	background-repeat:no-repeat;
 	background-size:cover;
-}
-.e18_89 {
-	border:3px solid rgba(255, 255, 255, 1);
-}
-.e18_89 { 
-	width:840px;
-	height:0px;
-	position:absolute;
-	left:538px;
-	top:1158px;
 }
 .e39_520 { 
 	width:311px;
