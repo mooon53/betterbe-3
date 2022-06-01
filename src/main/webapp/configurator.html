@@ -5,6 +5,7 @@
     <title>Configurator</title>
     <script>
         let doneTypes;
+        let chosenOptions = [];
         let rules;
 
         function onLoad() {
@@ -15,7 +16,8 @@
                     let response = JSON.parse(this.responseText);
                     for (let i = 0; i < response.length; i++) {
                         let current = response[i];
-                        let option = `<option value=\"${current.carId}\">${current.make} ${current.model} ${current.productionDate}</option>`
+                        let date = new Date(current.productionDate);
+                        let option = `<option value=\"${current.carId}\">${current.make} ${current.model} ` + date.getFullYear() + `</option>`
                         dropDown.innerHTML += option;
                     }
                     let url = new URL(location.href);
@@ -53,7 +55,8 @@
                         let options = response.options;
                         rules = response.rules;
                         doneTypes = [];
-                        let carInfo = `<p>${car.make} ${car.model} ${car.productionDate}</p>`
+                        let date = new Date(current.productionDate);
+                        let carInfo = `<p>${car.make} ${car.model} ` + date.getFullYear() + `</p>`
                         document.getElementById("configurator").innerHTML = carInfo;
                         for (let i = 0; i < options.length; i++) {
                             if (!doneTypes.includes(options[i].optionType)) {
@@ -88,16 +91,10 @@
         function checkConfiguration(id) {
             console.log("element changed " + id);
             let allowed = true;
-            let chosenOptions = [];
-            for (let option in doneTypes) {
-                let inputs = document.getElementById(option).getElementsByTagName("input");
-                console.log(document.getElementById(option));
-                console.log(inputs);
-                for (let input in inputs) {
-                    if (input.checked) chosenOptions.push(input.id);
-                }
-            }
+            console.log(doneTypes)
+            chosenOptions.push(id);
             console.log(chosenOptions);
+            console.log(rules);
             for (let rule in rules) {
                 let options = rule.options;
                 let count = 0;
