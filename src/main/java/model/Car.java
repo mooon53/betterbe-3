@@ -2,19 +2,17 @@ package model;
 
 import org.json.simple.JSONObject;
 
-import java.sql.Date;
-
 public class Car {
     private Long carId;
-    private Date productionDate;
+    private Long productionYear;
     private String make;
     private String model;
 
     public Car(){}
 
-    public Car(Long carId, Date productionDate, String make, String model){
+    public Car(Long carId, Long productionYear, String make, String model){
         this.carId = carId;
-        this.productionDate = productionDate;
+        this.productionYear = productionYear;
         this.make = make;
         this.model = model;
     }
@@ -36,8 +34,8 @@ public class Car {
     public String getModel() {
         return model;
     }
-    public Date getProductionDate() {
-        return productionDate;
+    public Long getproductionYear() {
+        return productionYear;
     }
 
     public void setCarId(Long carId) {
@@ -49,7 +47,7 @@ public class Car {
     public void setModel(String model) {
         this.model = model;
     }
-    public void setProductionDate(Date productionDate) {
-        this.productionDate = productionDate;
+    public void setproductionYear(Long productionYear) {
+        this.productionYear = productionYear;
     }
 }
