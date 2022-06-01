@@ -36,9 +36,9 @@ public class CarResource {
     public String getCarInfo() {
         System.out.println("got request for car " + id);
         JSONObject response = new JSONObject();
-        Car car = CarDao.instance.getCars().get(id);
+        Car car = Database.getCar(id);
         if(car == null) throw new RuntimeException("Get: Car with " + id +  " not found");
-        JSONObject carJSON = car.getCar();
+        JSONObject carJSON = car.toJSON();
         response.put("car", carJSON);
         List<Option> options = Database.getOptions(id);
         System.out.println(Database.getOptions(id));
