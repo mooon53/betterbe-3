@@ -1,25 +1,41 @@
+<!DOCTYPE html>
 <html lang="en">
-          <head>
-            <meta charset="utf-8">
-          
-            <title>Browse Cars</title>
-            <meta name="description" content="Figma htmlGenerator">
-            <meta name="author" content="htmlGenerator">
-            <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="homepage.css">
 
-            <link rel="stylesheet" href="styles.css">
-            
-            <style>
-              /*
-                Figma Background for illustrative/preview purposes only.
-                You can remove this style tag with no consequence
-              */
-              body {background: #E5E5E5; }
-            </style>
-          
-          </head>
-          
-          <body>
-            <div class=e18_11><div  class="e18_14"></div><span  class="e18_15">Let’s configure the basics of the car:</span><div class=e39_534><span  class="e18_19">Make: </span><div  class="e18_20"></div></div><div class=e39_535><span  class="e39_536">Bodytype: </span><div  class="e39_537"></div></div><div class=e39_538><span  class="e39_539">Model: </span><div  class="e39_540"></div></div><div class=e39_541><span  class="e39_542">Powertrain: </span><div  class="e39_543"></div></div><div class=e39_544><span  class="e39_545">Trim: </span><div  class="e39_546"></div></div><div class=e39_547><span  class="e39_548">Year Of Production: </span><div  class="e39_549"></div></div><div  class="e18_72"></div><div class=e39_520><span  class="e39_515">Lease</span><span  class="e39_516">About</span></div><div class=e39_521><span  class="e39_517">Contact</span><span  class="e39_518">Log in</span></div></div>
-          </body>
-          </html>
+    <script>
+        function onLoad() {
+            let getRequest = new XMLHttpRequest();
+            getRequest.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    let dropDown = document.getElementById("cars");
+                    let response = JSON.parse(this.responseText);
+                    for (let i = 0; i < response.length; i++) {
+                        let current = response[i];
+                        let car = `<a href="configurator.html?id=${current.carId}">${current.make} ${current.model} ${current.productionDate}</a>`;
+                    dropDown.innerHTML += car;
+                    }
+                }
+            }
+            getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/cars", true);
+            getRequest.setRequestHeader("Accept", "application/json");
+            getRequest.send();
+        }
+    </script>
+</head>
+<body id="body" onload="onLoad()">
+<div class=e2_2>
+    <div class="e3_2"></div>
+    <div class=e11_24>
+        <div class="e3_3"></div>
+    </div>
+    <div class="e3_4"></div>
+    <div class="e4_2"></div><span  class="e7_13">OUR PRODUCTS</span><span  class="e7_14">LEASE</span><span  class="e7_15">ABOUT</span>
+    <div class="e7_16"></div>
+    <div class="e7_17"></div>
+</div>
+</body>
+</html>

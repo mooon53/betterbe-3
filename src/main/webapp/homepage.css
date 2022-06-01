@@ -1,0 +1,112 @@
+.e2_2 {
+    overflow:hidden;
+}
+.e2_2 {
+    background-color:rgba(255, 255, 255, 1);
+    width:1440px;
+    height:1588px;
+    position:absolute;
+}
+.e3_2 {
+    opacity:0.800000011920929;
+    width:754px;
+    height:532px;
+    position:absolute;
+    left:0px;
+    top:82px;
+    background-image:url(images/red_landscape_edited_1.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+.e11_24 {
+    width:706px;
+    height:552px;
+    position:absolute;
+    left:744px;
+    top:72px;
+}
+.e3_3 {
+    box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
+    width:686px;
+    height:532px;
+    position:absolute;
+    left:10px;
+    top:10px;
+    background-image:url(images/car_img.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+.e3_4 {
+    background-color:rgba(14.000000115484, 47.0000009983778, 86.00000247359276, 1);
+    width:1440px;
+    height:82px;
+    position:absolute;
+    left:0px;
+    top:0px;
+}
+.e4_2 {
+    transform: rotate(-0.000005008956538086317deg);
+    width:279px;
+    height:0px;
+    position:absolute;
+    left:582px;
+    top:702px;
+}
+.e4_2 {
+    border:7px solid rgba(17.00000088661909, 141.0000067949295, 240.00000089406967, 1);
+}
+.e7_13 {
+    color:rgba(0, 0, 0, 1);
+    width:225px;
+    height:34px;
+    position:absolute;
+    left:609px;
+    top:652px;
+    font-family:Inter;
+    text-align:left;
+    font-size:28px;
+    letter-spacing:0;
+}
+.e7_14 {
+    color:rgba(234.00000125169754, 236.00000113248825, 238.00000101327896, 1);
+    width:88px;
+    height:34px;
+    position:absolute;
+    left:20px;
+    top:41px;
+    font-family:Inter;
+    text-align:left;
+    font-size:28px;
+    letter-spacing:0;
+}
+.e7_15 {
+    color:rgba(234.00000125169754, 236.00000113248825, 238.00000101327896, 1);
+    width:100px;
+    height:34px;
+    position:absolute;
+    left:149px;
+    top:41px;
+    font-family:Inter;
+    text-align:left;
+    font-size:28px;
+    letter-spacing:0;
+}
+.e7_16 {
+    border-radius:500px;
+    background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
+    width:59px;
+    height:56px;
+    position:absolute;
+    left:1347px;
+    top:10px;
+}
+.e7_17 {
+    width:45px;
+    height:50px;
+    position:absolute;
+    left:1354px;
+    top:13px;
+    background-image:url(images/person_FILL0_wght400_GRAD0_opsz48.png);
+    background-repeat:no-repeat;
+    background-size:cover;
+}
