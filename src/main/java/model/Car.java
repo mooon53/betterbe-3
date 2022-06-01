@@ -22,6 +22,7 @@ public class Car {
         response.put("carId", carId);
         response.put("make", make);
         response.put("model", model);
+        response.put("productionYear", productionYear);
         return response;
     }
 
