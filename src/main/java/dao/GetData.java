@@ -23,8 +23,8 @@ public class GetData {
     public static List<String> getOptions(Long carId) {
         setup();
         List<String> options = new ArrayList<>();
-        String query = "SELECT row_to_json(options)\n" +
-                "FROM Test.options\n" +
+        String query = "SELECT row_to_json(option)\n" +
+                "FROM Test.option\n" +
                 "WHERE car_id =" + carId;
         try {
             ResultSet resultSet = statement.executeQuery(query);
@@ -40,8 +40,8 @@ public class GetData {
     public static List<String> getRules(Long carId) {
         setup();
         List<String> rules = new ArrayList<>();
-        String query = "SELECT row_to_json(rules)\n" +
-                "FROM Test.rules\n" +
+        String query = "SELECT row_to_json(rule)\n" +
+                "FROM Test.rule\n" +
                 "WHERE car_id =" + carId;
         try {
             ResultSet resultSet = statement.executeQuery(query);
@@ -54,10 +54,20 @@ public class GetData {
         return rules;
 
     }
-    public static List<String> getCar(){
+    public static List<String> getCar(Long carId){
         setup();
         List<String> car = new ArrayList<>();
-        String query = "";
+        String query =  "SELECT row_to_json(car)\n" +
+                "FROM Test.car\n" +
+                "WHERE id =" + carId;
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                car.add(resultSet.getString(1));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return car;
     }
 }

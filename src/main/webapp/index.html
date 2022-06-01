@@ -13,10 +13,11 @@
                 if (this.readyState === 4 && this.status === 200) {
                     let dropDown = document.getElementById("cars");
                     let response = JSON.parse(this.responseText);
+                    let car;
                     for (let i = 0; i < response.length; i++) {
                         let current = response[i];
-                        let car = `<a href="configurator.html?id=${current.carId}">${current.make} ${current.model} ${current.productionDate}</a>`;
-                    dropDown.innerHTML += car;
+                        car = `<a href="configurator.html?carID=${current.carId}">${current.make} ${current.model} ${current.productionDate}</a>`;
+                        dropDown.innerHTML += car;
                     }
                 }
             }
@@ -33,7 +34,10 @@
         <div class="e3_3"></div>
     </div>
     <div class="e3_4"></div>
-    <div class="e4_2"></div><span  class="e7_13">OUR PRODUCTS</span><span  class="e7_14">LEASE</span><span  class="e7_15">ABOUT</span>
+    <div class="e4_2"></div>
+    <span class="e7_13">OUR PRODUCTS</span>
+    <div class="e15_5" id="cars"></div>
+    <span class="e7_14">LEASE</span><span class="e7_15">ABOUT</span>
     <div class="e7_16"></div>
     <div class="e7_17"></div>
 </div>
