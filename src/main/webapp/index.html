@@ -13,6 +13,7 @@
                 if (this.readyState === 4 && this.status === 200) {
                     let dropDown = document.getElementById("cars");
                     let response = JSON.parse(this.responseText);
+                    console.log(response);
                     let car;
                     for (let i = 0; i < response.length; i++) {
                         let current = response[i];
