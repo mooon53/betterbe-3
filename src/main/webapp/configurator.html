@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>BetterBe - Configurator</title>
+    <meta charset="UTF-8">
     <script>
         let doneTypes;
-        let chosenOptions = [];
+        let chosenOptions;
         let rules;
+        let options;
 
         function onLoad() {
             let getRequest = new XMLHttpRequest();
@@ -34,55 +37,77 @@
 
 
         function loadConfigurator() {
+            rules = [];
+            options = new Map();
+            chosenOptions = [];
+            doneTypes = [];
+            document.title = "BetterBe - Configurator";
+            document.getElementById("configurator").innerHTML = "";
+            document.getElementById("total").innerHTML = "";
+            document.getElementById("mandatoryCheck").innerHTML = "";
             let carId = document.getElementById("cars").value;
             console.log("configurator called for car " + carId);
             console.log(document.getElementById("cars").value);
-            if (carId !== null) {
+            if (carId !== null && carId !== "null") {
+                console.log("ok");
                 let url = new URL(location.href);
                 let searchParams = url.searchParams;
                 if (searchParams.get("carID") !== carId) {
-                    searchParams.delete("carID");
-                    searchParams.append("carID", carId);
-                    location.href = url.toString();
+                    history.replaceState("","","?carID=" + carId);
                 }
                 let getRequest = new XMLHttpRequest();
                 getRequest.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
                         let response = JSON.parse(this.responseText);
                         let car = response.car;
-                        let options = response.options;
+                        for (let i = 0; i < response.options.length; i++) {
+                            let option=response.options[i];
+                            options.set(option.id, option);
+                        }
                         rules = response.rules;
                         doneTypes = [];
                         console.log(response);
-                        let carInfo = `<p>${car.make} ${car.model} ${car.productionYear}</p>`
-                        document.getElementById("configurator").innerHTML = carInfo;
-                        for (let i = 0; i < options.length; i++) {
-                            if (!doneTypes.includes(options[i].optionType)) {
+                        let carPrice = Number(`${car.price}`);
+                        let carInfo = `${car.make} ${car.model} ${car.productionYear}`;
+                        let carInfoHTML = `<p>` + carInfo + ` - €` + carPrice.toFixed(2) + `</p>`;
+                        document.title = "BetterBe - Configurator - " + carInfo;
+                        document.getElementById("configurator").innerHTML = carInfoHTML;
+                        for (let entry of options) {
+                            let i = entry[0];
+                            if (!doneTypes.includes(options.get(i).optionType)) {
                                 console.log(doneTypes);
-                                optionType = options[i].optionType;
+                                let optionType = options.get(i).optionType;
                                 doneTypes.push(optionType);
                                 let typeOptions = []
-                                for (let n = 0; n < options.length; n++) {
-                                    if (options[n].optionType === optionType) {
-                                        typeOptions.push(options[n]);
+                                for (let entry of options) {
+                                    let n = entry[0];
+                                    if (options.get(n).optionType === optionType) {
+                                        typeOptions.push(options.get(n));
                                     }
                                 }
                                 let optionHTML = `<h2>` + optionType + `:</h2>
                                 <form id="` + optionType + `">`
                                 for (let j = 0; j < typeOptions.length; j++) {
                                     let current = typeOptions[j];
+                                    let price = Number(`${current.price}`);
                                     optionHTML += `<input id="${current.id}" name="${current.optionType}" type="checkbox" onchange="checkConfiguration(${current.id})">
-                                        <label for="${current.value}">${current.value} ${current.price} - ${current.manufacturer}</label><br>`
+                                        <label for="${current.id}">${current.value} €` + price.toFixed(2) + ` - ${current.manufacturer}</label><br>`
                                 }
-                                optionHTML += `</form>`;
+                                optionHTML += `</form><br>`;
                                 document.getElementById("configurator").innerHTML += optionHTML;
                             }
                         }
+                        document.getElementById("total").innerText = `Total Price: €` + carPrice.toFixed(2);
+                        document.getElementById("mandatoryCheck").innerHTML = `<button onclick="mandatoryCheck()">Check configuration</button>`;
                     }
                 }
                 getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/cars/" + carId, true);
                 getRequest.setRequestHeader("Accept", "application/json");
                 getRequest.send();
+            } else {
+                let url = new URL(location.href);
+                history.replaceState("","",url.pathname);
+                console.log("yep");
             }
         }
 
@@ -92,47 +117,105 @@
             let checkbox = document.getElementById(id);
             console.log(checkbox.checked);
             console.log(doneTypes)
-            if (checkbox.checked && !chosenOptions.includes(id)) chosenOptions.push(id);
-            else chosenOptions.splice(chosenOptions.indexOf(id), 1);
+            if (!checkbox.checked) chosenOptions.splice(chosenOptions.indexOf(id), 1);
+            else if (!chosenOptions.includes(id)) chosenOptions.push(id);
+            console.log("chosen options:")
             console.log(chosenOptions);
             console.log(rules);
             let relevantRules = [];
             for (let i = 0; i < rules.length; i++) {
                 let rule = rules[i];
-                let options = rule.options;
-                if (options.includes(id)) relevantRules.push(rule);
+                console.log(rule);
+                let curOptions = rule.options;
+                console.log(curOptions)
+                console.log(id);
+                if (curOptions.includes(id)) relevantRules.push(rule);
             }
+            console.log(relevantRules);
             for (let i = 0; i < relevantRules.length; i++) {
                 let rule = relevantRules[i];
-                let options = rule.options;
+                let curOptions = rule.options;
                 let count = 0;
-                console.log(options);
-                for (let option in options) {
+                console.log(curOptions);
+                for (let i = 0; i < curOptions.length; i++) {
+                    let option = curOptions[i];
                     console.log(option)
-                    if (chosenOptions.includes(Number.parseInt(option))) count++;
+                    if (chosenOptions.includes(Number(option))) count++;
+                    console.log(count);
                 }
                 console.log(count);
                 console.log(rule);
                 console.log(rule.exclusive + " + " + rule.mandatory)
                 if (rule.exclusive && count > 1) allowed = false;
-                //if (rule.mandatory && count < 1) allowed = false;
             }
-            if (!allowed) {
+            if (allowed) {
+                let totalDiv = document.getElementById("total");
+                let priceSplit = totalDiv.innerText.split("€");
+                let option = options.get(id);
+                let price = Number(priceSplit[1])
+                if (checkbox.checked) {
+                    price += option.price;
+                } else {
+                    price -= option.price;
+                }
+                totalDiv.innerText = "Total price: €" + price.toFixed(2);
+                for (let i = 0; i < relevantRules.length; i++) {
+                    let rule = relevantRules[i];
+                    let curOptions = JSON.parse(JSON.stringify(rule.options));
+                    curOptions.splice(curOptions.indexOf(id), 1);
+                    for (let n = 0; n < curOptions.length; n++) {
+                        console.log(checkbox.checked);
+                        console.log("chang")
+                        document.getElementById(curOptions[n]).disabled = checkbox.checked;
+                        
+                    }
+                }
+            } else {
                 console.log("illegal");
-                if (!checkbox.checked) chosenOptions.splice(chosenOptions.indexOf(id), 1)
+                chosenOptions.splice(chosenOptions.indexOf(id), 1);
                 checkbox.checked = !checkbox.checked;
+                document.getElementById(id).disabled = true;
                 alert("Sorry, that is not allowed");
                 console.log(chosenOptions);
             }
         }
+
+        function mandatoryCheck() {
+            let allowed = true;
+            for (let i = 0; i < rules.length; i++) {
+                let rule = rules[i];
+                let curOptions = rule.options;
+                let count = 0;
+                console.log(curOptions);
+                for (let i = 0; i < curOptions.length; i++) {
+                    let option = curOptions[i];
+                    console.log(option)
+                    if (chosenOptions.includes(Number(option))) count++;
+                    console.log(count);
+                }
+                console.log(count);
+                console.log(rule);
+                console.log(rule.exclusive + " + " + rule.mandatory)
+                if (rule.mandatory && count < 1) allowed = false;
+            }
+            if (allowed) {
+                alert("legal configuration!");
+            } else {
+                alert("illegal configuration");
+            }
+        }
     </script>
 </head>
-<body onload="onLoad()">
+<body id="body" onload="onLoad()">
 <label for="cars">Choose a car:</label>
 
 <select name="cars" id="cars" onchange="loadConfigurator()">
-    <option selected>Select a car...</option>
+    <option value="null" selected>Select a car...</option>
 </select>
 <div id="configurator"></div>
+<br>
+<div id="total"></div>
+<br>
+<div id="mandatoryCheck"></div>
 </body>
 </html>
