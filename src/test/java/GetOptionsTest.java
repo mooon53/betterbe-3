@@ -1,8 +1,8 @@
-import dao.GetData;
+import dao.Dao;
 
 public class GetOptionsTest {
     public static void main(String[] args) {
-        System.out.println(GetData.getOptions(1L));
-        System.out.println(GetData.getRules(1L));
+        System.out.println(Dao.getOptions(1L));
+        System.out.println(Dao.getRules(1L));
     }
 }

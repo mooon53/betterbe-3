@@ -1,6 +1,6 @@
 package model;
 
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 
 public class Car {
     private Long carId;
@@ -11,7 +11,7 @@ public class Car {
 
     public Car(){}
 
-    public Car(Long carId, Long productionYear, Double price, String make, String model){
+    public Car(Long carId, Long productionYear, Double price, String make, String model) {
         this.carId = carId;
         this.productionYear = productionYear;
         this.price = price;

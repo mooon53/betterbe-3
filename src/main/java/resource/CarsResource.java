@@ -1,8 +1,9 @@
 package resource;
 
-import controller.Database;
 import dao.CarDao;
+import dao.Dao;
 import model.Car;
+import utils.JSONUtils;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -25,7 +26,8 @@ public class CarsResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Car> getCars() {
-        return Database.getCars();
+        List<String> carsStrings = Dao.getCars();
+        return JSONUtils.jsonStringsToCars(carsStrings);
     }
 
 

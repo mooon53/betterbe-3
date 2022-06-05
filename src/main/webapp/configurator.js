@@ -9,6 +9,7 @@ function onLoad() { //When the page is loaded
         if (this.readyState === 4 && this.status === 200) { //If the response has been fully received, and the server says the request was processed ok
             let dropDown = document.getElementById("cars"); //get the dropdown element where the cars are shown on the page
             let response = JSON.parse(this.responseText); //Get the response and parse it to a JSON object, this will be an array of cars as JSONs
+            console.log(response)
             for (const car of response) { //Loop through all cars in the response
                 let option = `<option value=\"${car.carId}\">${car.make} ${car.model} ${car.productionYear}</option>` //Create the html for the option in the dropdown
                 dropDown.innerHTML += option; //Add the html to the page
@@ -55,7 +56,7 @@ function loadConfigurator() {
                 rules = response.rules; //Set the list of rules
                 let carPrice = Number(`${car.price}`); //Get the price of the car as a number
                 let carInfo = `${car.make} ${car.model} ${car.productionYear}`; //Get the car info as 1 string
-                let carInfoHTML = `<p>` + carInfo + ` - €` + carPrice.toFixed(2) + `</p>`; //Make an html element of the car info
+                let carInfoHTML = `<p>` + carInfo + ` - €` + carPrice.toFixed(2) + `</p>`; //Make a html element of the car info
                 document.title = "BetterBe - Configurator - " + carInfo; //Set the title to contain the info of the car we're configuring
                 document.getElementById("configurator").innerHTML = carInfoHTML; //Add the car info to the html
                 doneTypes = []; //Create an empty list to store which types have been added to the html (because they are categorized by type)
@@ -86,7 +87,7 @@ function loadConfigurator() {
             }
         }
         getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/cars/" + carId, true); //Set request to be a get request and set url
-        getRequest.setRequestHeader("Accept", "application/json"); //Set the accept header
+        getRequest.setRequestHeader("Accept", "application/json"); //Set the accept-header
         getRequest.send(); //Send the request
     } else { //If there's no option chosen (default)
         let url = new URL(location.href); //Get the current url
@@ -99,7 +100,7 @@ function checkConfiguration(checkbox) { //Checks whether configuration is allowe
     let id = Number(checkbox.id); //Get the id of the checkbox, which we can use to get the option and it's rules
     if (!checkbox.checked) chosenOptions.splice(chosenOptions.indexOf(id), 1); //If the checkbox was unchecked, remove the option from the list of chosen options (if it exists there)
     else if (!chosenOptions.includes(id)) chosenOptions.push(id); //If it was checked and not in the chosen options yet, add it to the chosen options
-    let relevantRules = calculateRelevantRules(id);
+    let relevantRules = findRelevantRules(id);
     for (const rule of relevantRules) { //Loop through the relevant rules
         let curOptions = rule.options; //Get the options this rule applies to
         let count = 0; //Create a counter to count how many of the items have been selected
@@ -112,11 +113,11 @@ function checkConfiguration(checkbox) { //Checks whether configuration is allowe
         let totalDiv = document.getElementById("total"); //Find the div that stores the total price, this should be done by global variable
         let priceSplit = totalDiv.innerText.split("€"); //Get the price from this div
         let price = Number(priceSplit[1]) //Turn the price into a number
-        let option = options.get(id); //select the option that was changed
+        let selectedOption = options.get(id); //select the option that was changed
         if (checkbox.checked) { //If it was selected
-            price += option.price; //Add the price to the total
+            price += selectedOption.price; //Add the price to the total
         } else { //otherwise
-            price -= option.price; //Subtract the price from the total
+            price -= selectedOption.price; //Subtract the price from the total
         }
         totalDiv.innerText = "Total price: €" + price.toFixed(2); //Put the total price and some text back in the div
         for (const rule of relevantRules) { //Loop through all relevant rules, to disable now unavailable rules
@@ -143,8 +144,8 @@ function disableCheckbox(id, disable) { //sets the checkbox.disabled with id to 
     }
 }
 
-function calculateRelevantRules(id) {
-    window.relevantRules = []; //Create an empty array to fill with the rules relevant to this option
+function findRelevantRules(id) {
+    let relevantRules = []; //Create an empty array to fill with the rules relevant to this option
     for (const rule of rules) { //Loop through the rules
         let curOptions = rule.options; //Get the options this rule applies to
         if (curOptions.includes(id)) relevantRules.push(rule); //If it applies to the current option, add it to the relevant rules
@@ -153,7 +154,7 @@ function calculateRelevantRules(id) {
 }
 
 function checkRules(id) {
-    let relevantRules = calculateRelevantRules(id);
+    let relevantRules = findRelevantRules(id);
     for (const rule of relevantRules) { //Loop through the relevant rules
         let curOptions = rule.options; //Get the options this rule applies to
         let count = 1; //Create a counter to count how many of the items have been selected, we put it to 1 because we are assuming the checkbox has been checked

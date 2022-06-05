@@ -11,18 +11,19 @@ public class Option {
     Long carID;
     String optionType;
     Double price;
-    Date startDate;
-    Date endDate;
+    String startDate;
+    String endDate;
 
-    public Option() {}
-
-    public Option(Long id, String value, String manufacturer, Long carID,
-                  String optionType, Double price, Date startDate) {
-        new Option(id, value, manufacturer, carID, optionType, price, startDate, null);
+    public Option() {
     }
 
     public Option(Long id, String value, String manufacturer, Long carID,
-                  String optionType, Double price, Date startDate, Date endDate) {
+                String optionType, Double price, String startDate) {
+        this(id, value, manufacturer, carID, optionType, price, startDate, null);
+    }
+
+    public Option(Long id, String value, String manufacturer, Long carID,
+                String optionType, Double price, String startDate, String endDate) {
         this.id = id;
         this.value = value;
         this.manufacturer = manufacturer;
@@ -70,22 +71,26 @@ public class Option {
         return price;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
     @Override
     public String toString() {
         return "Option{" +
                 "id=" + id +
-                ", value='" + value + '\'' +
-                ", manufacturer='" + manufacturer + '\'' +
+                ", value='" + value + "'" +
+                ", manufacturer='" + manufacturer + "'" +
                 ", carID=" + carID +
-                ", optionType='" + optionType + '\'' +
+                ", optionType='" + optionType + "'" +
                 ", price=" + price +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
