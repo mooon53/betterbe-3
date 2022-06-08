@@ -7,15 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dao {
-    private static Connection connection;
     private static Statement statement;
     private static final String USER = "dab_di21222b_41";
     private static final String PASS = "hGqSYm23uiZwibLy";
     private static final String URL = "jdbc:postgresql://bronto.ewi.utwente.nl/" + USER + "?currentSchema=Test";
 
+    private Dao() {
+        throw new IllegalStateException("Utility class");
+    }
+
     static {
         try {
-            connection = DriverManager.getConnection(URL, USER, PASS);
+            Connection connection = DriverManager.getConnection(URL, USER, PASS);
             statement = connection.createStatement();
         } catch (SQLException e) {
             System.err.println("Error connecting " + e);
