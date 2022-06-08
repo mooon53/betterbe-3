@@ -87,7 +87,14 @@ public class Dao {
     }
 
     public static void addCar(Car car) {
-        //TODO: implement
+        String query = "INSERT INTO car (id, make, model, production_year, price)\n" +
+                    "VALUES(" + car.getCarId() + ", " + car.getModel() + ", " + car.getProductionYear() + ", " + car.getPrice() +
+                    ");";
+        try {
+            statement.executeQuery(query);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 
