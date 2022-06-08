@@ -1,6 +1,6 @@
 package dao;
 
-import model.Car;
+import model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -100,7 +100,3 @@ public class Dao {
         }
     }
 }
-
-
-//extract data of configuration from db
-
