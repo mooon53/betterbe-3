@@ -1,12 +1,9 @@
 package resource;
 
-import controller.Database;
-import dao.CarDao;
-import model.Car;
-import model.Option;
-import model.Rule;
+import dao.Dao;
+import model.*;
 import org.json.JSONArray;
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -16,13 +13,15 @@ import javax.ws.rs.core.*;
 import javax.xml.bind.JAXBElement;
 import java.util.List;
 
+import static utils.JSONUtils.*;
+
 public class CarResource {
     @Context
     UriInfo uriInfo;
     @Context
     Request request;
 
-    private Long id;
+    private final Long id;
 
     public CarResource(UriInfo uriInfo, Request request, String id) {
         this.uriInfo = uriInfo;
@@ -34,26 +33,23 @@ public class CarResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getCarInfo() {
-        System.out.println("got request for car " + id);
         JSONObject response = new JSONObject();
-        Car car = Database.getCar(id);
-        if(car == null) throw new RuntimeException("Get: Car with " + id +  " not found");
-        JSONObject carJSON = car.toJSON();
-        response.put("car", carJSON);
-        List<Option> options = Database.getOptions(id);
-        System.out.println(Database.getOptions(id));
+        Car car = jsonStringToCar(Dao.getCar(id));
+        response.put("car", car.toJSON());
+        List<Option> options = jsonStringsToOptions(Dao.getOptions(id));
+        System.out.println(Dao.getOptions(id));
         System.out.println(options);
+        for (Option option : options) {
+            System.out.print(option.getCarID());
+            System.out.print(option.getManufacturer());
+            System.out.println(option.getValue());
+        }
         JSONArray optionsJSON = new JSONArray(options);
-        System.out.println(optionsJSON);
         response.put("options", optionsJSON);
-        List<Rule> rules = Database.getRules(id);
-        System.out.println(Database.getRules(id));
-        System.out.println(rules);
+        List<Rule> rules = jsonStringsToRules(Dao.getRules(id));
         JSONArray rulesJSON = new JSONArray(rules);
-        System.out.println(rulesJSON);
         response.put("rules", rulesJSON);
-        System.out.println(response);
-        return response.toJSONString();
+        return response.toString();
     }
 
     @PUT
@@ -65,12 +61,13 @@ public class CarResource {
 
     private Response putAndGetResponse(Car car) {
         Response res;
-        if(CarDao.instance.getCars().containsKey(car.getCarId())) {
+        List<String> cars = Dao.getCars();
+        if(cars.size() > car.getCarId()) {
             res = Response.noContent().build();
         } else {
             res = Response.created(uriInfo.getAbsolutePath()).build();
+            Dao.addCar(car);
         }
-        CarDao.instance.getCars().put(car.getCarId(), car);
         return res;
     }
 

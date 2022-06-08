@@ -1,18 +1,20 @@
 package model;
 
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 
 public class Car {
     private Long carId;
     private Long productionYear;
+    private Double price;
     private String make;
     private String model;
 
     public Car(){}
 
-    public Car(Long carId, Long productionYear, String make, String model){
+    public Car(Long carId, Long productionYear, Double price, String make, String model) {
         this.carId = carId;
         this.productionYear = productionYear;
+        this.price = price;
         this.make = make;
         this.model = model;
     }
@@ -23,6 +25,7 @@ public class Car {
         response.put("make", make);
         response.put("model", model);
         response.put("productionYear", productionYear);
+        response.put("price", price);
         return response;
     }
 
@@ -35,8 +38,12 @@ public class Car {
     public String getModel() {
         return model;
     }
-    public Long getproductionYear() {
+    public Long getProductionYear() {
         return productionYear;
+    }
+
+    public Double getPrice() {
+        return price;
     }
 
     public void setCarId(Long carId) {
@@ -48,7 +55,10 @@ public class Car {
     public void setModel(String model) {
         this.model = model;
     }
-    public void setproductionYear(Long productionYear) {
+    public void setProductionYear(Long productionYear) {
         this.productionYear = productionYear;
+    }
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

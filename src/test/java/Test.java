@@ -1,8 +1,11 @@
-import controller.Database;
+import dao.Dao;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
-        System.out.println(Database.getOptions(1L));
-        System.out.println(Database.getRules(1L));
+        System.out.println(Dao.getOptions(1L));
     }
 }
