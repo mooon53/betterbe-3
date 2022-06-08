@@ -1,0 +1,39 @@
+ function checkConfiguration(id) {
+            console.log("element changed " + id);
+            let allowed = true;
+            let checkbox = document.getElementById(id);
+            console.log(checkbox.checked);
+            console.log(doneTypes)
+            if (checkbox.checked && !chosenOptions.includes(id)) chosenOptions.push(id);
+            else chosenOptions.splice(chosenOptions.indexOf(id), 1);
+            console.log(chosenOptions);
+            console.log(rules);
+            let relevantRules = [];
+            for (let i = 0; i < rules.length; i++) {
+                let rule = rules[i];
+                let options = rule.options;
+                if (options.includes(id)) relevantRules.push(rule);
+            }
+            for (let i = 0; i < relevantRules.length; i++) {
+                let rule = relevantRules[i];
+                let options = rule.options;
+                let count = 0;
+                console.log(options);
+                for (let option in options) {
+                    console.log(option)
+                    if (chosenOptions.includes(Number.parseInt(option))) count++;
+                }
+                console.log(count);
+                console.log(rule);
+                console.log(rule.exclusive + " + " + rule.mandatory)
+                if (rule.exclusive && count > 1) allowed = false;
+                //if (rule.mandatory && count < 1) allowed = false;
+            }
+            if (!allowed) {
+                console.log("illegal");
+                if (!checkbox.checked) chosenOptions.splice(chosenOptions.indexOf(id), 1)
+                checkbox.checked = !checkbox.checked;
+                alert("Sorry, that is not allowed");
+                console.log(chosenOptions);
+            }
+        }
