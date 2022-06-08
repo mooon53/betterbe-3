@@ -7,10 +7,7 @@
     <groupId>model</groupId>
     <artifactId>betterBe</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <modules>
-        <module>untitled</module>
-    </modules>
-    <packaging>pom</packaging>
+    <packaging>war</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
