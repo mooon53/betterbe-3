@@ -67,7 +67,7 @@ body{
     top:652px;
     font-family:Inter;
     text-align:left;
-    font-size:28px;
+    font-size:26px;
     letter-spacing:0;
 }
 .e7_14 {
@@ -95,24 +95,12 @@ body{
     letter-spacing:0;
 }
 .e7_16 {
-    border-radius:500px;
-    background-color:rgba(217.0000022649765, 217.0000022649765, 217.0000022649765, 1);
-    width:59px;
-    height:56px;
+    background-image:url(images/acc.png);
     position:absolute;
     left:1347px;
     top:10px;
 }
-.e7_17 {
-    width:45px;
-    height:50px;
-    position:absolute;
-    left:1354px;
-    top:13px;
-    background-image:url(images/person_FILL0_wght400_GRAD0_opsz48.png);
-    background-repeat:no-repeat;
-    background-size:cover;
-}
+
 .e15_5 {
     width:1284px;
     height:725px;
