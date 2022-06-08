@@ -1,6 +1,5 @@
 package resource;
 
-import dao.CarDao;
 import dao.Dao;
 import model.Car;
 import utils.JSONUtils;
