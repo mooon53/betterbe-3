@@ -91,13 +91,17 @@ public class Dao {
 
     public static void addCar(Car car) {
         String query = "INSERT INTO car (id, make, model, production_year, price)\n" +
-                    "VALUES(" + car.getCarId() + ", " + car.getModel() + ", " + car.getProductionYear() + ", " + car.getPrice() +
-                    ");";
+                "VALUES(" + car.getCarId() + ", '" + car.getMake() + "', '"  + car.getModel() + "', " + car.getProductionYear() + ", " + car.getPrice() +
+                ");";
         try {
             statement.executeQuery(query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void getHistory(){
+
     }
 }
 
