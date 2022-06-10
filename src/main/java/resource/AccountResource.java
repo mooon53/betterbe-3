@@ -44,10 +44,11 @@ public class AccountResource {
         System.out.println("test");
         System.out.println(email);
         System.out.println(password);
-        String query = "SELECT password\n" +
-                "FROM Test.account\n" +
-                "WHERE username =" + username + " AND password =" + password;
-        //Account account = jsonStringToCar(Dao.getAccount(username, password));
+        if(password == Dao.getPass(username)) {
+            System.out.println("correct password");
+        } else {
+            System.out.println("wrong password or username");
+        }
         return response.toString();
     }
 

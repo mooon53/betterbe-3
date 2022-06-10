@@ -142,6 +142,20 @@ public class Dao {
         return person;
     }
 
+    public static String getPass(String username) {
+        String query = "SELECT password FROM test.account WHERE username = "+ username;
+        String password = "";
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                password = resultSet.getString("password");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return password;
+    }
+
 }
 
 
