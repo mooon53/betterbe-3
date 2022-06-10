@@ -11,7 +11,12 @@ function onClick(){
             let bodyType = document.getElementById('bodyType').value;
             let clazz = document.getElementById('class').value;
 
+            //create a car object and add it to the database
+            var car = {make: make, model: model, price: price, productionYear: productionYear, driveLayout: driveLayout, bodyType: bodyType, class: clazz};
+            let carString = JSON.stringify(car);
 
+            request.open("POST", "http://localhost:8080/betterbe_3/cars", true);
+            request.send(carString);
         }
     }
 }

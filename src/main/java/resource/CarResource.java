@@ -68,9 +68,4 @@ public class CarResource {
         return res;
     }
 
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public void addCar(Car car){
-        Dao.addCar(car);
-    }
 }
