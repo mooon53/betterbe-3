@@ -161,8 +161,8 @@ input {
 
 .overlay {
     background: #E73053;
-    background: -webkit-linear-gradient(to right, #E73053, #E73053);
-    background: linear-gradient(to right, #E73053, #E73053);
+    background: -webkit-linear-gradient(to right, #0098B5, #0098B5);
+    background: linear-gradient(to right, #0098B5, #E73053);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;
