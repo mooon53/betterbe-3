@@ -51,7 +51,7 @@ public class CarResource {
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response putTodo(JAXBElement<Car> car) {
+    public Response putCar(JAXBElement<Car> car) {
         Car c = car.getValue();
         return putAndGetResponse(c);
     }
