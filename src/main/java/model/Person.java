@@ -1,20 +1,32 @@
 package model;
 
+import org.json.JSONObject;
+
 public class Person {
     private String username;
     private String fname;
     private String surname;
     private String email;
-    private String phone;
+
 
     public Person(){}
 
-    public Person(String username, String fname, String surname, String email, String phone){
+    public Person(String username, String fname, String surname, String email){
         this.username = username;
         this.fname = fname;
         this.surname = surname;
         this.email = email;
-        this.phone = phone;
+
+    }
+
+    public JSONObject toJSON() {
+        JSONObject response = new JSONObject();
+        response.put("username", username);
+        response.put("fname", fname);
+        response.put("surname", surname);
+        response.put("email", email);
+
+        return response;
     }
 
     public String getUsername() {
@@ -33,9 +45,7 @@ public class Person {
         return email;
     }
 
-    public String getPhone() {
-        return phone;
-    }
+
 
     public void setUsername(String username) {
         this.username = username;
@@ -53,7 +63,5 @@ public class Person {
         this.email = email;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+
 }

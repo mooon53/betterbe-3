@@ -1,7 +1,8 @@
 package resource;
 
 import dao.Dao;
-import model.Account;
+import model.*;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.ws.rs.Consumes;
@@ -10,6 +11,9 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.*;
 import javax.xml.bind.JAXBElement;
+import java.util.List;
+
+import static utils.JSONUtils.*;
 
 public class AccountResource {
     @Context
@@ -30,7 +34,8 @@ public class AccountResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getAccountInfo() {
         JSONObject response = new JSONObject();
-        //Account account = jsonStringToCar(Dao.getAccount(username, password));
+        Person person = jsonStringToPerson(Dao.getAccountInfo(username));
+        response.put("person", person);
         return response.toString();
     }
 

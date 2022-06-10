@@ -4,6 +4,7 @@ public class Account {
     private String username;
     private String password;
     private Boolean employee;
+    private Boolean loggedIn;
 
     public Account(){}
 
@@ -11,6 +12,7 @@ public class Account {
         this.username = username;
         this.password = password;
         this.employee = employee;
+        this.loggedIn = false;
     }
 
     public String getUsername() {
@@ -25,6 +27,10 @@ public class Account {
         return employee;
     }
 
+    public Boolean getLoggedIn() {
+        return loggedIn;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -35,5 +41,9 @@ public class Account {
 
     public void setEmployee(Boolean employee) {
         this.employee = employee;
+    }
+
+    public void setLoggedIn(Boolean loggedIn) {
+        this.loggedIn = loggedIn;
     }
 }
