@@ -51,7 +51,7 @@ public class CarResource {
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response putTodo(JAXBElement<Car> car) {
+    public Response putCar(JAXBElement<Car> car) {
         Car c = car.getValue();
         return putAndGetResponse(c);
     }
@@ -68,9 +68,4 @@ public class CarResource {
         return res;
     }
 
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public void addCar(Car car){
-        Dao.addCar(car);
-    }
 }

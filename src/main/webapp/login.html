@@ -31,7 +31,7 @@
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
 
-            <button onclick="location.href='index.html'">Log In</button>
+            <button onclick="login()">Log In</button>
         </form>
     </div>
     <div class="overlay-container">
@@ -61,6 +61,21 @@
     signInButton.addEventListener('click', () => {
         container.classList.remove("right-panel-active");
     });
+
+    function login() {
+        let getRequest = new XMLHttpRequest();
+        getRequest.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                let response = JSON.parse(this.responseText);
+                document.cookie = response.session_id;
+                }
+            }
+        }
+
+        getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/account", true);
+        getRequest.setRequestHeader("Accept", "application/json");
+        getRequest.send();
+    }
 </script>
 
 </body>

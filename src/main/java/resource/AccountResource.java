@@ -5,16 +5,14 @@ import model.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import javax.xml.bind.JAXBElement;
 import java.util.List;
 
 import static utils.JSONUtils.*;
 
+@Path("/account")
 public class AccountResource {
     @Context
     UriInfo uriInfo;
