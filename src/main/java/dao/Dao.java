@@ -62,7 +62,8 @@ public class Dao {
         List<String> options = new ArrayList<>();
         String query = "SELECT row_to_json(option)\n" +
                 "FROM Test.option\n" +
-                "WHERE car_id =" + carId;
+                "WHERE car_id =" + carId +
+                "\nORDER BY price";
         try {
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
