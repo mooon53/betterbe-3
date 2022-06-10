@@ -22,16 +22,15 @@
         </form>
     </div>
     <div class="form-container sign-in-container">
-        <form action="#">
+        <form action="http://localhost:8080/betterbe_3/rest/account">
             <h1>Log In</h1>
             <div class="social-container">
 
             </div>
 
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-
-            <button onclick="login()">Log In</button>
+            <input type="email" name="email" placeholder="Email" />
+            <input type="password" name="password" placeholder="Password" />
+            <input type="submit" value="Log In">
         </form>
     </div>
     <div class="overlay-container">
@@ -74,7 +73,7 @@
 
         getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/account", true);
         getRequest.setRequestHeader("Accept", "application/json");
-        getRequest.send();
+        getRequest.send(username, password);
     }
 </script>
 
