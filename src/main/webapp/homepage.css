@@ -67,7 +67,7 @@ body{
     top:652px;
     font-family:Inter;
     text-align:left;
-    font-size:26px;
+    font-size:24px;
     letter-spacing:0;
 }
 .e7_14 {
@@ -94,9 +94,13 @@ body{
     font-size:28px;
     letter-spacing:0;
 }
-.e7_16 {
+.e7_19 {
     background-image:url(images/acc.png);
+    background-repeat:no-repeat;
+    background-size:cover;
     position:absolute;
+    width: 59px;
+    height: 59px;
     left:1347px;
     top:10px;
 }
