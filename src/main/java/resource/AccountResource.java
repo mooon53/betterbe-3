@@ -1,12 +1,17 @@
 package resource;
 
 import dao.Dao;
-import model.Account;
+import model.*;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import javax.xml.bind.JAXBElement;
+import java.util.List;
+
+import static utils.JSONUtils.*;
+
 @Path("/account")
 public class AccountResource {
     @Context

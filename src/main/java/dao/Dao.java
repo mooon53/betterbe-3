@@ -126,6 +126,22 @@ public class Dao {
     public static void addAccount(String username, String password){
         String query = "INSERT INTO account (username,password) VALUES ("+username+", "+ password+")";
     }
+
+    public static String getAccountInfo(String username){
+        String person = "";
+        String query = "SELECT row_to_json(person)\n" +
+                "FROM Test.person\n" +
+                "WHERE username =" + username;
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            resultSet.next();
+            person = resultSet.getString(1);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return person;
+    }
+
 }
 
 

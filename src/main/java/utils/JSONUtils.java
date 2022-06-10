@@ -1,8 +1,6 @@
 package utils;
 
-import model.Car;
-import model.Option;
-import model.Rule;
+import model.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -105,4 +103,14 @@ public class JSONUtils {
         }
         return result;
     }
+
+    public static Person jsonStringToPerson(String personString) {
+        JSONObject personJSON = new JSONObject(personString);
+        return jsonToPerson(personJSON);
+    }
+
+    public static Person jsonToPerson(JSONObject personJSON) {
+        return new Person(personJSON.getString("username"), personJSON.getString("fname"), personJSON.getString("surname"), personJSON.getString("email") );
+    }
+
 }
