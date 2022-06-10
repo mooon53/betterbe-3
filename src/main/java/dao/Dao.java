@@ -4,7 +4,9 @@ import model.Car;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Dao {
     private static Statement statement;
@@ -60,7 +62,8 @@ public class Dao {
         List<String> options = new ArrayList<>();
         String query = "SELECT row_to_json(option)\n" +
                 "FROM Test.option\n" +
-                "WHERE car_id =" + carId;
+                "WHERE car_id =" + carId +
+                "\nORDER BY price";
         try {
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
@@ -98,6 +101,30 @@ public class Dao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    //return true if the account exists and password matches
+    public static boolean getAccount(String username, String password){
+        Map<String, String> credentials = new HashMap<>();
+        String query = "SELECT username, password FROM account WHERE username = "+ username +" AND password = "+password;
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+            if(rowCount == 1){
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+//extract data of configuration from db
+
+    public static void addAccount(String username, String password){
+        String query = "INSERT INTO account (username,password) VALUES ("+username+", "+ password+")";
     }
 }
 
