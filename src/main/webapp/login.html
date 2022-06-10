@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form action="#">
+            <h1>Create Account</h1>
+            <div class="social-container">
+
+
+            </div>
+
+            <input type="text" placeholder="Name" />
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+            <button>Sign Up</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form action="#">
+            <h1>Log In</h1>
+            <div class="social-container">
+
+            </div>
+
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+
+            <button onclick="location.href='index.html'">Log In</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>press here to login with your account</p>
+                <button class="ghost" id="signIn">Log In</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Welcome!</h1>
+                <p>If you don't have an account yet, sign up here</p>
+                <button class="ghost" id="signUp" >Sign Up</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let signUpButton = document.getElementById('signUp');
+    let signInButton = document.getElementById('signIn');
+    let container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+</script>
+
+</body>
+</html>
