@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>BetterBe - add a car</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="...">  <!--add css file here instead of the dots-->
+<!--    <link rel="stylesheet" href="...">  &lt;!&ndash;add css file here instead of the dots&ndash;&gt;-->
     <script src="addCar.js"></script>
 
     <!--continue implementing later-->
@@ -31,31 +31,41 @@
         </div>
 
         <label for="bodyType" class="car"> Body type</label>
-        <div id="bodyType" class="car">
-            <select>
-                <option>coupe</option>
-                <option>cabriolet</option>
-                <option>sedan</option>
-                <option>estate</option>
-                <option>hatchback</option>
-                <option>SUV</option>
-                <option>pick-up</option>
-                <option>MPV</option>
+        <div>
+            <select id="bodyType" class="car">
+                <option value = "coupe">coupe</option>
+                <option value = "cabriolet">cabriolet</option>
+                <option value = "sedan">sedan</option>
+                <option value = "estate">estate</option>
+                <option value = "hatchback">hatchback</option>
+                <option value = "SUV">SUV</option>
+                <option value = "pick-up">pick-up</option>
+                <option value = "MPV">MPV</option>
             </select>
         </div>
+    </form>
 </div>
 <label for="driveLayout" class="car">Drive layout</label>
-<div id="driveLayout" class="car">
-    <select>
-        <option>FWD</option>
-        <option>RWD</option>
-        <option>AWD</option>
-        <option>4WD</option>
+<div>
+    <select id="driveLayout" class="car">
+        <option value = "FWD">FWD</option>
+        <option value = "RWD">RWD</option>
+        <option value = "AWD">AWD</option>
+        <option value = "4WD">4WD</option>
     </select>
 </div>
 <div label for="Price" class="option"> Price</div>
 <div class="col-sm-9">
     <input type="text" class="car" id="price" placeholder="10">
+</div>
+<label for="class" class="car"> Class</label>
+<div>
+    <select id="class" class="car">
+        <option value = "SUBCOMPACT">SUBCOMPACT</option>
+        <option value = "COMPACT">COMPACT</option>
+        <option value = "MID-SIZE">MID-SIZE</option>
+        <option value = "LARGE">LARGE</option>
+    </select>
 </div>
 </div>
 <h3>Optional Equipment</h3><svg width="18" height="18" color="currentColor" class="css-7ykhfk" viewBox="0 0 24 24">
@@ -92,7 +102,8 @@
             <input type="text" class="option" id="priceforoption" placeholder="10">
         </div>
         <button class="button button1">ADD</button>
+    </fieldset>
 </div>
-<button class="button button2">ADD</button>
+<button class="button button2" onclick = onClick()>ADD CAR</button>
 </body>
 </html>
