@@ -17,7 +17,8 @@ public class JSONUtils {
 
     public static Car jsonToCar(JSONObject carJSON) {
         return new Car(carJSON.getLong("id"), carJSON.getLong("production_year"), carJSON.getDouble("price"),
-                carJSON.getString("make"), carJSON.getString("model"));
+                carJSON.getString("make"), carJSON.getString("model"), carJSON.getString("driveLayout"),
+                carJSON.getString("bodyType"), carJSON.getString("clazz"));
     }
 
     public static List<Car> jsonStringsToCars(List<String> carsStrings) {
