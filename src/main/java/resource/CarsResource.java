@@ -33,7 +33,6 @@ public class CarsResource {
     }
 
     @POST
-    //@Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public void addCar(Car car){
         Dao.addCar(car);
