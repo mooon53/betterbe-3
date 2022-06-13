@@ -8,6 +8,9 @@ public class Car {
     private Double price;
     private String make;
     private String model;
+    private String driveLayout;
+    private String bodyType;
+    private String clazz;
 
     public Car(){}
 
@@ -41,11 +44,25 @@ public class Car {
     public Long getProductionYear() {
         return productionYear;
     }
-
+    public String getDriveLayout() {
+        return driveLayout;
+    }
     public Double getPrice() {
         return price;
     }
+    public String getBodyType() {
+        return bodyType;
+    }
+    public String getClazz() {
+        return clazz;
+    }
 
+    public void setClazz(String clazz) {
+        this.clazz = clazz;
+    }
+    public void setBodyType(String bodyType) {
+        this.bodyType = bodyType;
+    }
     public void setCarId(Long carId) {
         this.carId = carId;
     }
@@ -60,5 +77,8 @@ public class Car {
     }
     public void setPrice(Double price) {
         this.price = price;
+    }
+    public void setDriveLayout(String driveLayout) {
+        this.driveLayout = driveLayout;
     }
 }
