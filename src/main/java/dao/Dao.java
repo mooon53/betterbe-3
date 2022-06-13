@@ -94,10 +94,12 @@ public class Dao {
 
     public static void addCar(Car car) {
         String query = "INSERT INTO car (id, make, model, production_year, price, drive_layout, body_type, class)\n" +
-                    "VALUES(" + car.getCarId() + ", " + car.getMake() + ", " + car.getModel() + ", " + car.getProductionYear() + ", " + car.getPrice() +
-                    ", " + car.getDriveLayout() + ", " + car.getBodyType() + ", " + car.getClazz() +
-                    ");";
+                    "VALUES(" + car.getCarId() + ",'" + car.getMake() + "', '" + car.getModel() + "', " + car.getProductionYear() + ", " + car.getPrice() +
+                    ", '" + car.getDriveLayout() + "', '" + car.getBodyType() + "', '" + car.getClazz() +
+                    "');";
         try {
+            System.out.println("yeet");
+            System.out.println(query);
             statement.executeQuery(query);
         } catch (SQLException e) {
             throw new RuntimeException(e);

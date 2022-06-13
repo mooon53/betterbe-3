@@ -10,13 +10,13 @@ function onClick(){
     let clazz = document.getElementById('clazz').value;
 
     //create a car object and add it to the database
-    let car = {carId: 10, make: make, model: model, price: price, productionYear: productionYear, driveLayout: driveLayout, bodyType: bodyType, class: clazz};
+    let car = `{"id" : 10, "make": ` + make + `, "model":` + model + `, "price":` + price + `, "production_year":` + productionYear + `, "driveLayout":` + driveLayout + `, "bodyType":` + bodyType + `, "clazz":` + clazz + `}`;
     let carString = JSON.stringify(car);
 
     request.open("POST", "http://localhost:8080/betterbe_3/rest/cars", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
-    console.log(carString);
-    request.send(carString);
+    console.log(car);
+    request.send(car);
 
 }
