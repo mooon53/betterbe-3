@@ -30,7 +30,6 @@ public class CarsResource {
     }
 
     @POST
-    //@Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public void addCar(String carString){
         System.out.println("car added");
