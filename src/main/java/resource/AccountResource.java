@@ -28,6 +28,7 @@ public class AccountResource {
 //        this.password = password;
 //    }
 
+    //the password match does not work
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getAccountInfo() {
@@ -44,7 +45,7 @@ public class AccountResource {
         System.out.println("test");
         System.out.println(email);
         System.out.println(password);
-        if(password == Dao.getPass(username)) {
+        if(password.equals(Dao.getPass(username)) ) {
             System.out.println("correct password");
         } else {
             System.out.println("wrong password or username");
