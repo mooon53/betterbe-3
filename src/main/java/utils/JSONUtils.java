@@ -16,7 +16,6 @@ public class JSONUtils {
     }
 
     public static Car jsonToCar(JSONObject carJSON) {
-        System.out.println(carJSON);
         return new Car(carJSON.getLong("id"), carJSON.getLong("year"), carJSON.getDouble("price"),
                 carJSON.getString("make"), carJSON.getString("model"), carJSON.getString("layout"),
                 carJSON.getString("type"), carJSON.getString("size"));
@@ -50,7 +49,9 @@ public class JSONUtils {
                 optionJSON.getString("start_date"));
         try {
             option.setEndDate(optionJSON.getString("end_date"));
-        } catch (JSONException e) {}
+        } catch (JSONException e) {
+            System.out.println(e.getStackTrace());
+        }
         return option;
     }
 
