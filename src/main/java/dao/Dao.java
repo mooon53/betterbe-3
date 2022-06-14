@@ -93,9 +93,9 @@ public class Dao {
     }
 
     public static void addCar(Car car) {
-        String query = "INSERT INTO car (id, make, model, production_year, price, drive_layout, body_type, class)\n" +
-                    "VALUES(" + car.getCarId() + ",'" + car.getMake() + "', '" + car.getModel() + "', " + car.getProductionYear() + ", " + car.getPrice() +
-                    ", '" + car.getDriveLayout() + "', '" + car.getBodyType() + "', '" + car.getClazz() +
+        String query = "INSERT INTO car (id, make, model, year, price, layout, type, size)\n" +
+                    "VALUES(" + car.getId() + ",'" + car.getMake() + "', '" + car.getModel() + "', " + car.getYear() + ", " + car.getPrice() +
+                    ", '" + car.getLayout() + "', '" + car.getType() + "', '" + car.getSize() +
                     "');";
         try {
             System.out.println("yeet");

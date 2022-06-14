@@ -59,7 +59,7 @@ public class CarResource {
     private Response putAndGetResponse(Car car) {
         Response res;
         List<String> cars = Dao.getCars();
-        if(cars.size() > car.getCarId()) {
+        if(cars.size() > car.getId()) {
             res = Response.noContent().build();
         } else {
             res = Response.created(uriInfo.getAbsolutePath()).build();

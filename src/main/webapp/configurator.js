@@ -57,9 +57,9 @@ function loadConfigurator(carId) {
 				let carPrice = Number(`${car.price}`); //Get the price of the car as a number
 				document.getElementById("make").innerText = car.make;
 				document.getElementById("model").innerText = car.model;
-				document.getElementById("year_of_production").innerText = car.productionYear;
+				document.getElementById("year_of_production").innerText = car.year;
 				document.getElementById("image").src = "images/cars/" + carId + ".png";
-				let carInfo = `${car.make} ${car.model} ${car.productionYear}`; //Get the car info as 1 string
+				let carInfo = `${car.make} ${car.model} ${car.year}`; //Get the car info as 1 string
 				document.getElementById("image").alt = carInfo;
 				document.title = "BetterBe · Configurator · " + carInfo; //Set the title to contain the info of the car we're configuring
 				console.log(options);

@@ -37,7 +37,7 @@
         <div class="overlay">
             <div class="overlay-panel overlay-left">
                 <h1>Welcome Back!</h1>
-                <p>press here to login with your account</p>
+                <p>press here to log in with your account</p>
                 <button class="ghost" id="signIn">Log In</button>
             </div>
             <div class="overlay-panel overlay-right">
@@ -69,8 +69,6 @@
                 document.cookie = response.session_id;
                 }
             }
-        }
-
         getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/account", true);
         getRequest.setRequestHeader("Accept", "application/json");
         getRequest.send(username, password);

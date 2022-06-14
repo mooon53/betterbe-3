@@ -1,6 +1,6 @@
 package model;
 
-public enum Class {
+public enum Size {
     SUB_COMPACT,
     COMPACT,
     MID_SIZE,

@@ -3,37 +3,48 @@ package model;
 import org.json.JSONObject;
 
 public class Car {
-    private Long carId;
-    private Long productionYear;
+    private Long id;
+    private Long year;
     private Double price;
     private String make;
     private String model;
-    private String driveLayout;
-    private String bodyType;
-    private String clazz;
+    private String layout;
+    private String type;
+    private String size;
 
     public Car(){}
 
-    public Car(Long carId, Long productionYear, Double price, String make, String model) {
-        this.carId = carId;
-        this.productionYear = productionYear;
+    public Car(Long id, Long year, Double price, String make, String model) {
+        this.id = id;
+        this.year = year;
         this.price = price;
         this.make = make;
         this.model = model;
     }
 
+    public Car(Long id, Long year, Double price, String make, String model, String layout, String type, String size) {
+        this.id = id;
+        this.year = year;
+        this.price = price;
+        this.make = make;
+        this.model = model;
+        this.layout = layout;
+        this.type = type;
+        this.size = size;
+    }
+
     public JSONObject toJSON() {
         JSONObject response = new JSONObject();
-        response.put("carId", carId);
+        response.put("id", id);
         response.put("make", make);
         response.put("model", model);
-        response.put("productionYear", productionYear);
+        response.put("year", year);
         response.put("price", price);
         return response;
     }
 
-    public Long getCarId() {
-        return carId;
+    public Long getId() {
+        return id;
     }
     public String getMake() {
         return make;
@@ -41,30 +52,30 @@ public class Car {
     public String getModel() {
         return model;
     }
-    public Long getProductionYear() {
-        return productionYear;
+    public Long getYear() {
+        return year;
     }
-    public String getDriveLayout() {
-        return driveLayout;
+    public String getLayout() {
+        return layout;
     }
     public Double getPrice() {
         return price;
     }
-    public String getBodyType() {
-        return bodyType;
+    public String getType() {
+        return type;
     }
-    public String getClazz() {
-        return clazz;
+    public String getSize() {
+        return size;
     }
 
-    public void setClazz(String clazz) {
-        this.clazz = clazz;
+    public void setSize(String size) {
+        this.size = size;
     }
-    public void setBodyType(String bodyType) {
-        this.bodyType = bodyType;
+    public void setType(String type) {
+        this.type = type;
     }
-    public void setCarId(Long carId) {
-        this.carId = carId;
+    public void setId(Long id) {
+        this.id = id;
     }
     public void setMake(String make) {
         this.make = make;
@@ -72,13 +83,13 @@ public class Car {
     public void setModel(String model) {
         this.model = model;
     }
-    public void setProductionYear(Long productionYear) {
-        this.productionYear = productionYear;
+    public void setYear(Long year) {
+        this.year = year;
     }
     public void setPrice(Double price) {
         this.price = price;
     }
-    public void setDriveLayout(String driveLayout) {
-        this.driveLayout = driveLayout;
+    public void setLayout(String layout) {
+        this.layout = layout;
     }
 }
