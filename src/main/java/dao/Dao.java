@@ -1,6 +1,6 @@
 package dao;
 
-import model.Car;
+import model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -38,13 +38,13 @@ public class Dao {
                 cars.add(resultSet.getString(1));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getStackTrace());
         }
         return cars;
     }
 
     public static String getCar(Long carId){
-        String car;
+        String car = "";
         String query =  "SELECT row_to_json(car)\n" +
                 "FROM Test.car\n" +
                 "WHERE id =" + carId;
@@ -53,7 +53,7 @@ public class Dao {
             resultSet.next();
             car = resultSet.getString(1);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getStackTrace());
         }
         return car;
     }
@@ -70,7 +70,23 @@ public class Dao {
                 options.add(resultSet.getString(1));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getStackTrace());
+        }
+        return options;
+    }
+
+    public static List<String> getOptions() {
+        List<String> options = new ArrayList<>();
+        String query = "SELECT row_to_json(option)\n" +
+                "FROM Test.option\n" +
+                "\nORDER BY id";
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                options.add(resultSet.getString(1));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getStackTrace());
         }
         return options;
     }
@@ -86,23 +102,39 @@ public class Dao {
                 rules.add(resultSet.getString(1));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getStackTrace());
         }
         return rules;
 
     }
 
     public static void addCar(Car car) {
-        String query = "INSERT INTO car (id, make, model, production_year, price, drive_layout, body_type, class)\n" +
-                    "VALUES(" + car.getCarId() + ",'" + car.getMake() + "', '" + car.getModel() + "', " + car.getProductionYear() + ", " + car.getPrice() +
-                    ", '" + car.getDriveLayout() + "', '" + car.getBodyType() + "', '" + car.getClazz() +
+        String query = "INSERT INTO car (id, make, model, year, price, layout, type, size)\n" +
+                    "VALUES(" + car.getId() + ",'" + car.getMake() + "', '" + car.getModel() + "', " + car.getYear() + ", " + car.getPrice() +
+                    ", '" + car.getLayout() + "', '" + car.getType() + "', '" + car.getSize() +
                     "');";
         try {
-            System.out.println("yeet");
-            System.out.println(query);
             statement.executeQuery(query);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
+        }
+    }
+
+    public static void addOption(Option option) {
+        String query = "INSERT INTO option (id, value, manufacturer, car_id, option_type, price, start_date)\n" +
+                "VALUES(" + option.getId() + ",'" + option.getValue() + "','"  + option.getManufacturer() + "'," +
+                option.getCarID() + ",'" + option.getOptionType() + "'," + option.getPrice() + ",'" +
+                option.getStartDate() + "');";
+        try {
+            statement.executeQuery(query);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void addOptions(List<Option> options) {
+        for (Option option : options) {
+            addOption(option);
         }
     }
 
@@ -120,7 +152,7 @@ public class Dao {
                 return true;
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getStackTrace());
         }
         return false;
     }
@@ -140,7 +172,7 @@ public class Dao {
             resultSet.next();
             person = resultSet.getString(1);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getStackTrace());
         }
         return person;
     }
@@ -154,7 +186,7 @@ public class Dao {
                 password = resultSet.getString("password");
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getStackTrace());
         }
         return password;
     }

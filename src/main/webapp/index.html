@@ -17,7 +17,7 @@
                     let car;
                     for (let i = 0; i < response.length; i++) {
                         let current = response[i];
-                        car = `<a href="configurator.html?carID=${current.carId}">${current.make} ${current.model} ${current.productionYear}</a><br>`;
+                        car = `<a href="configurator.html?carID=${current.id}">${current.make} ${current.model} ${current.year}</a><br>`;
                         dropDown.innerHTML += car;
                     }
                 }
@@ -28,11 +28,10 @@
         }
 
         function account() {
-            alert('hello');
             // if() {
-            //
+
             // } else {
-                onclick="location.href='index.html'";
+            window.location.href = "login.html";
             // }
 
         }
