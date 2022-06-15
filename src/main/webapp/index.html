@@ -1,54 +1,267 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <title>Homepage</title>
-    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="homepage.css">
+  <meta charset="UTF-8">
+  <title>CodePen - A Pen by Mark</title>
+  <link rel="stylesheet" href="./style.css">
 
-    <script>
-        function onLoad() {
-            let getRequest = new XMLHttpRequest();
-            getRequest.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    let dropDown = document.getElementById("cars");
-                    let response = JSON.parse(this.responseText);
-                    console.log(response);
-                    let car;
-                    for (let i = 0; i < response.length; i++) {
-                        let current = response[i];
-                        car = `<a href="configurator.html?carID=${current.id}">${current.make} ${current.model} ${current.year}</a><br>`;
-                        dropDown.innerHTML += car;
-                    }
-                }
-            }
-            getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/cars", true);
-            getRequest.setRequestHeader("Accept", "application/json");
-            getRequest.send();
-        }
-
-        function account() {
-            // if() {
-
-            // } else {
-            window.location.href = "login.html";
-            // }
-
-        }
-    </script>
 </head>
-<body id="body" onload="onLoad()">
-<div class=e2_2>
-    <div class="e3_2"></div>
-    <div class=e11_24>
-        <div class="e3_3"></div>
-    </div>
-    <div class="e3_4"></div>
-    <div class="e4_2"></div>
-    <span class="e7_13">OUR PRODUCTS</span>
-    <div class="e15_5" id="cars"></div>
-    <span class="e7_14">LEASE</span><span class="e7_15">ABOUT</span>
-    <div class="e7_19" onclick="account()"></div>
+<body>
+<!-- partial:index.partial.html -->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>BetterBe · Home</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/bettericon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+</head>
+
+<body> 
+  
+  
+  <main>
+   
+<div class="menu_nav">
+  <a class="active"
+     href="#lease">Lease</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+  <a href="#login">Log in</a>
 </div>
+    
+       <hr class="line">
+    
+    </section>
+    <section class = "product-detail">
+      <div class ="imagery">
+ 
+  </main>
+    
+<!--   -->
+      <div class="wrapper">
+<div class="home-hero">
+  <div class="feature">
+    <h3>Lease a car you've always wanted</h3>
+    <p>User our convinient search engine and car configurator</p>
+  </div>
+  <div class="special">
+    <h3>Trending configurations</h3>
+    <p>Choose popular options for fast access</p>
+
+  </div>
+  <div class="amazing">
+    <h3>How does it work?</h3>
+    <p>View the whole process shcema to ensure transperency</p>
+  </div>
+  <div class="news">
+    <h3>Something else</h3>
+    <p>Something else. </p>
+  </div>
+  
+  <div class="photos"><h3>Gallery</h3>
+    <p>For those who can take a closer look</p></div>
+  
+  <div class="cta"><p>Sign up for better experience, it's free! </p>
+    <a class="spam-button" href="/spam-machine">Sign me up!</a></div>
+  
+ 
+
+</div>
+</div>
+<!--        -->
+      
+<!--    Products list    -->
+      <section class="product-list">
+        <h1>
+          Products
+          <hr class="products-line">
+        </h1>
+        
+<!--         add a card div
+        add a title
+        add a image
+        add button -->
+        
+        <div class="product-container">
+          
+<!--     1 product       -->
+        <div class="card">
+          <div class="title">
+            Mazda CX-9 
+          </div>
+             <div class="image">
+            <img src="https://www.iihs.org/api/ratings/model-year-images/2939/636/"/>
+          </div>
+             <div class="text">
+            MIDSIZE SUV / 4-DOOR SUV
+          </div>
+            <div>
+              <button class="lease-button">
+               Lease 
+              </button>
+          </div>
+        </div>
+        
+<!--    2 product      -->
+          <div class="card">
+          <div class="title">
+            Toyota Prius
+          </div>
+             <div class="image">
+            <img src="https://www.iihs.org/media/a7de62c9-bae2-4c66-95c2-3eb23d92725f/mbZOUg/News/2019/032919.jpg"/>
+          </div>
+             <div class="text">
+            Qualify for TOP SAFETY PICK awards
+          </div>
+            <div>
+              <button class="lease-button">
+               Lease 
+              </button>
+          </div>
+        </div>
+        
+ <!--   3 product      -->
+          <div class="card">
+          <div class="title">
+             Mercedes-Benz GLE-Class
+          </div>
+             <div class="image">
+            <img src=https://www.iihs.org/api/ratings/model-year-images/2966/636//>
+          </div>
+             <div class="text">
+            MIDSIZE LUXURY SUV / 4-DOOR SUV
+          </div>
+            <div>
+              <button class="lease-button">
+               Lease 
+              </button>
+          </div>
+        </div>
+        
+<!--    4 product      -->
+          <div class="card">
+          <div class="title">
+             2022 BMW X5
+          </div>
+             <div class="image">
+            <img src=https://www.iihs.org/api/ratings/model-year-images/3127/636//>
+          </div>
+             <div class="text">
+            MIDSIZE LUXURY SUV / 4-DOOR SUV
+          </div>
+            <div>
+              <button class="lease-button">
+               Lease 
+              </button>
+          </div>
+        </div>
+          
+          
+<!--    5 product      -->
+          <div class="card">
+          <div class="title">
+            Ford Ranger
+          </div>
+             <div class="image">
+            <img src=https://www.iihs.org/api/ratings/model-year-images/2882/636//>
+          </div>
+             <div class="text">
+            SMALL PICKUP / CREW CAB PICKUP
+          </div>
+            <div>
+              <button class="lease-button">
+               Lease 
+              </button>
+          </div>
+        </div>
+          
+          <!--    6 product      -->
+          <div class="card">
+          <div class="title">
+             Dodge Durango
+          </div>
+             <div class="image">
+            <img src=https://www.iihs.org/api/ratings/model-year-images/2396/636//>
+          </div>
+             <div class="text">
+            MIDSIZE SUV / 4-DOOR SUV
+          </div>
+            <div>
+              <button class="lease-button">
+               Lease 
+              </button>
+          </div>
+        </div>
+          
+        </div>          
+          
+        </div>
+              
+        </div>
+        
+        
+        
+          </section> 
+
+<!--          -->
+        
+<!-- Footer -->
+      <div class="footer">
+          <div class ="footer-content">
+            <div class="footer-section about">
+              <h1 class="logo-text"><span>Better</span>Be</h1>
+              <p>
+                Some text Some text Some text Some text Some text Some text Some text Some text.
+              </p>
+              <div class="contact">
+                <span><i class="fas fa-phone"></i> &nbsp; 123-456-789</span>
+                <span><i class="fas fa-envelope"></i> &nbsp; info@better-be.com</span>
+            </div>
+              <div class="socials">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+            <div class="footer-section links">
+              <h2>Links:</h2>
+              <br>
+              <ul>
+                <a href="#"><li>Home</li></a>
+                <a href="#"><li>Lease</li></a>
+                <a href="#"><li>About</li></a>
+                <a href="#"><li>Contacts</li></a>
+                <a href="#"><li>Log_in</li></a>
+              </ul>
+            </div>
+            
+            <div class="footer-section contacts">
+              <h2>Contact us:</h2>
+              <br>
+              <form action="index.html" method="post">
+                <input type="email" name="email" class="text-input contact-input" placeholder="Your email address...">
+                <textarea name="message" class="text-input contact-input" placeholder="Your message..."></textarea>
+                <button type="submit" class="btn btn-big">
+                  <i class="fas fa-envelope"></i>
+                  Send
+                </button>
+              </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+          &copy; utwente.nl | Made by Utwente Students
+        </div>
+      </div>
+</body>
+</html>
+<!-- partial -->
+  
 </body>
 </html>
