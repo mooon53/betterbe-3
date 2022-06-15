@@ -116,4 +116,22 @@ public class JSONUtils {
         return new Person(personJSON.getString("username"), personJSON.getString("fname"), personJSON.getString("surname"), personJSON.getString("email") );
     }
 
+    public static HistoricalData jsonStringToHistoricalData(String timelineStr) {
+        JSONObject timelineJSON = new JSONObject(timelineStr);
+        return jsonToHistoricalData(timelineJSON);
+    }
+
+    //o.start_date, c.make, c.model, c.production_year, o.option_type, o.value, o.price
+    public static HistoricalData jsonToHistoricalData(JSONObject timelineJSON) {
+        return new HistoricalData(timelineJSON.getString("start_date"), timelineJSON.getString("option_type"),timelineJSON.getString("value"),timelineJSON.getDouble("price"));
+    }
+
+    public static List<HistoricalData> jsonStringsToHistoricalData(List<String> timelinesStrings) {
+        List<HistoricalData> timeline = new ArrayList<>();
+        for (String timelineString : timelinesStrings) {
+            timeline.add(jsonStringToHistoricalData(timelineString));
+        }
+        return timeline;
+    }
+
 }

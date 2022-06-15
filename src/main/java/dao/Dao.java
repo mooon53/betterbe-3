@@ -63,6 +63,7 @@ public class Dao {
         String query = "SELECT row_to_json(option)\n" +
                 "FROM betterbe.option\n" +
                 "WHERE car_id =" + carId +
+                "AND end_date = null" +
                 "\nORDER BY price";
         try {
             ResultSet resultSet = statement.executeQuery(query);
@@ -189,6 +190,36 @@ public class Dao {
             e.printStackTrace();
         }
         return password;
+    }
+
+    public static List<String> getHistoricalData(Long carId){
+        List<String> data = new ArrayList<>();
+        //change to json output, aka row_to_JSON
+//        SELECT XMLAGG(XMLFOREST(o.start_date,
+//                c.make,
+//                c.model,
+//                c.year,
+//                o.option_type,
+//                o.value,
+//                o.price)) as timeline
+//
+//        FROM car c,
+//                option o
+//        WHERE c.id = o.car_id
+        String query = "SELECT row_to_json(option)\n" +
+                "FROM Test.option\n" +
+                "WHERE car_id =" + carId +
+                "\nORDER BY price";
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                data.add(resultSet.getString(1));
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getStackTrace());
+        }
+        return data;
     }
 
 }
