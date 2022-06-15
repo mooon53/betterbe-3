@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>BetterBe - add a car</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-<!--    <link rel="stylesheet" href="...">  &lt;!&ndash;add css file here instead of the dots&ndash;&gt;-->
+    <!--    <link rel="stylesheet" href="...">  &lt;!&ndash;add css file here instead of the dots&ndash;&gt;-->
     <script src="addCar.js"></script>
 
     <!--continue implementing later-->
@@ -16,7 +16,7 @@
         <div class="form-group">
             <label for="make" class="car"> Manufacturer</label>
             <div>
-                <input class="car" id="make" placeholder="Mazda" type ="text">
+                <input class="car" id="make" placeholder="Mazda" type="text">
             </div>
         </div>
 
@@ -33,14 +33,14 @@
         <label for="bodyType" class="car"> Body type</label>
         <div>
             <select id="bodyType" class="car">
-                <option value = "coupe">COUPE</option>
-                <option value = "cabriolet">CABRIOLET</option>
-                <option value = "sedan">SEDAN</option>
-                <option value = "estate">ESTATE</option>
-                <option value = "hatchback">HATCHBACK</option>
-                <option value = "SUV">SUV</option>
-                <option value = "pick-up">PICK_UP</option>
-                <option value = "MPV">MPV</option>
+                <option value="coupe">COUPE</option>
+                <option value="cabriolet">CABRIOLET</option>
+                <option value="sedan">SEDAN</option>
+                <option value="estate">ESTATE</option>
+                <option value="hatchback">HATCHBACK</option>
+                <option value="SUV">SUV</option>
+                <option value="pick-up">PICK_UP</option>
+                <option value="MPV">MPV</option>
             </select>
         </div>
     </form>
@@ -48,10 +48,10 @@
 <label for="driveLayout" class="car">Drive layout</label>
 <div>
     <select id="driveLayout" class="car">
-        <option value = "FWD">FWD</option>
-        <option value = "RWD">RWD</option>
-        <option value = "AWD">AWD</option>
-        <option value = "4WD">4WD</option>
+        <option value="FWD">FWD</option>
+        <option value="RWD">RWD</option>
+        <option value="AWD">AWD</option>
+        <option value="4WD">4WD</option>
     </select>
 </div>
 <div label for="Price" class="option"> Price</div>
@@ -61,22 +61,22 @@
 <label for="size" class="car"> Size</label>
 <div>
     <select id="size" class="car">
-        <option value = "SUBCOMPACT">SUBCOMPACT</option>
-        <option value = "COMPACT">COMPACT</option>
-        <option value = "MID-SIZE">MID-SIZE</option>
-        <option value = "LARGE">LARGE</option>
+        <option value="SUBCOMPACT">SUBCOMPACT</option>
+        <option value="COMPACT">COMPACT</option>
+        <option value="MID-SIZE">MID-SIZE</option>
+        <option value="LARGE">LARGE</option>
     </select>
 </div>
 <div id="options">
     <h3>Options</h3>
     <table>
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Price</th>
-                <th>Manufacturer</th>
-            </tr>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Manufacturer</th>
+        </tr>
         </thead>
         <tbody id="optionsTable">
         </tbody>
@@ -118,6 +118,43 @@
         <button class="button button1" onclick="addOption()">ADD</button>
     </fieldset>
 </div>
-<button class="button button2" onclick = addCar()>ADD CAR</button>
+<div id="rules">
+    <h3>Rules</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Options</th>
+            <th>Mandatory</th>
+            <th>Exclusive</th>
+        </tr>
+        </thead>
+        <tbody id="rulesTable">
+        </tbody>
+    </table>
+</div>
+<div class="css-hfx5g8 e1he6gkt0">
+    <style data-emotion="css 18z6yag">
+        @media (min-width: 768px) {
+            .css-18z6yag {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    </style>
+    <fieldset class="css-18z6yag">
+        <style data-emotion="css 1upilqn">
+            .css-1upilqn {
+                margin-bottom: 12px;
+            }
+        </style>
+        <div id="optionsForRule"></div>
+        <input type="checkbox" id="mandatory">
+        <label for="mandatory">Mandatory</label>
+        <input type="checkbox" id="exclusive">
+        <label for="exclusive">Exclusive</label>
+        <button class="button button1" onclick="addRule()">ADD</button>
+    </fieldset>
+</div>
+<button class="button button2" onclick=addCar()>ADD CAR</button>
 </body>
 </html>
