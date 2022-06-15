@@ -33,9 +33,14 @@ public class SignupResource {
         if (response.has("password")) {
             password = (String) response.get("password");
         }
-        System.out.println(email);
+        System.out.println("signup: " + email);
         System.out.println(password);
         Dao.addAccount(email, password);
+        if(password.equals(Dao.getPass(email))) {
+            System.out.println("correct password");
+        } else {
+            System.out.println("not added");
+        }
         return response.toString();
     }
 }

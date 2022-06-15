@@ -161,6 +161,11 @@ public class Dao {
     public static void addAccount(String username, String password){
         String query = "INSERT INTO account (username,password) VALUES ('"+username+"', '"+ password+"')";
         System.out.println(query);
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static String getAccountInfo(String username){
