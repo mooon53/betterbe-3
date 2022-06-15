@@ -26,10 +26,10 @@ function addCar(){
 
 function addOption() {
     let value = document.getElementById("Name").value;
-    let manufacturer = document.getElementById("Manufacturer").value;
+    //let manufacturer = document.getElementById("Manufacturer").value;
     let price = Number(document.getElementById("priceForOption").value);
     let option_type = document.getElementById("Type").value;
-    let option = {value, manufacturer, price, option_type};
+    let option = {value, price, option_type};
     options.push(option);
     let optionHTML = `<tr>
                 <td>` + option_type + `</td>
