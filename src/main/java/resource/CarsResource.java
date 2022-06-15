@@ -65,4 +65,6 @@ public class CarsResource {
     public CarResource getCar(@PathParam("car") String id){
         return new CarResource(uriInfo, request, id);
     }
+
+
 }
