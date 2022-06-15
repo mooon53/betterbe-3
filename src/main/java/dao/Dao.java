@@ -159,7 +159,8 @@ public class Dao {
 //extract data of configuration from db
 
     public static void addAccount(String username, String password){
-        String query = "INSERT INTO account (username,password) VALUES ("+username+", "+ password+")";
+        String query = "INSERT INTO account (username,password) VALUES ('"+username+"', '"+ password+"')";
+        System.out.println(query);
     }
 
     public static String getAccountInfo(String username){
