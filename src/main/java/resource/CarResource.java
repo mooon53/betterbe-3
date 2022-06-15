@@ -31,6 +31,7 @@ public class CarResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getCarInfo() {
         JSONObject response = new JSONObject();
+        System.out.println(Dao.getCar(id));
         Car car = jsonStringToCar(Dao.getCar(id));
         response.put("car", car.toJSON());
         List<Option> options = jsonStringsToOptions(Dao.getOptions(id));
