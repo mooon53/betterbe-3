@@ -138,6 +138,22 @@ public class Dao {
         }
     }
 
+    public static void addRule(Rule rule) {
+        String query = "INSERT INTO option (options, exclusive, mandatory, car_id)\n" +
+                "VALUES(" + rule.getOptions() + ", " + rule.getExclusive() + ", " + rule.getMandatory() + ", " + rule.getCarId() + ");";
+        try {
+            statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addRules(List<Rule> rules) {
+        for (Rule rule : rules) {
+            addRule(rule);
+        }
+    }
+
     //return true if the account exists and password matches
     public static boolean getAccount(String username, String password){
         Map<String, String> credentials = new HashMap<>();
