@@ -38,6 +38,7 @@ public class CarsResource {
         JSONObject responseJSON = new JSONObject(carString);
         JSONObject carJSON =(JSONObject) responseJSON.get("car");
         JSONArray optionsRaw = responseJSON.getJSONArray("options");
+        JSONArray rulesRaw = responseJSON.getJSONArray("rules");
         List<String> cars = Dao.getCars();
         JSONObject lastCar = new JSONObject(cars.get(cars.size() - 1));
         Long carId = lastCar.getLong("id") + 1L;
@@ -50,15 +51,24 @@ public class CarsResource {
             JSONObject optionJSON = (JSONObject) option;
             optionJSON.put("id", optionId);
             optionId++;
+            optionJSON.put("manufacturer", "null");
             optionJSON.put("car_id", carId);
             LocalDate now = LocalDate.now();
             optionJSON.put("start_date", new Date(now.getDayOfMonth(), now.getMonthValue(), now.getYear()).toString());
             optionsJSONs.add(optionJSON);
         }
+        List<JSONObject> rulesJSONS = new ArrayList<>();
+        for (Object rule : rulesRaw) {
+            JSONObject ruleJSON = (JSONObject) rule;
+            ruleJSON.put("car_id", carId);
+            rulesJSONS.add(ruleJSON);
+        }
         List<Option> options = jsonsToOptions(optionsJSONs);
+        List<Rule> rules = jsonsToRules(rulesJSONS);
         Car car = jsonToCar(carJSON);
         Dao.addCar(car);
         Dao.addOptions(options);
+        Dao.addRules(rules);
     }
 
     @Path("{car}")

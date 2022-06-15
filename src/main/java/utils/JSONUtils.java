@@ -49,9 +49,7 @@ public class JSONUtils {
                 optionJSON.getString("start_date"));
         try {
             option.setEndDate(optionJSON.getString("end_date"));
-        } catch (JSONException e) {
-            System.out.println(e.getStackTrace());
-        }
+        } catch (JSONException e) {}
         return option;
     }
 
