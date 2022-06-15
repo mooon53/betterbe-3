@@ -30,7 +30,7 @@ public class Dao {
     public static List<String> getCars() {
         List<String> cars = new ArrayList<>();
         String query = "SELECT row_to_json(car)\n" +
-                "FROM betterbe.car\n" +
+                "FROM car\n" +
                 "ORDER BY id";
         try {
             ResultSet resultSet = statement.executeQuery(query);
@@ -38,7 +38,7 @@ public class Dao {
                 cars.add(resultSet.getString(1));
             }
         } catch (SQLException e) {
-            System.out.println(e.getStackTrace());
+            e.printStackTrace();
         }
         return cars;
     }
@@ -46,14 +46,14 @@ public class Dao {
     public static String getCar(Long carId){
         String car = "";
         String query =  "SELECT row_to_json(car)\n" +
-                "FROM betterbe.car\n" +
+                "FROM car\n" +
                 "WHERE id =" + carId;
         try {
             ResultSet resultSet = statement.executeQuery(query);
             resultSet.next();
             car = resultSet.getString(1);
         } catch (SQLException e) {
-            System.out.println(e.getStackTrace());
+            e.printStackTrace();
         }
         return car;
     }
@@ -61,7 +61,7 @@ public class Dao {
     public static List<String> getOptions(Long carId) {
         List<String> options = new ArrayList<>();
         String query = "SELECT row_to_json(option)\n" +
-                "FROM betterbe.option\n" +
+                "FROM option\n" +
                 "WHERE car_id =" + carId +
                 "\nORDER BY price";
         try {
@@ -70,7 +70,7 @@ public class Dao {
                 options.add(resultSet.getString(1));
             }
         } catch (SQLException e) {
-            System.out.println(e.getStackTrace());
+            e.printStackTrace();
         }
         return options;
     }
@@ -78,7 +78,7 @@ public class Dao {
     public static List<String> getOptions() {
         List<String> options = new ArrayList<>();
         String query = "SELECT row_to_json(option)\n" +
-                "FROM betterbe.option\n" +
+                "FROM option\n" +
                 "\nORDER BY id";
         try {
             ResultSet resultSet = statement.executeQuery(query);
@@ -86,7 +86,7 @@ public class Dao {
                 options.add(resultSet.getString(1));
             }
         } catch (SQLException e) {
-            System.out.println(e.getStackTrace());
+            e.printStackTrace();
         }
         return options;
     }
@@ -94,7 +94,7 @@ public class Dao {
     public static List<String> getRules(Long carId) {
         List<String> rules = new ArrayList<>();
         String query = "SELECT row_to_json(rule)\n" +
-                "FROM betterbe.rule\n" +
+                "FROM rule\n" +
                 "WHERE car_id =" + carId;
         try {
             ResultSet resultSet = statement.executeQuery(query);
@@ -102,7 +102,7 @@ public class Dao {
                 rules.add(resultSet.getString(1));
             }
         } catch (SQLException e) {
-            System.out.println(e.getStackTrace());
+            e.printStackTrace();
         }
         return rules;
 
@@ -116,7 +116,7 @@ public class Dao {
         try {
             statement.executeQuery(query);
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -128,7 +128,7 @@ public class Dao {
         try {
             statement.executeQuery(query);
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -152,7 +152,7 @@ public class Dao {
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println(e.getStackTrace());
+            e.printStackTrace();
         }
         return false;
     }
@@ -172,7 +172,7 @@ public class Dao {
             resultSet.next();
             person = resultSet.getString(1);
         } catch (SQLException e) {
-            System.out.println(e.getStackTrace());
+            e.printStackTrace();
         }
         return person;
     }
@@ -206,7 +206,7 @@ public class Dao {
 //                option o
 //        WHERE c.id = o.car_id
         String query = "SELECT row_to_json(option)\n" +
-                "FROM Test.option\n" +
+                "FROM option\n" +
                 "WHERE car_id =" + carId +
                 "\nORDER BY price";
         try {
@@ -216,7 +216,7 @@ public class Dao {
 
             }
         } catch (SQLException e) {
-            System.out.println(e.getStackTrace());
+            e.printStackTrace();
         }
         return data;
     }
