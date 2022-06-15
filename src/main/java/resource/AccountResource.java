@@ -29,18 +29,19 @@ public class AccountResource {
 //    }
 
     //the password match does not work
-    @GET
+    @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAccountInfo() {
-        JSONObject response = new JSONObject();
-        MultivaluedMap<String, String> parameters = uriInfo.getQueryParameters();
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String getAccountInfo(String accountString) {
+        System.out.println(accountString);
+        JSONObject response = new JSONObject(accountString);
         String email = "";
         String password = "";
-        if (parameters.containsKey("email")) {
-            email = parameters.get("email").get(0);
+        if (response.has("email")) {
+            email = (String) response.get("email");
         }
-        if (parameters.containsKey("password")) {
-            password = parameters.get("password").get(0);
+        if (response.has("password")) {
+            password = (String) response.get("password");
         }
         System.out.println("test");
         System.out.println(email);

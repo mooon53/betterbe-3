@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>login</title>
@@ -8,7 +8,7 @@
 <body>
 <div class="container" id="container">
     <div class="form-container sign-up-container">
-        <form action="#">
+        <form action="http://localhost:8080/betterbe_3/rest/account">
             <h1>Create Account</h1>
             <div class="social-container">
 
@@ -18,20 +18,19 @@
             <input type="text" placeholder="Name" />
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
-            <button>Sign Up</button>
+            <input type="submit" value="sign up">
         </form>
     </div>
     <div class="form-container sign-in-container">
-        <form action="http://localhost:8080/betterbe_3/rest/account">
             <h1>Log In</h1>
             <div class="social-container">
 
             </div>
 
-            <input type="email" name="email" placeholder="Email" />
-            <input type="password" name="password" placeholder="Password" />
-            <input type="submit" value="Log In">
-        </form>
+            <input type="email" name="email" id = "email" placeholder="Email" />
+            <input type="password" name="password" id="password" placeholder="Password" />
+<!--            <input type="submit" value="Log In">-->
+            <button onclick="login()">Log In</button>
     </div>
     <div class="overlay-container">
         <div class="overlay">
@@ -69,9 +68,31 @@
                 document.cookie = response.session_id;
                 }
             }
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
+        console.log(password);
+        console.log(email);
+        let response = {email, password};
+        let responseString = JSON.stringify(response);
+        getRequest.open("POST", "http://localhost:8080/betterbe_3/rest/account", true);
+        getRequest.setRequestHeader("Accept", "application/json");
+        getRequest.setRequestHeader("Content-Type", "application/json")
+        console.log(response);
+        console.log(responseString);
+        getRequest.send(responseString);
+    }
+
+    function signUp() {
+        let getRequest = new XMLHttpRequest();
+        getRequest.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                let response = JSON.parse(this.responseText);
+                document.cookie = response.session_id;
+            }
+        }
         getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/account", true);
         getRequest.setRequestHeader("Accept", "application/json");
-        getRequest.send(username, password);
+        getRequest.send(username, email, password);
     }
 </script>
 

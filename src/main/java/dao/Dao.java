@@ -12,7 +12,7 @@ public class Dao {
     private static Statement statement;
     private static final String USER = "dab_di21222b_41";
     private static final String PASS = "hGqSYm23uiZwibLy";
-    private static final String URL = "jdbc:postgresql://bronto.ewi.utwente.nl/" + USER + "?currentSchema=Test";
+    private static final String URL = "jdbc:postgresql://bronto.ewi.utwente.nl/" + USER + "?currentSchema=betterbe";
 
     private Dao() {
         throw new IllegalStateException("Utility class");
@@ -30,7 +30,7 @@ public class Dao {
     public static List<String> getCars() {
         List<String> cars = new ArrayList<>();
         String query = "SELECT row_to_json(car)\n" +
-                "FROM Test.car\n" +
+                "FROM betterbe.car\n" +
                 "ORDER BY id";
         try {
             ResultSet resultSet = statement.executeQuery(query);
@@ -46,7 +46,7 @@ public class Dao {
     public static String getCar(Long carId){
         String car = "";
         String query =  "SELECT row_to_json(car)\n" +
-                "FROM Test.car\n" +
+                "FROM betterbe.car\n" +
                 "WHERE id =" + carId;
         try {
             ResultSet resultSet = statement.executeQuery(query);
@@ -61,7 +61,7 @@ public class Dao {
     public static List<String> getOptions(Long carId) {
         List<String> options = new ArrayList<>();
         String query = "SELECT row_to_json(option)\n" +
-                "FROM Test.option\n" +
+                "FROM betterbe.option\n" +
                 "WHERE car_id =" + carId +
                 "\nORDER BY price";
         try {
@@ -78,7 +78,7 @@ public class Dao {
     public static List<String> getOptions() {
         List<String> options = new ArrayList<>();
         String query = "SELECT row_to_json(option)\n" +
-                "FROM Test.option\n" +
+                "FROM betterbe.option\n" +
                 "\nORDER BY id";
         try {
             ResultSet resultSet = statement.executeQuery(query);
@@ -94,7 +94,7 @@ public class Dao {
     public static List<String> getRules(Long carId) {
         List<String> rules = new ArrayList<>();
         String query = "SELECT row_to_json(rule)\n" +
-                "FROM Test.rule\n" +
+                "FROM betterbe.rule\n" +
                 "WHERE car_id =" + carId;
         try {
             ResultSet resultSet = statement.executeQuery(query);
@@ -165,7 +165,7 @@ public class Dao {
     public static String getAccountInfo(String username){
         String person = "";
         String query = "SELECT row_to_json(person)\n" +
-                "FROM Test.person\n" +
+                "FROM person\n" +
                 "WHERE username =" + username;
         try {
             ResultSet resultSet = statement.executeQuery(query);
@@ -178,7 +178,7 @@ public class Dao {
     }
 
     public static String getPass(String username) {
-        String query = "SELECT password FROM test.account WHERE username = "+ username;
+        String query = "SELECT password FROM account WHERE username = "+ username;
         String password = "";
         try {
             ResultSet resultSet = statement.executeQuery(query);
@@ -186,7 +186,7 @@ public class Dao {
                 password = resultSet.getString("password");
             }
         } catch (SQLException e) {
-            System.out.println(e.getStackTrace());
+            e.printStackTrace();
         }
         return password;
     }
