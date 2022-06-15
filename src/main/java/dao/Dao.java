@@ -177,8 +177,8 @@ public class Dao {
         return person;
     }
 
-    public static String getPass(String username) {
-        String query = "SELECT password FROM account WHERE username = "+ username;
+    public static String getPass(String email) {
+        String query = "SELECT password FROM account WHERE username = '"+ email +"'";
         String password = "";
         try {
             ResultSet resultSet = statement.executeQuery(query);

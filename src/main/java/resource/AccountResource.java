@@ -43,10 +43,7 @@ public class AccountResource {
         if (response.has("password")) {
             password = (String) response.get("password");
         }
-        System.out.println("test");
-        System.out.println(email);
-        System.out.println(password);
-        if(password.equals(Dao.getPass(username)) ) {
+        if(password.equals(Dao.getPass(email)) ) {
             System.out.println("correct password");
         } else {
             System.out.println("wrong password or username");
