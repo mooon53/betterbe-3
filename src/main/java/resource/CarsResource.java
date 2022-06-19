@@ -47,6 +47,20 @@ public class CarsResource {
         List<String> oldOptions = Dao.getOptions();
         JSONObject lastOption = new JSONObject(oldOptions.get(oldOptions.size() - 1));
         Long optionId = lastOption.getLong("id") + 1L;
+        List<JSONObject> rulesJSONS = new ArrayList<>();
+        for (Object rule : rulesRaw) {
+            JSONObject ruleJSON = (JSONObject) rule;
+            JSONArray options = ruleJSON.getJSONArray("options");
+            JSONArray newOptions = new JSONArray();
+            ruleJSON.remove("options");
+            for (Object option : options) {
+                Long oldOption = (Long) option;
+                newOptions.put(oldOption + optionId);
+            }
+            ruleJSON.put("options", newOptions);
+            ruleJSON.put("car_id", carId);
+            rulesJSONS.add(ruleJSON);
+        }
         List<JSONObject> optionsJSONs = new ArrayList<>();
         for (Object option : optionsRaw) {
             JSONObject optionJSON = (JSONObject) option;
@@ -57,12 +71,6 @@ public class CarsResource {
             LocalDate now = LocalDate.now();
             optionJSON.put("start_date", new Date(now.getDayOfMonth(), now.getMonthValue(), now.getYear()).toString());
             optionsJSONs.add(optionJSON);
-        }
-        List<JSONObject> rulesJSONS = new ArrayList<>();
-        for (Object rule : rulesRaw) {
-            JSONObject ruleJSON = (JSONObject) rule;
-            ruleJSON.put("car_id", carId);
-            rulesJSONS.add(ruleJSON);
         }
         List<Option> options = jsonsToOptions(optionsJSONs);
         List<Rule> rules = jsonsToRules(rulesJSONS);

@@ -30,6 +30,7 @@ function addOption() {
     let price = Number(document.getElementById("priceForOption").value);
     let option_type = document.getElementById("Type").value;
     let option = {value, price, option_type};
+    let optionId = options.length;
     options.push(option);
     let optionHTML = `<tr>
                 <td>` + option_type + `</td>
@@ -37,8 +38,8 @@ function addOption() {
                 <td>€` + price.toFixed(2) + `</td>
             </tr>`
     document.getElementById("optionsTable").innerHTML += optionHTML;
-    let optionId = option_type + value;
-    optionHTML = `<input type="checkbox" name="` + optionId + `" id="` + optionId + `" class="optionForRule">
+    let optionName = option_type + value;
+    optionHTML = `<input type="checkbox" name="` + optionName + `" id="` + optionId + `" class="optionForRule">
                     <label for="` + optionId + `">` + option_type + `: ` + value + `</label>`
     document.getElementById("optionsForRule").innerHTML += optionHTML;
 }
@@ -46,16 +47,20 @@ function addOption() {
 function addRule() {
     let optionButtons = document.getElementsByClassName("optionForRule");
     let chosenOptions = [];
+    let chosenOptionsNames = [];
     for (let i = 0; i < optionButtons.length; i++) {
         let option = optionButtons.item(i);
-        if (option.checked) chosenOptions.push(option.id);
+        if (option.checked) {
+            chosenOptions.push(Number(option.id));
+            chosenOptionsNames.push(option.name);
+        }
     }
     let mandatory = document.getElementById("mandatory").checked;
     let exclusive = document.getElementById("exclusive").checked;
     let ruleHTML = `<tr>
                         <td>`
     for (let optionIndex in chosenOptions) {
-        let option = chosenOptions[optionIndex];
+        let option = chosenOptionsNames[optionIndex];
         ruleHTML += option;
         if (chosenOptions.indexOf(option) !== chosenOptions.length -1) ruleHTML += `<br>`;
     }
