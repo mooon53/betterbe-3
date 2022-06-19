@@ -35,6 +35,7 @@ public class CarsResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void addCar(String carString){
+        System.out.println(carString);
         JSONObject responseJSON = new JSONObject(carString);
         JSONObject carJSON =(JSONObject) responseJSON.get("car");
         JSONArray optionsRaw = responseJSON.getJSONArray("options");

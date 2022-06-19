@@ -21,6 +21,7 @@ function addCar(){
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
     request.send(responseString);
+    console.log(responseString)
     options = [];
 }
 

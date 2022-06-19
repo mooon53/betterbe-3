@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import static utils.SQLUtils.*;
 
 public class Dao {
     private static Statement statement;
@@ -139,8 +140,9 @@ public class Dao {
     }
 
     public static void addRule(Rule rule) {
-        String query = "INSERT INTO option (options, exclusive, mandatory, car_id)\n" +
-                "VALUES(" + rule.getOptions() + ", " + rule.getExclusive() + ", " + rule.getMandatory() + ", " + rule.getCarId() + ");";
+
+        String query = "INSERT INTO rule (options, exclusive, mandatory, car_id)\n" +
+                "VALUES('" + intArrayToSqlArray(rule.getOptions()) + "', " + rule.getExclusive() + ", " + rule.getMandatory() + ", " + rule.getCarId() + ");";
         try {
             statement.executeQuery(query);
         } catch (SQLException e) {
@@ -178,7 +180,7 @@ public class Dao {
         String query = "INSERT INTO account (username,password) VALUES ('"+username+"', '"+ password+"')";
         System.out.println(query);
         try {
-            ResultSet resultSet = statement.executeQuery(query);
+            statement.executeQuery(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
