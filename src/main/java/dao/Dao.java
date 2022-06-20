@@ -64,6 +64,7 @@ public class Dao {
         String query = "SELECT row_to_json(option)\n" +
                 "FROM option\n" +
                 "WHERE car_id =" + carId +
+                "AND end_date IS NULL" +
                 "\nORDER BY price";
         try {
             ResultSet resultSet = statement.executeQuery(query);

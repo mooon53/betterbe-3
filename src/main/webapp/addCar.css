@@ -8,10 +8,10 @@ body {
     flex-direction: column;
     font-family: 'Montserrat', poppins;
     height: 150vh;
-    margin: -50px 0 50px;
+    margin: -30px 0 30px;
 }
 table, th, td {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #ddd;
 
 }
 tr:hover {background-color: coral;}
@@ -64,4 +64,8 @@ tr:hover {background-color: coral;}
     height: 0px;
     padding: 6rem ;
     vertical-align: middle;
+}
+
+.css-18z6yag {
+    max-width: 350px;
 }
