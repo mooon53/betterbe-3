@@ -33,7 +33,6 @@ public class AccountResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String getAccountInfo(String accountString) {
-        System.out.println(accountString);
         JSONObject response = new JSONObject(accountString);
         String email = "";
         String password = "";
@@ -51,11 +50,8 @@ public class AccountResource {
             System.out.println("wrong password or username");
             login = false;
         }
-        System.out.println(login);
         String loginString = "{'login':'" + login + "'}";
-        System.out.println(loginString);
         response = new JSONObject(loginString);
-        System.out.println(response);
         return response.toString();
     }
 

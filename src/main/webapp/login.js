@@ -5,8 +5,6 @@ function login() {
 	request.onreadystatechange = function () {
 		if (this.readyState === 4 && this.status === 200) {
 			let response = JSON.parse(this.responseText);
-			console.log(response)
-			console.log(response.login);
 			if(response.login === 'true') {
 				document.location = "/betterbe_3";
 			} else {
@@ -30,6 +28,12 @@ function signUp() {
 	request.onreadystatechange = function () {
 		if (this.readyState === 4 && this.status === 200) {
 			let response = JSON.parse(this.responseText);
+			if(response.signup === 'true') {
+				document.location = "/betterbe_3/login.html";
+				alert("account was added, you now can login");
+			} else {
+				alert("something went wrong, account did not register");
+			}
 			document.cookie = response.session_id;
 		}
 	}
@@ -45,7 +49,9 @@ function signUp() {
 }
 function stringToHashConversion(string) {
 	let hashVal = 0;
-	if (string.length === 0) return hashVal;
+	if (string.length === 0) {
+		return hashVal;
+	}
 	let char;
 	for (i = 0; i < string.length; i++) {
 		char = string.charCodeAt(i);

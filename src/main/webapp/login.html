@@ -9,13 +9,8 @@
 <body onload="onLoad()">
 <div class="container" id="container">
     <div class="form-container sign-up-container">
-        <form action="#">
+        <form action="" onsubmit="return false;">
             <h1>Create Account</h1>
-            <div class="social-container">
-
-
-            </div>
-
             <input type="email" name="email" id="signupEmail" placeholder="Email"/>
             <input type="password" name="password" id="signupPassword" placeholder="Password"/>
             <button onclick="signUp()">sign up</button>
@@ -24,12 +19,8 @@
     <div class="form-container sign-in-container">
         <form action="" onsubmit="return false;">
             <h1>Log In</h1>
-            <div class="social-container">
-
-            </div>
             <input type="email" name="email" id="email" placeholder="Email"/>
             <input type="password" name="password" id="password" placeholder="Password"/>
-            <!--            <input type="submit" value="Log In">-->
             <button onclick="login()">Log In</button>
         </form>
     </div>
