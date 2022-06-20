@@ -23,7 +23,7 @@ public class SignupResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String getAccountInfo(String signupString) {
-        System.out.println(signupString);
+        System.out.println("signup: " + signupString);
         JSONObject response = new JSONObject(signupString);
         String email = "";
         String password = "";
@@ -34,7 +34,7 @@ public class SignupResource {
             password = (String) response.get("password");
         }
         System.out.println("signup: " + email);
-        System.out.println(password);
+        System.out.println("signup" + password);
         Dao.addAccount(email, password);
         if(password.equals(Dao.getPass(email))) {
             System.out.println("correct password");

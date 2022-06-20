@@ -1,4 +1,4 @@
-let container = document.getElementById('container');
+function onLoad() {let container = document.getElementById('container');}
 
 function login() {
 	let getRequest = new XMLHttpRequest();
@@ -42,4 +42,15 @@ function signUp() {
 	console.log(response);
 	console.log(responseString);
 	getRequest.send(responseString);
+
+}
+function stringToHashConversion(string) {
+	let hashVal = 0;
+	if (string.length == 0) return hashVal;
+	for (i = 0; i < string.length; i++) {
+		char = string.charCodeAt(i);
+		hashVal = ((hashVal << 5) - hashVal) + char;
+		hashVal = hashVal & hashVal;
+	}
+	return hashVal;
 }
