@@ -15,8 +15,8 @@
 
             </div>
 
-            <input type="email" name="email" id = "signupEmail" placeholder="Email" />
-            <input type="password" name="password" id="signupPassword" placeholder="Password" />
+            <input type="email" name="email" id="signupEmail" placeholder="Email"/>
+            <input type="password" name="password" id="signupPassword" placeholder="Password"/>
             <button onclick="signUp()">sign up</button>
         </form>
     </div>
@@ -26,84 +26,28 @@
             <div class="social-container">
 
             </div>
-            <input type="email" name="email" id = "email" placeholder="Email" />
-            <input type="password" name="password" id="password" placeholder="Password" />
-<!--            <input type="submit" value="Log In">-->
+            <input type="email" name="email" id="email" placeholder="Email"/>
+            <input type="password" name="password" id="password" placeholder="Password"/>
+            <!--            <input type="submit" value="Log In">-->
             <button onclick="login()">Log In</button>
-            </form>
+        </form>
     </div>
     <div class="overlay-container">
         <div class="overlay">
             <div class="overlay-panel overlay-left">
                 <h1>Welcome Back!</h1>
                 <p>press here to log in with your account</p>
-                <button class="ghost" id="signIn">Log In</button>
+                <button class="ghost" id="signIn" onclick="container.classList.remove('right-panel-active');">Log In
+                </button>
             </div>
             <div class="overlay-panel overlay-right">
                 <h1>Welcome!</h1>
                 <p>If you don't have an account yet, sign up here</p>
-                <button class="ghost" id="signUp" >Sign Up</button>
+                <button class="ghost" id="signUp" onclick="container.classList.add('right-panel-active');">Sign Up
+                </button>
             </div>
         </div>
     </div>
 </div>
-<script>
-    let signUpButton = document.getElementById('signUp');
-    let signInButton = document.getElementById('signIn');
-    let container = document.getElementById('container');
-
-    signUpButton.addEventListener('click', () => {
-        container.classList.add("right-panel-active");
-    });
-
-    signInButton.addEventListener('click', () => {
-        container.classList.remove("right-panel-active");
-    });
-
-    function login() {
-        let getRequest = new XMLHttpRequest();
-        getRequest.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                let response = JSON.parse(this.responseText);
-                document.cookie = response.session_id;
-                }
-            }
-        let email = document.getElementById('email').value;
-        let password = document.getElementById('password').value;
-        console.log(password);
-        console.log(email);
-        let response = {email, password};
-        let responseString = JSON.stringify(response);
-        getRequest.open("POST", "http://localhost:8080/betterbe_3/rest/account", true);
-        getRequest.setRequestHeader("Accept", "application/json");
-        getRequest.setRequestHeader("Content-Type", "application/json")
-        console.log(response);
-        console.log(responseString);
-        getRequest.send(responseString);
-    }
-
-    function signUp() {
-        let getRequest = new XMLHttpRequest();
-        getRequest.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                let response = JSON.parse(this.responseText);
-                document.cookie = response.session_id;
-            }
-        }
-        let email = document.getElementById('signupEmail').value;
-        let password = document.getElementById('signupPassword').value;
-        console.log(password);
-        console.log(email);
-        let response = {email, password};
-        let responseString = JSON.stringify(response);
-        getRequest.open("POST", "http://localhost:8080/betterbe_3/rest/signup", true);
-        getRequest.setRequestHeader("Accept", "application/json");
-        getRequest.setRequestHeader("Content-Type", "application/json")
-        console.log(response);
-        console.log(responseString);
-        getRequest.send(responseString);
-    }
-</script>
-
 </body>
 </html>

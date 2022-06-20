@@ -22,7 +22,7 @@ public class TimelineResource {
     @Context
     Request request;
 
-    @Path("{car}")
+    @Path("/{car}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<HistoricalData> getHistory(@PathParam("car") String id) {
