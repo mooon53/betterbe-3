@@ -1,4 +1,5 @@
-function onload() {
++o9_function onload() {
+	g  .,m ,m
 	//alert("test");
 	let url = new URL(location.href); //Get the current url
 	let searchParams = url.searchParams; //Get the search parameters (?carID=<search parameter>)
