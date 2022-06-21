@@ -178,7 +178,7 @@ public class Dao {
 //extract data of configuration from db
 
     public static void addAccount(String username, String password){
-        String query = "INSERT INTO account (username,password) VALUES ('"+username+"', '"+ password+"')";
+        String query = "INSERT INTO account (username,password, employee) VALUES ('"+username+"', '"+ password+"', false)";
         System.out.println(query);
         try {
             statement.executeQuery(query);
@@ -224,6 +224,21 @@ public class Dao {
             e.printStackTrace();
         }
         return password;
+    }
+
+    public static String getEmployee(String email) {
+        String query = "SELECT employee FROM account WHERE username = '"+ email +"'";
+        String employee = "";
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                employee = resultSet.getString("employee");
+                System.out.println(employee);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return employee;
     }
 
     public static List<String> getHistoricalData(Long carId){

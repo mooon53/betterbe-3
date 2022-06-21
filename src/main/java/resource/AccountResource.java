@@ -37,6 +37,7 @@ public class AccountResource {
         String email = "";
         String password = "";
         boolean login = false;
+        boolean employee = false;
         if (response.has("email")) {
             email = (String) response.get("email");
         }
@@ -46,11 +47,20 @@ public class AccountResource {
         if(password.equals(Dao.getPass(email)) ) {
             System.out.println("correct password");
             login = true;
+            if(Dao.getEmployee(email).equals("t")) {
+                System.out.println("is an employee");
+                employee = true;
+            } else {
+                System.out.println("not an employee");
+                employee = false;
+            }
         } else {
             System.out.println("wrong password or username");
             login = false;
+            employee = false;
         }
-        String loginString = "{'login':'" + login + "'}";
+        String loginString = "{'login':'" + login + "', 'employee':'" + employee + "'}";
+        System.out.println(loginString);
         response = new JSONObject(loginString);
         return response.toString();
     }

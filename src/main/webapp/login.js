@@ -5,8 +5,10 @@ function login() {
 	request.onreadystatechange = function () {
 		if (this.readyState === 4 && this.status === 200) {
 			let response = JSON.parse(this.responseText);
-			if(response.login === 'true') {
+			if(response.login === 'true' && response.employee === 'false') {
 				document.location = "/betterbe_3";
+			} else if(response.login === 'true' && response.employee === 'true') {
+				document.location = "/betterbe_3/addCar.html"
 			} else {
 				alert("wrong password");
 			}
@@ -40,7 +42,12 @@ function signUp() {
 	let email = document.getElementById('signupEmail').value;
 	let password = stringToHashConversion(document.getElementById('signupPassword').value);
 	let code = document.getElementById('empCode').value;
-	let response = {email, password, code};
+	let response;
+	if (code === "BetterBe_3") {
+		response = {email, password, code};
+	} else {
+		response = {email, password};
+	}
 	let responseString = JSON.stringify(response);
 	request.open("POST", "http://localhost:8080/betterbe_3/rest/signup", true);
 	request.setRequestHeader("Accept", "application/json");
