@@ -28,6 +28,7 @@ public class SignupResource {
         JSONObject response = new JSONObject(signupString);
         String email = "";
         String password = "";
+        String code = "";
         boolean signup;
         if (response.has("email")) {
             email = (String) response.get("email");
@@ -35,7 +36,14 @@ public class SignupResource {
         if (response.has("password")) {
             password = (String) response.get("password");
         }
-        Dao.addAccount(email, password);
+        if (response.has("code")) {
+            code = (String) response.get("code");
+        }
+        if(code.equals("BetterBe_3")){
+            Dao.addEmpAccount(email, password);
+        } else{
+            Dao.addAccount(email, password);
+        }
         if(password.equals(Dao.getPass(email))) {
             System.out.println("account added");
             signup = true;
