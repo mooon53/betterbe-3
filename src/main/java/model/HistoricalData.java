@@ -4,6 +4,7 @@ public class HistoricalData {
     //o.start_date, c.make, c.model, c.production_year, o.option_type, o.value, o.price
     private String date;
     private Double basePrice;
+    private String end_date;
     private String optionType;
     private String optionValue;
     private Double optionPrice;
@@ -11,8 +12,17 @@ public class HistoricalData {
     public HistoricalData() {
     }
 
-    public HistoricalData(String start_date, String optionType, String optionValue, Double optionPrice) {
-        //this.basePrice = basePrice;
+    public HistoricalData(String start_date, String end_date, Double basePrice, String optionType, String optionValue, Double optionPrice) {
+        this.basePrice = basePrice;
+        this.date = start_date;
+        this.optionType = optionType;
+        this.optionValue = optionValue;
+        this.optionPrice = optionPrice;
+        this.end_date=end_date;
+    }
+
+    public HistoricalData(String start_date, Double basePrice, String optionType, String optionValue, Double optionPrice) {
+        this.basePrice = basePrice;
         this.date = start_date;
         this.optionType = optionType;
         this.optionValue = optionValue;
@@ -29,7 +39,13 @@ public class HistoricalData {
         return optionPrice;
     }
 
+    public String getEnd_date() {
+        return end_date;
+    }
 
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
+    }
 
     public String getDate() {
         return date;
