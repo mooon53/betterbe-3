@@ -1,4 +1,5 @@
-function onLoad() {let container = document.getElementById('container');}
+function onLoad() {let container = document.getElementById('container');
+sessionId();}
 
 function login() {
 	let getRequest = new XMLHttpRequest();
@@ -10,9 +11,10 @@ function login() {
 	}
 	let email = document.getElementById('email').value;
 	let password = document.getElementById('password').value;
+	let sessionId = getSessionId();
 	console.log(password);
 	console.log(email);
-	let response = {email, password};
+	let response = {sessionId, email, password};
 	let responseString = JSON.stringify(response);
 	getRequest.open("POST", "http://localhost:8080/betterbe_3/rest/account", true);
 	getRequest.setRequestHeader("Accept", "application/json");

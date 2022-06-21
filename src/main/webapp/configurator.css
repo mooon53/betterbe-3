@@ -28,6 +28,15 @@
   color: #959BA9;
 }
 
+.image-logo {
+  float: right;
+  color: black;
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 25px;
+}
+
 /* End of header menu style */
 
 .product-detail {
@@ -46,7 +55,6 @@
 .menu-bar {
   width: 100vw;
   height: 100vh;
-
 }
 
 .imagery {

@@ -11,11 +11,12 @@ public class Session {
     public Session(Long sessionId, Long expiration) {
         this.sessionId = sessionId;
         this.expiration = expiration;
+        this.loggedIn = false;
     }
-    public Session(Long sessionId, Account account, Boolean loggedIn, Long expiration) {
+    public Session(Long sessionId, Account account, Long expiration) {
         this.sessionId = sessionId;
         this.account = account;
-        this.loggedIn = loggedIn;
+        this.loggedIn = true;
         this.expiration = expiration;
     }
 

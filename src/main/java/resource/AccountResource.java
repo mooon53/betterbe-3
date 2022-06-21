@@ -10,6 +10,7 @@ import javax.ws.rs.core.*;
 import javax.xml.bind.JAXBElement;
 import java.util.List;
 
+import static dao.SessionDao.*;
 import static utils.JSONUtils.*;
 
 @Path("/account")
@@ -37,6 +38,8 @@ public class AccountResource {
         JSONObject response = new JSONObject(accountString);
         String email = "";
         String password = "";
+        Long sessionId = Long.parseLong((String) response.get("sessionId"));
+        System.out.println(sessionId);
         if (response.has("email")) {
             email = (String) response.get("email");
         }
@@ -45,6 +48,7 @@ public class AccountResource {
         }
         if(password.equals(Dao.getPass(email)) ) {
             System.out.println("correct password");
+            logIn(sessionId, email);
         } else {
             System.out.println("wrong password or username");
         }

@@ -162,7 +162,7 @@ public class Dao {
     }
 
     //return true if the account exists and password matches
-    public static boolean getAccount(String username, String password){
+    public static boolean hasAccount(String username, String password){
         Map<String, String> credentials = new HashMap<>();
         String query = "SELECT username, password FROM account WHERE username = "+ username +" AND password = "+password;
         try {
@@ -191,7 +191,7 @@ public class Dao {
         }
     }
 
-    public static String getAccountInfo(String username){
+    public static String getAccount(String username){
         String person = "";
         String query = "SELECT row_to_json(person)\n" +
                 "FROM person\n" +

@@ -25,8 +25,19 @@ function sessionId() {
 	request.open("POST", "http://localhost:8080/betterbe_3/rest/session", true);
 	request.setRequestHeader("Accept", "application/json");
 	request.setRequestHeader("Content-Type", "application/json")
-	if (now.getTime() > expiration) {
+	if (now.getTime() > expiration || typeof expiration === "undefined") {
 		let expired = true;
 		request.send(JSON.stringify(expired, sessionId));
 	}
+}
+
+function getSessionId() {
+	let cookies = document.cookie.split(";");
+	let cookieMap = new Map();
+	for (let i in cookies) {
+		cookies[i] = cookies[i].replaceAll(" ", "");
+		let split = cookies[i].split("=");
+		cookieMap.set(split[0], split[1]);
+	}
+	return cookieMap.get("sessionId");
 }
