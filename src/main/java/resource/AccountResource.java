@@ -33,10 +33,10 @@ public class AccountResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String getAccountInfo(String accountString) {
+        System.out.println(accountString);
         JSONObject response = new JSONObject(accountString);
         String email = "";
         String password = "";
-        boolean login = false;
         if (response.has("email")) {
             email = (String) response.get("email");
         }
@@ -45,13 +45,9 @@ public class AccountResource {
         }
         if(password.equals(Dao.getPass(email)) ) {
             System.out.println("correct password");
-            login = true;
         } else {
             System.out.println("wrong password or username");
-            login = false;
         }
-        String loginString = "{'login':'" + login + "'}";
-        response = new JSONObject(loginString);
         return response.toString();
     }
 

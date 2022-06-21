@@ -10,155 +10,157 @@
 
 </head>
 <body>
-<main>
 
-    <div class="menu_nav">
-        <a class="active"
-           href="#lease">Lease</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="#login">Log in</a>
-
-        <div class="image-logo">
-            <img src="https://www.betterbe.com/wp-content/themes/betterbe/img/logo.svg"/>
-        </div>
-
-    </div>
-
-    <hr class="line">
-
-
-
-</main>
 <div class="container">
     <div class="sidebyside">
         <h1> Add New Car </h1>
         <form class="form-horizontal">
-            <div class="form-group">
-                <label for="make" class="car"> Manufacturer</label>
-                <div>
-                    <input class="car" id="make" placeholder="Mazda" type="text">
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label for="make" class="car"> Manufacturer</label>
+                        <div>
+                            <input class="car" id="make" placeholder="Mazda" type="text">
+                        </div>
+                    </div>
 
-            <label for="model" class="car">Model </label>
-            <div class="col-sm-9">
-                <input type="text" class="car" id="model" placeholder="MX-5">
-            </div>
+                    <label for="model" class="car">Model </label>
+                    <div class="col-sm-9">
+                        <input type="text" class="car" id="model" placeholder="MX-5">
+                    </div>
 
-            <label for="year" class="car"> Production Year</label>
-            <div>
-                <input type="text" class="car" id="year" placeholder="2021">
-            </div>
+                    <label for="year" class="car"> Production Year</label>
+                    <div>
+                        <input type="text" class="car" id="year" placeholder="2021">
+                    </div>
 
-            <label for="bodyType" class="car"> Body type</label>
-            <div>
-                <select id="bodyType" class="car">
-                    <option value="coupe">COUPE</option>
-                    <option value="cabriolet">CABRIOLET</option>
-                    <option value="sedan">SEDAN</option>
-                    <option value="estate">ESTATE</option>
-                    <option value="hatchback">HATCHBACK</option>
-                    <option value="SUV">SUV</option>
-                    <option value="pick-up">PICK_UP</option>
-                    <option value="MPV">MPV</option>
-                </select>
-            </div>
+                    <label for="bodyType" class="car"> Body type</label>
+                    <div>
+                        <select id="bodyType" class="car">
+                            <option value="coupe">COUPE</option>
+                            <option value="cabriolet">CABRIOLET</option>
+                            <option value="sedan">SEDAN</option>
+                            <option value="estate">ESTATE</option>
+                            <option value="hatchback">HATCHBACK</option>
+                            <option value="SUV">SUV</option>
+                            <option value="pick-up">PICK_UP</option>
+                            <option value="MPV">MPV</option>
+                        </select>
+                    </div>
 
-            <label for="driveLayout" class="car">Drive layout</label>
-            <div>
-                <select id="driveLayout" class="car">
-                    <option value="FWD">FWD</option>
-                    <option value="RWD">RWD</option>
-                    <option value="AWD">AWD</option>
-                    <option value="4WD">4WD</option>
-                </select>
-            </div>
-            <div label for="Price" class="option"> Price</div>
-            <div class="col-sm-9">
-                <input type="text" class="car" id="price" placeholder="10">
-            </div>
-            <label for="size" class="car"> Size</label>
-            <div>
-                <select id="size" class="car">
-                    <option value="SUBCOMPACT">SUBCOMPACT</option>
-                    <option value="COMPACT">COMPACT</option>
-                    <option value="MID-SIZE">MID-SIZE</option>
-                    <option value="LARGE">LARGE</option>
-                </select>
-            </div>
-            <strong>Have you added all options?</strong>
-            <button class="button button2" onclick=addCar()>ADD CAR</button>
+                    <label for="driveLayout" class="car">Drive layout</label>
+                    <div>
+                        <select id="driveLayout" class="car">
+                            <option value="FWD">FWD</option>
+                            <option value="RWD">RWD</option>
+                            <option value="AWD">AWD</option>
+                            <option value="4WD">4WD</option>
+                        </select>
+                    </div>
+                    <div label for="Price" class="option"> Price</div>
+                    <div class="col-sm-9">
+                        <input type="text" class="car" id="price" placeholder="10">
+                    </div>
+                    <label for="size" class="car"> Size</label>
+                    <div>
+                        <select id="size" class="car">
+                            <option value="SUBCOMPACT">SUBCOMPACT</option>
+                            <option value="COMPACT">COMPACT</option>
+                            <option value="MID-SIZE">MID-SIZE</option>
+                            <option value="LARGE">LARGE</option>
+                        </select>
+                    </div>
+                    <strong>Have you added all options?</strong>
+                    <button class="button button2" onclick=addCar()>ADD CAR</button>
         </form>
     </div>
-    <div class="sidebyside">
-        <h3>Options</h3>
-        <div class="options">
+            <div class="sidebyside">
+                <h3>Options</h3>
+                <div class="options">
+                    <style data-emotion="css 18z6yag">
+                        @media (min-width: 768px) {
+                            .css-18z6yag {
+                                display: grid;
+                                grid-template-columns: repeat(1, 1fr);
+                            }
+                        }
+                    </style>
+                    <fieldset class="css-18z6yag">
+                        <style data-emotion="css 1upilqn">
+                            .css-1upilqn {
+                                margin-bottom: 12px;
+                            }
+                        </style>
 
-            <fieldset class="css-18z6yag">
+                        <label for="Type" class="car">Type</label>
+                        <div class="col-sm-9">
+                            <input class="car" id="Type" placeholder="colour">
+                        </div>
 
+                        <label for="Name" class="car">Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="Name" placeholder="red">
+                        </div>
+                        <label for="priceForOption" class="option">Price</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="option" id="priceForOption" placeholder="10">
+                        </div>
 
-                <label for="Type" class="car">Type</label>
-                <div class="col-sm-9">
-                    <input class="car" id="Type" placeholder="colour">
+                        <button class="button button1" onclick="addOption()">ADD</button>
+                    </fieldset>
+
                 </div>
+                <div id="options" class="options">
 
-                <label for="Name" class="car">Name</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="Name" placeholder="red">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                        </tr>
+                        </thead>
+                        <tbody id="optionsTable">
+                        </tbody>
+                    </table>
                 </div>
-                <label for="priceForOption" class="option">Price</label>
-                <div class="col-sm-9">
-                    <input type="number" class="option" id="priceForOption" placeholder="10">
+                <h3>Rules</h3>
+
+                <div class="optionss">
+                    <style data-emotion="css 18z6yag">
+                        @media (min-width: 768px) {
+                            .css-18z6yag {
+                                display: grid;
+                                grid-template-columns: repeat(1, 1fr);
+                            }
+                        }
+                    </style>
+                    <fieldset class="css-18z6yag">
+                        <style data-emotion="css 1upilqn">
+                            .css-1upilqn {
+                                margin-bottom: 12px;
+                            }
+                        </style>
+                        <div id="optionsForRule"></div>
+                        <input type="checkbox" id="mandatory">
+                        <label for="mandatory">Mandatory</label>
+                        <input type="checkbox" id="exclusive">
+                        <label for="exclusive">Exclusive</label>
+                        <button class="button button1" onclick="addRule()">ADD</button>
+                    </fieldset>
                 </div>
+                <div id="rules" class= "optionss">
 
-                <button class="button button1" onclick="addOption()">ADD</button>
-            </fieldset>
-
-        </div>
-        <div id="options" class="options">
-
-            <table>
-                <thead>
-                <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                </tr>
-                </thead>
-                <tbody id="optionsTable">
-                </tbody>
-            </table>
-        </div>
-        <h3>Rules</h3>
-
-        <div class="optionss">
-
-            </style>
-            <fieldset class="css-18z6yag">
-
-                <div id="optionsForRule"></div>
-                <input type="checkbox" id="mandatory">
-                <label for="mandatory">Mandatory</label>
-                <input type="checkbox" id="exclusive">
-                <label for="exclusive">Exclusive</label>
-                <button class="button button1" onclick="addRule()">ADD</button>
-            </fieldset>
-        </div>
-        <div id="rules" class= "optionss">
-
-            <table>
-                <thead>
-                <tr>
-                    <th>Options</th>
-                    <th>Mandatory</th>
-                    <th>Exclusive</th>
-                </tr>
-                </thead>
-                <tbody id="rulesTable">
-                </tbody>
-            </table>
-        </div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Options</th>
+                            <th>Mandatory</th>
+                            <th>Exclusive</th>
+                        </tr>
+                        </thead>
+                        <tbody id="rulesTable">
+                        </tbody>
+                    </table>
+                </div>
         </form>
     </div>
 </div>

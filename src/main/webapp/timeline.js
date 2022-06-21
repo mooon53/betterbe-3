@@ -15,7 +15,9 @@ function onload() {
 			// String optionType, String optionValue, Double optionPrice
 			let table = `<table><thead>
                     <tr>
-                            <th>Date</th>
+                            <th>Start Date</th>
+                            <th>End date</th>
+                            <th>Base Price</th>
                             <th>Option Type</th>
                             <th>Value</th>
                             <th>Effect</th>
@@ -24,8 +26,13 @@ function onload() {
 			for (let i in response) {
 				let line = response[i];
 				console.log(line);
+				if (line.end_date === null){
+					line.end_date = "-";
+				}
 				table += `<tr>
                             <td>${line.date}</td>
+                            <td>${line.end_date}</td>
+                            <td>${line.basePrice}</td>
                             <td>${line.optionType}</td>
                             <td>${line.optionValue}</td>
                             <td>${line.optionPrice}</td>

@@ -49,7 +49,8 @@ public class JSONUtils {
                 optionJSON.getString("start_date"));
         try {
             option.setEndDate(optionJSON.getString("end_date"));
-        } catch (JSONException e) {}
+        } catch (JSONException e) {
+        }
         return option;
     }
 
@@ -111,7 +112,7 @@ public class JSONUtils {
     }
 
     public static Person jsonToPerson(JSONObject personJSON) {
-        return new Person(personJSON.getString("username"), personJSON.getString("fname"), personJSON.getString("surname"), personJSON.getString("email") );
+        return new Person(personJSON.getString("username"), personJSON.getString("fname"), personJSON.getString("surname"), personJSON.getString("email"));
     }
 
     public static HistoricalData jsonStringToHistoricalData(String timelineStr) {
@@ -121,7 +122,12 @@ public class JSONUtils {
 
     //o.start_date, c.make, c.model, c.production_year, o.option_type, o.value, o.price
     public static HistoricalData jsonToHistoricalData(JSONObject timelineJSON) {
-        return new HistoricalData(timelineJSON.getString("start_date"), timelineJSON.getString("option_type"),timelineJSON.getString("value"),timelineJSON.getDouble("price"));
+        try {
+            return new HistoricalData(timelineJSON.getString("start_date"), timelineJSON.getString("end_date"), timelineJSON.getDouble("price"), timelineJSON.getString("option_type"), timelineJSON.getString("value"), timelineJSON.getDouble("price"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return new HistoricalData(timelineJSON.getString("start_date"), timelineJSON.getDouble("price"), timelineJSON.getString("option_type"), timelineJSON.getString("value"), timelineJSON.getDouble("price"));
+        }
     }
 
     public static List<HistoricalData> jsonStringsToHistoricalData(List<String> timelinesStrings) {

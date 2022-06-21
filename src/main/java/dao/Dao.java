@@ -20,11 +20,15 @@ public class Dao {
     }
 
     static {
-        try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASS);
-            statement = connection.createStatement();
-        } catch (SQLException e) {
-            System.err.println("Error connecting " + e);
+        boolean connected = false;
+        while (!connected) {
+            try {
+                Connection connection = DriverManager.getConnection(URL, USER, PASS);
+                statement = connection.createStatement();
+                connected = true;
+            } catch (SQLException e) {
+                System.err.println("Error connecting " + e);
+            }
         }
     }
 
@@ -179,16 +183,6 @@ public class Dao {
 
     public static void addAccount(String username, String password){
         String query = "INSERT INTO account (username,password) VALUES ('"+username+"', '"+ password+"')";
-        System.out.println(query);
-        try {
-            statement.executeQuery(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void addEmpAccount(String username, String password){
-        String query = "INSERT INTO account (username,password, employee) VALUES ('"+username+"', '"+ password+"', true)";
         System.out.println(query);
         try {
             statement.executeQuery(query);

@@ -8,11 +8,11 @@ body {
     background: #f6f5f7;
     display: flex;
     justify-content: center;
-    /*     align-items: center; */
+    align-items: center;
     flex-direction: column;
     font-family: 'Montserrat', poppins;
     height: 100vh;
-    margin: 10px 0 50px;
+    margin: -20px 0 50px;
 }
 
 h1 {
@@ -89,7 +89,6 @@ input {
 }
 
 .container {
-    margin: auto;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25),
@@ -112,7 +111,6 @@ input {
     left: 0;
     width: 50%;
     z-index: 2;
-    align-items: center;
 }
 
 .container.right-panel-active .sign-in-container {
@@ -227,36 +225,27 @@ input {
     width: 40px;
 }
 
-/* Header/Logo Title */
-.menu_nav {
-    overflow: hidden;
+footer {
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
 }
 
-.menu_nav a {
-    float: left;
-    color: black;
-    text-align: left;
-    padding: 14px 16px;
+footer p {
+    margin: 10px 0;
+}
+
+footer i {
+    color: red;
+}
+
+footer a {
+    color: #3c97bf;
     text-decoration: none;
-    font-size: 25px;
 }
-
-.menu_nav a:hover {
-    color: #0098B5;
-}
-
-
-
-.menu_nav a.active {
-    color: #959BA9;
-}
-.image-logo{
-    float: right;
-    color: black;
-    text-align: right;
-    padding: 28px 16px;
-    text-decoration: none;
-    font-size: 25px;
-
-}
-

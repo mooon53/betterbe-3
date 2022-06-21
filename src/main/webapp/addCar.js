@@ -7,7 +7,7 @@ function addCar(){
     let make = document.getElementById('make').value;
     let model = document.getElementById('model').value;
     let price = document.getElementById('price').value;
-    let year = document.getElementById('year').value;
+    let year = Number(document.getElementById('year').value);
     let layout = document.getElementById('driveLayout').value;
     let type = document.getElementById('bodyType').value;
     let size = document.getElementById('size').value;
@@ -70,4 +70,5 @@ function addRule() {
     document.getElementById("rulesTable").innerHTML += ruleHTML;
     let rule = {options: chosenOptions, mandatory, exclusive};
     rules.push(rule);
+    console.log(rule);
 }
