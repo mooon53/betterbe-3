@@ -1,6 +1,7 @@
 package resource;
 
 import dao.Dao;
+import dao.SessionDao;
 import model.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,9 +10,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import javax.xml.bind.JAXBElement;
 import java.util.List;
-
-import static dao.SessionDao.*;
-import static utils.JSONUtils.*;
 
 @Path("/account")
 public class AccountResource {
@@ -35,22 +33,25 @@ public class AccountResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public String getAccountInfo(String accountString) {
         System.out.println(accountString);
-        JSONObject response = new JSONObject(accountString);
+        JSONObject request = new JSONObject(accountString);
+        JSONObject response = new JSONObject();
         String email = "";
         String password = "";
-        Long sessionId = Long.parseLong((String) response.get("sessionId"));
+        Long sessionId = Long.parseLong((String) request.get("sessionId"));
         System.out.println(sessionId);
-        if (response.has("email")) {
-            email = (String) response.get("email");
+        if (request.has("email")) {
+            email = (String) request.get("email");
         }
-        if (response.has("password")) {
-            password = (String) response.get("password");
+        if (request.has("password")) {
+            password = Integer.toString((int) request.get("password"));
         }
         if(password.equals(Dao.getPass(email)) ) {
             System.out.println("correct password");
-            logIn(sessionId, email);
+            SessionDao.instance.logIn(sessionId, email);
+            response.put("success", true);
         } else {
             System.out.println("wrong password or username");
+            response.put("success", false);
         }
         return response.toString();
     }

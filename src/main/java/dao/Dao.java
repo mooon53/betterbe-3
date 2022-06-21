@@ -191,11 +191,11 @@ public class Dao {
         }
     }
 
-    public static String getAccount(String username){
+    public static String getUser(String username){
         String person = "";
         String query = "SELECT row_to_json(person)\n" +
                 "FROM person\n" +
-                "WHERE username =" + username;
+                "WHERE username ='" + username + "'";
         try {
             ResultSet resultSet = statement.executeQuery(query);
             resultSet.next();
@@ -206,8 +206,23 @@ public class Dao {
         return person;
     }
 
+    public static String getAccount(String email){
+        String account = "";
+        String query = "SELECT row_to_json(account)\n" +
+                "FROM account\n" +
+                "WHERE email ='" + email + "'";
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            resultSet.next();
+            account = resultSet.getString(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return account;
+    }
+
     public static String getPass(String email) {
-        String query = "SELECT password FROM account WHERE username = '"+ email +"'";
+        String query = "SELECT password FROM account WHERE email = '"+ email +"'";
         String password = "";
         try {
             ResultSet resultSet = statement.executeQuery(query);

@@ -1,6 +1,10 @@
 let options = [];
 let rules = [];
 
+function onLoad() {
+    sessionId();
+}
+
 function addCar(){
     let request = new XMLHttpRequest();
     //create variables that are connected to HTML input boxes

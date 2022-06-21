@@ -1,1 +1,3 @@
-// still to implement!
+function onLoad() {
+	sessionId();
+}// still to implement!

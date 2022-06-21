@@ -1,7 +1,6 @@
 package utils;
 
-import static dao.SessionDao.*;
-
+import dao.SessionDao;
 import model.Session;
 
 import java.util.Date;
@@ -24,6 +23,6 @@ public class sessionChecker implements Runnable {
                 e.printStackTrace();
             }
         }
-        removeSession(session.getSessionId());
+        SessionDao.instance.removeSession(session.getSessionId());
     }
 }
