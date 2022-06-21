@@ -23,6 +23,7 @@ public class SignupResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String getAccountInfo(String signupString) {
+        System.out.println("signup: " + signupString);
         //passing the email and password into a Json object
         JSONObject response = new JSONObject(signupString);
         String email = "";

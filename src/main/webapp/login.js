@@ -14,7 +14,7 @@ function login() {
 		}
 	}
 	let email = document.getElementById('email').value;
-	let password = stringToHashConversion(document.getElementById('password').value);
+	let password = sha256(document.getElementById('password').value);
 	let response = {email, password};
 	let responseString = JSON.stringify(response);
 	request.open("POST", "http://localhost:8080/betterbe_3/rest/account", true);
@@ -38,7 +38,7 @@ function signUp() {
 		}
 	}
 	let email = document.getElementById('signupEmail').value;
-	let password = stringToHashConversion(document.getElementById('signupPassword').value);
+	let password = sha256(document.getElementById('signupPassword').value);
 	let response = {email, password};
 	let responseString = JSON.stringify(response);
 	request.open("POST", "http://localhost:8080/betterbe_3/rest/signup", true);
@@ -59,4 +59,16 @@ function stringToHashConversion(string) {
 		hashVal = hashVal & hashVal;
 	}
 	return String(hashVal);
+}
+
+async function sha256(message) {
+	// hash the message
+	const hashBuffer = await crypto.subtle.digest('SHA-256', message);
+
+	// convert ArrayBuffer to Array
+	const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+	// convert bytes to hex string
+	const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+	return String(hashHex);
 }
