@@ -54,7 +54,7 @@ public class CarsResource {
             JSONArray newOptions = new JSONArray();
             ruleJSON.remove("options");
             for (Object option : options) {
-                Long oldOption = (Long) option;
+                Long oldOption = Integer.toUnsignedLong((Integer) option);
                 newOptions.put(oldOption + optionId);
             }
             ruleJSON.put("options", newOptions);

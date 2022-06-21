@@ -20,11 +20,15 @@ public class Dao {
     }
 
     static {
-        try {
-            Connection connection = DriverManager.getConnection(URL, USER, PASS);
-            statement = connection.createStatement();
-        } catch (SQLException e) {
-            System.err.println("Error connecting " + e);
+        boolean connected = false;
+        while (!connected) {
+            try {
+                Connection connection = DriverManager.getConnection(URL, USER, PASS);
+                statement = connection.createStatement();
+                connected = true;
+            } catch (SQLException e) {
+                System.err.println("Error connecting " + e);
+            }
         }
     }
 

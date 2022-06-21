@@ -1,4 +1,5 @@
 function onLoad() {
+	sessionId();
 	let getRequest = new XMLHttpRequest(); //Create a new http request to get the cars in our catalogue
 	getRequest.onreadystatechange = function() { //When any type of response is received, execute this script
 		if (this.readyState === 4 && this.status === 200) { //If the response has been fully received, and the server says the request was processed ok
