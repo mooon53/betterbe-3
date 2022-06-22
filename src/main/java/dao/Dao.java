@@ -1,6 +1,7 @@
 package dao;
 
 import model.*;
+import utils.DatabaseConnectionChecker;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,15 +22,23 @@ public class Dao {
 
     static {
         boolean connected = false;
+        Connection connection = null;
         while (!connected) {
             try {
-                Connection connection = DriverManager.getConnection(URL, USER, PASS);
+                connection = DriverManager.getConnection(URL, USER, PASS);
                 statement = connection.createStatement();
                 connected = true;
             } catch (SQLException e) {
                 System.err.println("Error connecting " + e);
             }
         }
+        DatabaseConnectionChecker dbCheck = new DatabaseConnectionChecker(connection, URL, USER, PASS);
+        Thread thread = new Thread(dbCheck, "Connection checker");
+        thread.start();
+    }
+
+    public static void replaceStatement(Statement newStatement) {
+        statement = newStatement;
     }
 
     public static List<String> getCars() {
