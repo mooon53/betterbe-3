@@ -2,7 +2,9 @@ let doneTypes;
 let chosenOptions;
 let rules;
 let options;
-let carId
+let carId;
+let price;
+
 function onLoad() { //When the page is loaded
 	sessionId();
 	let getRequest = new XMLHttpRequest(); //Create a new http request to get the cars in our catalogue
@@ -121,7 +123,7 @@ function checkConfiguration(checkbox) { //Checks whether configuration is allowe
 	if (allowed) { //If the option is allowed
 		let totalDiv = document.getElementById("total"); //Find the div that stores the total price, this should be done by global variable
 		let priceSplit = totalDiv.innerText.split("€"); //Get the price from this div
-		let price = Number(priceSplit[1]) //Turn the price into a number
+		price = Number(priceSplit[1]) //Turn the price into a number
 		let selectedOption = options.get(id); //select the option that was changed
 		if (checkbox.checked) { //If it was selected
 			price += selectedOption.price; //Add the price to the total
@@ -196,8 +198,8 @@ function mandatoryCheck() { //To check if the mandatory options have been chosen
 function addToCart() {
 	if(mandatoryCheck()) {
 		let postRequest = new XMLHttpRequest();
-
-		let carConfiguration = {carId, chosenOptions};
+		let sessionId = getSessionId();
+		let carConfiguration = {carId, chosenOptions, price, sessionId};
 		let carConfString = JSON.stringify(carConfiguration);
 		console.log(carConfString);
 		postRequest.open("POST", "http://localhost:8080/betterbe_3/rest/checkout", true);
