@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="accountDetails.js"></script>
 </head>
-<body>
+<body onload="onLoad()" id="body">
 
 <!--Header-->
 <main>
@@ -31,18 +31,22 @@
 <div class="accountDetails">
     <h1> Account Details </h1>
         <div class="email">
-            <h5> Email Address </h5>
-            <label class="Email" id ="email">Here should be the email</label>
+            <h3> Email Address </h3>
+            <label class="emailDisplay" id ="emailDisplay">Here should be the email</label>
         </div>
-        <div class="addCarPage">
-            <button class="addCarPage"> Go to add car page</button>
-        </div>
-
-    <div class="history">
-        <button class="historicalPage"> Go to historical data page</button>
-    </div>
 </div>
 
+<div>
+    <img class="picture" id="pic" src="images/GigaCoin.png">
+</div>
+
+<div class="history">
+    <button class="historicalPage" id="moveToHistory" onclick="historyPage()"> Go to historical data page</button>
+</div>
+
+<div class="addCarPage">
+    <button class="moveToAdd" id="moveToAdd" onclick="addCarPage()"> Go to add car page</button>
+</div>
 <!--Footer-->
 <div class="footer">
     <div class="footer-content">
