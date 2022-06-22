@@ -2,6 +2,8 @@ let doneTypes;
 let chosenOptions;
 let rules;
 let options;
+let carId;
+let price;
 
 function onLoad() { //When the page is loaded
 	sessionId();
@@ -17,7 +19,7 @@ function onLoad() { //When the page is loaded
 			}*/
 			let url = new URL(location.href); //Get the current url
 			let searchParams = url.searchParams; //Get the search parameters (?carID=<search parameter>)
-			let carId = searchParams.get("carID"); //Get the id in the search parameters
+			carId = searchParams.get("carID"); //Get the id in the search parameters
 			if (carId !== null) { //If there is 1 set
 				// dropDown.value = carId; //Set the dropdown to select this car
 				loadConfigurator(carId); //Load the configurator for this car
@@ -121,7 +123,7 @@ function checkConfiguration(checkbox) { //Checks whether configuration is allowe
 	if (allowed) { //If the option is allowed
 		let totalDiv = document.getElementById("total"); //Find the div that stores the total price, this should be done by global variable
 		let priceSplit = totalDiv.innerText.split("€"); //Get the price from this div
-		let price = Number(priceSplit[1]) //Turn the price into a number
+		price = Number(priceSplit[1]) //Turn the price into a number
 		let selectedOption = options.get(id); //select the option that was changed
 		if (checkbox.checked) { //If it was selected
 			price += selectedOption.price; //Add the price to the total
@@ -189,5 +191,20 @@ function mandatoryCheck() { //To check if the mandatory options have been chosen
 		alert("legal configuration!"); //Tell the user
 	} else { //If not
 		alert("illegal configuration"); //Tell the user
+	}
+	return allowed;
+}
+
+function addToCart() {
+	if(mandatoryCheck()) {
+		let postRequest = new XMLHttpRequest();
+		let sessionId = getSessionId();
+		let carConfiguration = {carId, chosenOptions, price, sessionId};
+		let carConfString = JSON.stringify(carConfiguration);
+		console.log(carConfString);
+		postRequest.open("POST", "http://localhost:8080/betterbe_3/rest/checkout", true);
+		postRequest.setRequestHeader("Accept", "application/json");
+		postRequest.setRequestHeader("Content-Type", "application/json");
+		postRequest.send(carConfString);
 	}
 }
