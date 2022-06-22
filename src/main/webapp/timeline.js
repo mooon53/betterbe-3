@@ -13,7 +13,7 @@ function onload() {
 			console.log(this.responseText);
 			//String date, String make, String model, Long year, Double basePrice,
 			// String optionType, String optionValue, Double optionPrice
-			let table = `<table><thead>
+			let table = `<div id="tablee>"><table><thead>
                     <tr>
                             <th>Start Date</th>
                             <th>End date</th>
@@ -38,7 +38,7 @@ function onload() {
                             <td>${line.optionPrice}</td>
                         </tr>`;
 			}
-			table += `</tbody></table>`;
+			table += `</tbody></table></div>`;
 			document.getElementById("timeline").innerHTML += table;
 		}
 	}
