@@ -2,7 +2,7 @@ let doneTypes;
 let chosenOptions;
 let rules;
 let options;
-
+let carId
 function onLoad() { //When the page is loaded
 	sessionId();
 	let getRequest = new XMLHttpRequest(); //Create a new http request to get the cars in our catalogue
@@ -17,7 +17,7 @@ function onLoad() { //When the page is loaded
 			}*/
 			let url = new URL(location.href); //Get the current url
 			let searchParams = url.searchParams; //Get the search parameters (?carID=<search parameter>)
-			let carId = searchParams.get("carID"); //Get the id in the search parameters
+			carId = searchParams.get("carID"); //Get the id in the search parameters
 			if (carId !== null) { //If there is 1 set
 				// dropDown.value = carId; //Set the dropdown to select this car
 				loadConfigurator(carId); //Load the configurator for this car
@@ -189,5 +189,20 @@ function mandatoryCheck() { //To check if the mandatory options have been chosen
 		alert("legal configuration!"); //Tell the user
 	} else { //If not
 		alert("illegal configuration"); //Tell the user
+	}
+	return allowed;
+}
+
+function addToCart() {
+	if(mandatoryCheck()) {
+		let postRequest = new XMLHttpRequest();
+
+		let carConfiguration = {carId, chosenOptions};
+		let carConfString = JSON.stringify(carConfiguration);
+		console.log(carConfString);
+		postRequest.open("POST", "http://localhost:8080/betterbe_3/rest/checkout", true);
+		postRequest.setRequestHeader("Accept", "application/json");
+		postRequest.setRequestHeader("Content-Type", "application/json");
+		postRequest.send(carConfString);
 	}
 }
