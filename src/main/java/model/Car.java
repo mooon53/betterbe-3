@@ -2,6 +2,8 @@ package model;
 
 import org.json.JSONObject;
 
+import java.sql.Date;
+
 public class Car {
     private Long id;
     private Long year;
@@ -14,6 +16,7 @@ public class Car {
 
     public Car(){}
 
+
     public Car(Long id, Long year, Double price, String make, String model) {
         this.id = id;
         this.year = year;
@@ -21,7 +24,6 @@ public class Car {
         this.make = make;
         this.model = model;
     }
-
     public Car(Long id, Long year, Double price, String make, String model, String layout, String type, String size) {
         this.id = id;
         this.year = year;
