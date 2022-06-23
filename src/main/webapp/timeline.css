@@ -1,5 +1,12 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+*{
+    margins:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins;
+}
 body {
-    background: #f6f5f7;
+    background: #EAECEE;
     display: flex;
     justify-content: left;
     flex-direction: column;
@@ -105,14 +112,14 @@ table {
     width: 100%;
     table-layout: fixed;
 }
-tr:hover {background-color: #e73053;}
+tr:hover {background-color: #0098B5;}
 table caption {
     font-size: 1.5em;
     margin: .5em 0 .75em;
 }
 
 table tr {
-    background-color: #959BA9;
+    background-color: #F4F4F4;
     border: 1px solid #ddd;
     padding: .35em;
 }
@@ -169,7 +176,7 @@ table th {
         */
         content: attr(data-label);
         float: left;
-        /*font-weight: bold;*/
+        font-weight: bold;
         text-transform: uppercase;
     }
 
