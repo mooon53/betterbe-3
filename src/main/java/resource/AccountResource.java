@@ -43,7 +43,7 @@ public class AccountResource {
             email = (String) request.get("email");
         }
         if (request.has("password")) {
-            password = Integer.toString((int) request.get("password"));
+            password = request.getString("password"));
         }
         if(password.equals(Dao.getPass(email)) ) {
             System.out.println("correct password");

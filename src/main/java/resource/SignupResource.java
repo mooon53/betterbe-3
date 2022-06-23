@@ -34,7 +34,7 @@ public class SignupResource {
             System.out.println("gets the email" + email);
         }
         if (response.has("password")) {
-            password = (String) response.get("password");
+            password = response.getString("password");
             System.out.println("gets the password: ");
         }
         System.out.println("signup: " + email);
