@@ -2,31 +2,20 @@ let doneTypes;
 let chosenOptions;
 let rules;
 let options;
-let carId
+let carId;
+let price;
+
 function onLoad() { //When the page is loaded
 	sessionId();
-	let getRequest = new XMLHttpRequest(); //Create a new http request to get the cars in our catalogue
-	getRequest.onreadystatechange = function () { //When any type of response is received, execute this script
-		if (this.readyState === 4 && this.status === 200) { //If the response has been fully received, and the server says the request was processed ok
-			/*let dropDown = document.getElementById("cars"); //get the dropdown element where the cars are shown on the page
-			let response = JSON.parse(this.responseText); //Get the response and parse it to a JSON object, this will be an array of cars as JSONs
-			console.log(response)
-			for (const car of response) { //Loop through all cars in the response
-				let option = `<option value=\"${car.carId}\">${car.make} ${car.model} ${car.productionYear}</option>` //Create the html for the option in the dropdown
-				dropDown.innerHTML += option; //Add the html to the page
-			}*/
-			let url = new URL(location.href); //Get the current url
-			let searchParams = url.searchParams; //Get the search parameters (?carID=<search parameter>)
-			carId = searchParams.get("carID"); //Get the id in the search parameters
-			if (carId !== null) { //If there is 1 set
-				// dropDown.value = carId; //Set the dropdown to select this car
-				loadConfigurator(carId); //Load the configurator for this car
-			}
-		}
+	let url = new URL(location.href); //Get the current url
+	let searchParams = url.searchParams; //Get the search parameters (?carID=<search parameter>)
+	let carId = searchParams.get("carID"); //Get the id in the search parameters
+	if (carId !== null) { //If there is 1 set
+		// dropDown.value = carId; //Set the dropdown to select this car
+		loadConfigurator(carId); //Load the configurator for this car
+	} else {
+		location.href = "/betterbe_3#products";
 	}
-	getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/cars", true); //open the request, set the type and uri
-	getRequest.setRequestHeader("Accept", "application/json"); //Tell the server we're accepting JSON responses only
-	getRequest.send(); //Send the request
 }
 
 
@@ -121,7 +110,7 @@ function checkConfiguration(checkbox) { //Checks whether configuration is allowe
 	if (allowed) { //If the option is allowed
 		let totalDiv = document.getElementById("total"); //Find the div that stores the total price, this should be done by global variable
 		let priceSplit = totalDiv.innerText.split("€"); //Get the price from this div
-		let price = Number(priceSplit[1]) //Turn the price into a number
+		price = Number(priceSplit[1]) //Turn the price into a number
 		let selectedOption = options.get(id); //select the option that was changed
 		if (checkbox.checked) { //If it was selected
 			price += selectedOption.price; //Add the price to the total
@@ -196,8 +185,8 @@ function mandatoryCheck() { //To check if the mandatory options have been chosen
 function addToCart() {
 	if(mandatoryCheck()) {
 		let postRequest = new XMLHttpRequest();
-
-		let carConfiguration = {carId, chosenOptions};
+		let sessionId = getSessionId();
+		let carConfiguration = {carId, chosenOptions, price, sessionId};
 		let carConfString = JSON.stringify(carConfiguration);
 		console.log(carConfString);
 		postRequest.open("POST", "http://localhost:8080/betterbe_3/rest/checkout", true);

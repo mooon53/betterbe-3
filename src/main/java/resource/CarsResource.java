@@ -1,6 +1,7 @@
 package resource;
 
 import dao.Dao;
+import dao.SessionDao;
 import model.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -37,47 +38,51 @@ public class CarsResource {
     public void addCar(String carString){
         System.out.println(carString);
         JSONObject responseJSON = new JSONObject(carString);
-        JSONObject carJSON =(JSONObject) responseJSON.get("car");
-        JSONArray optionsRaw = responseJSON.getJSONArray("options");
-        JSONArray rulesRaw = responseJSON.getJSONArray("rules");
-        List<String> cars = Dao.getCars();
-        JSONObject lastCar = new JSONObject(cars.get(cars.size() - 1));
-        Long carId = lastCar.getLong("id") + 1L;
-        carJSON.put("id", carId);
-        List<String> oldOptions = Dao.getOptions();
-        JSONObject lastOption = new JSONObject(oldOptions.get(oldOptions.size() - 1));
-        Long optionId = lastOption.getLong("id") + 1L;
-        List<JSONObject> rulesJSONS = new ArrayList<>();
-        for (Object rule : rulesRaw) {
-            JSONObject ruleJSON = (JSONObject) rule;
-            JSONArray options = ruleJSON.getJSONArray("options");
-            JSONArray newOptions = new JSONArray();
-            ruleJSON.remove("options");
-            for (Object option : options) {
-                Long oldOption = Integer.toUnsignedLong((Integer) option);
-                newOptions.put(oldOption + optionId);
+        Long sessionId = Long.parseLong((String) responseJSON.get("sessionId"));
+        Session session = SessionDao.instance.getSession(sessionId);
+        if (session.getLoggedIn() && session.getAccount().getEmployee()) {
+            JSONObject carJSON = (JSONObject) responseJSON.get("car");
+            JSONArray optionsRaw = responseJSON.getJSONArray("options");
+            JSONArray rulesRaw = responseJSON.getJSONArray("rules");
+            List<String> cars = Dao.getCars();
+            JSONObject lastCar = new JSONObject(cars.get(cars.size() - 1));
+            Long carId = lastCar.getLong("id") + 1L;
+            carJSON.put("id", carId);
+            List<String> oldOptions = Dao.getOptions();
+            JSONObject lastOption = new JSONObject(oldOptions.get(oldOptions.size() - 1));
+            Long optionId = lastOption.getLong("id") + 1L;
+            List<JSONObject> rulesJSONS = new ArrayList<>();
+            for (Object rule : rulesRaw) {
+                JSONObject ruleJSON = (JSONObject) rule;
+                JSONArray options = ruleJSON.getJSONArray("options");
+                JSONArray newOptions = new JSONArray();
+                ruleJSON.remove("options");
+                for (Object option : options) {
+                    Long oldOption = Integer.toUnsignedLong((Integer) option);
+                    newOptions.put(oldOption + optionId);
+                }
+                ruleJSON.put("options", newOptions);
+                ruleJSON.put("car_id", carId);
+                rulesJSONS.add(ruleJSON);
             }
-            ruleJSON.put("options", newOptions);
-            ruleJSON.put("car_id", carId);
-            rulesJSONS.add(ruleJSON);
+            List<JSONObject> optionsJSONs = new ArrayList<>();
+            for (Object option : optionsRaw) {
+                JSONObject optionJSON = (JSONObject) option;
+                optionJSON.put("id", optionId);
+                optionId++;
+                optionJSON.put("manufacturer", "null");
+                optionJSON.put("car_id", carId);
+                LocalDate now = LocalDate.now();
+                optionJSON.put("start_date", new Date(now.getDayOfMonth(), now.getMonthValue(), now.getYear()).toString());
+                optionsJSONs.add(optionJSON);
+            }
+            List<Option> options = jsonsToOptions(optionsJSONs);
+            List<Rule> rules = jsonsToRules(rulesJSONS);
+            Car car = jsonToCar(carJSON);
+            Dao.addCar(car);
+            Dao.addOptions(options);
+            Dao.addRules(rules);
         }
-        List<JSONObject> optionsJSONs = new ArrayList<>();
-        for (Object option : optionsRaw) {
-            JSONObject optionJSON = (JSONObject) option;
-            optionJSON.put("id", optionId);
-            optionId++;
-            optionJSON.put("manufacturer", "null");
-            optionJSON.put("car_id", carId);
-            LocalDate now = LocalDate.now();
-            optionJSON.put("start_date", new Date(now.getDayOfMonth(), now.getMonthValue(), now.getYear()).toString());
-            optionsJSONs.add(optionJSON);
-        }
-        List<Option> options = jsonsToOptions(optionsJSONs);
-        List<Rule> rules = jsonsToRules(rulesJSONS);
-        Car car = jsonToCar(carJSON);
-        Dao.addCar(car);
-        Dao.addOptions(options);
-        Dao.addRules(rules);
     }
 
     @Path("{car}")

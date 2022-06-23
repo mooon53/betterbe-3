@@ -125,7 +125,7 @@ public class JSONUtils {
         try {
             return new HistoricalData(timelineJSON.getString("start_date"), timelineJSON.getString("end_date"), timelineJSON.getDouble("price"), timelineJSON.getString("option_type"), timelineJSON.getString("value"), timelineJSON.getDouble("price"));
         } catch (JSONException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return new HistoricalData(timelineJSON.getString("start_date"), timelineJSON.getDouble("price"), timelineJSON.getString("option_type"), timelineJSON.getString("value"), timelineJSON.getDouble("price"));
         }
     }
