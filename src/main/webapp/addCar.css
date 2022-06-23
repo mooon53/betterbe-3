@@ -46,7 +46,7 @@ table, th, td {
     border-bottom: 2px solid #ddd;
 
 }
-tr:hover {background-color: coral;}
+tr:hover {background-color: #e73053;}
 .button {
     border: none;
     color: white;
@@ -85,14 +85,12 @@ tr:hover {background-color: coral;}
 .options {
     display: inline-block;
     border: none;
-    /*     padding 50 px; */
     vertical-align: middle;
     margin-top: 40px;
 }
 .optionss {
     display: inline-block;
     border: none;
-    /*     padding 50 px; */
     vertical-align: middle;
     margin: auto;
     max-width: 350px;
@@ -136,5 +134,5 @@ h1 {
 }
 #title{
     padding-right: 30px;
-    margin-top:-100px;
+    /*margin-top:-100px;*/
 }

@@ -14,7 +14,24 @@ function onload() {
 			console.log(this.responseText);
 			//String date, String make, String model, Long year, Double basePrice,
 			// String optionType, String optionValue, Double optionPrice
-			let table = `<div id="tablee>"><table><thead>
+			let table = `<body onload="onLoad()">
+			<main class = "header">
+			
+				<div class="menu_nav">
+					<a href="/configurator.html">Lease</a>
+					<a href="#about">About</a>
+					<a href="#contact">Contact</a>
+					<a href="account.html">My Account</a>
+			
+					<div class="image-logo" onclick="location.href='/betterbe_3'">
+						<img src="https://www.betterbe.com/wp-content/themes/betterbe/img/logo.svg"/>
+					</div>
+			
+				</div>
+			
+				<hr class="line">
+			</main>
+			<div id="table" class="table"><table><thead>
                     <tr>
                             <th>Start Date</th>
                             <th>End date</th>
@@ -39,7 +56,7 @@ function onload() {
                             <td>${line.optionPrice}</td>
                         </tr>`;
 			}
-			table += `</tbody></table></div>`;
+			table += `</tbody></table></div></div>`;
 			document.getElementById("timeline").innerHTML += table;
 		}
 	}
