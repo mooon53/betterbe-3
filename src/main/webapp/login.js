@@ -24,6 +24,7 @@ function login() {
     request.setRequestHeader("Content-Type", "application/json");
     console.log(responseString);
     request.send(responseString);
+    location.href = "accountDetails.html"
 }
 
 function signUp() {
