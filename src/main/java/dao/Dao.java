@@ -106,6 +106,21 @@ public class Dao {
         return options;
     }
 
+    public static String getOption(Long optionId) {
+        String option = "";
+        String query = "SELECT row_to_json(option)\n" +
+                "FROM option\n" +
+                "WHERE id =" + optionId;
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            resultSet.next();
+            option = resultSet.getString(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return option;
+    }
+
     public static List<String> getRules(Long carId) {
         List<String> rules = new ArrayList<>();
         String query = "SELECT row_to_json(rule)\n" +

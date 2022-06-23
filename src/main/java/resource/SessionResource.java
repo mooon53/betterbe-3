@@ -32,7 +32,7 @@ public class SessionResource {
     public String getStatus() {
         Session session = instance.getSession(sessionId);
         JSONObject response = new JSONObject();
-        response.put("sessionId", sessionId);
+        response.put("sessionId", sessionId.toString());
         response.put("loggedIn", session.getLoggedIn());
         if (session.getLoggedIn()) {
             JSONObject accountJSON = new JSONObject();
