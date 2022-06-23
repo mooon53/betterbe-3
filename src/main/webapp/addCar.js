@@ -45,8 +45,8 @@ function addOption() {
             </tr>`
     document.getElementById("optionsTable").innerHTML += optionHTML;
     let optionName = option_type + value;
-    optionHTML = `<input type="checkbox" name="` + optionName + `" id="` + optionId + `" class="optionForRule">
-                    <label for="` + optionId + `">` + option_type + ` : ` + value + `</label>`
+    optionHTML = `<p></p><input type="checkbox" name="` + optionName + `" id="` + optionId + `" class="optionForRule">
+                   <label for="` + optionId + `">` + option_type + ` : ` + value + `</label></>`
     document.getElementById("optionsForRule").innerHTML += optionHTML;
 }
 
