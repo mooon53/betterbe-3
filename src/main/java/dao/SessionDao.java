@@ -26,12 +26,15 @@ public enum SessionDao {
         System.out.println(session.getSessionId());
         System.out.println(sessions);
         sessions.put(sessionId, session);
-        System.out.println(sessions);
         Runnable sessionChecker = new SessionChecker(session);
         Thread thread = new Thread(sessionChecker, "sessionChecker" + sessionId);
         thread.start();
         System.out.println(sessionId);
         return session;
+    }
+
+    public Session getSession(Long sessionId) {
+        return sessions.get(sessionId);
     }
 
     public void logIn(Long sessionId, String email) {

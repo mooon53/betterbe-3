@@ -11,6 +11,8 @@ public class SessionChecker implements Runnable {
 
     public SessionChecker() {};
 
+
+
     public SessionChecker(Session session) {
         this.session = session;
     }
