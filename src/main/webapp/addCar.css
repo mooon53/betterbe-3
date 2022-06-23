@@ -190,5 +190,16 @@ input[type = submit]{
 }
 
 table{
-    padding: 15px;
+    padding: 20px;
+    position: static;
+    padding-left: 20px;
+
+    vertical-align: middle;
+
+    margin: auto;
+    justify-content: space-around;
+
+    width: 80%;
+
+
 }
