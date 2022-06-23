@@ -46,9 +46,52 @@ html, body {
 
 /* */
 .accountDetails {
-    float: start;
+    position: relative;
+    left: 550px;
+}
 
+.moveToAdd{
+    float: right;
+    color: white;
+    background-color: #E73053;
+    position: relative;
+    bottom: 60px;
+    right: 100px;
+    border-radius: 25px;
+    width: 210px;
+    height: 40px;
+    font-size: 19px;
+    font-weight: bold;
+}
 
+.historicalPage{
+    float: right;
+    color: white;
+    background-color: #00809D;
+    position: relative;
+    bottom: 60px;
+    border-radius: 25px;
+    right: 80px;
+    width: 280px;
+    height: 40px;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.email{
+    color: #333333;
+}
+
+.emailDisplay{
+    color: #E73053;
+}
+
+.picture{
+    max-height: 300px;
+    max-width: 300px;
+    position: relative;
+    bottom: 100px;
+    left: 95px;
 }
 /* */
 

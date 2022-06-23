@@ -3,6 +3,7 @@ let rules = [];
 
 function onLoad() {
     sessionId();
+    nonEmployeeDestroyer();
 }
 
 function addCar(){
@@ -18,7 +19,8 @@ function addCar(){
 
     //create a car object and add it to the database
     let car = {make, model, price, year, layout, type, size};
-    let response = {car, options, rules};
+    let sessionId = getSessionId();
+    let response = {sessionId, car, options, rules};
     let responseString = JSON.stringify(response);
 
     request.open("POST", "http://localhost:8080/betterbe_3/rest/cars", true);
@@ -44,7 +46,7 @@ function addOption() {
     document.getElementById("optionsTable").innerHTML += optionHTML;
     let optionName = option_type + value;
     optionHTML = `<input type="checkbox" name="` + optionName + `" id="` + optionId + `" class="optionForRule">
-                    <label for="` + optionId + `">` + option_type + `: ` + value + `</label>`
+                    <label for="` + optionId + `">` + option_type + ` : ` + value + `</label>`
     document.getElementById("optionsForRule").innerHTML += optionHTML;
 }
 
