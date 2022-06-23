@@ -3,7 +3,7 @@ package dao;
 import model.Account;
 import model.Session;
 import org.json.JSONObject;
-import utils.sessionChecker;
+import utils.SessionChecker;
 
 import static dao.Dao.*;
 
