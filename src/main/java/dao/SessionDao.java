@@ -3,7 +3,7 @@ package dao;
 import model.Account;
 import model.Session;
 import org.json.JSONObject;
-import utils.sessionChecker;
+import utils.SessionChecker;
 
 import static dao.Dao.*;
 
@@ -27,7 +27,7 @@ public enum SessionDao {
         System.out.println(sessions);
         sessions.put(sessionId, session);
         System.out.println(sessions);
-        Runnable sessionChecker = new sessionChecker(session);
+        Runnable sessionChecker = new SessionChecker(session);
         Thread thread = new Thread(sessionChecker, "sessionChecker" + sessionId);
         thread.start();
         System.out.println(sessionId);
