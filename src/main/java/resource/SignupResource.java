@@ -39,12 +39,8 @@ public class SignupResource {
         if (response.has("code")) {
             code = (String) response.get("code");
         }
-        if(code.equals("BetterBe_3")){
-            Dao.addEmpAccount(email, password);
-        } else{
-            Dao.addAccount(email, password);
-        }
-        if(password.equals(Dao.getPass(email))) {
+        Dao.addAccount(email, password, code.equals("BetterBe_3"));
+        if (password.equals(Dao.getPass(email))) {
             System.out.println("correct password");
         } else {
             System.out.println("not added");

@@ -7,7 +7,9 @@ import org.json.JSONObject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Path("checkout")
 public class CheckoutResource {
@@ -26,20 +28,26 @@ public class CheckoutResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<CarOrder> getCart() {return CartDao.instance.getModel();}
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<CarOrder> getCart(String input) {
+        JSONObject response = new JSONObject(input);
+        Long sessionId = Long.parseLong(response.getString("sessionId"));
+        return CartDao.instance.getCart(sessionId);
+    }
 
     @DELETE
     public void deleteShoppingCart(){
-        CartDao.instance.getModel().clear();}
+//        CartDao.instance.getModel().clear();
+        }
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public double total(){
-        List<CarOrder> cars = CartDao.instance.getModel();
+//        Map<Long, ArrayList<CarOrder>> cars = CartDao.instance.getModel();
         double cost = 0;
-        for(CarOrder item : cars){
-            cost += 1;
-        }
+//        for(CarOrder item : cars){
+//            cost += 1;
+//        }
         return  cost;
     }
 }

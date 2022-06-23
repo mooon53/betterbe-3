@@ -190,14 +190,18 @@ public class Dao {
     }
 //extract data of configuration from db
 
-    public static void addAccount(String username, String password){
-        String query = "INSERT INTO account (username,password) VALUES ('"+username+"', '"+ password+"')";
+    public static void addAccount(String username, String password, boolean employee){
+        String query = "INSERT INTO account (username, password, employee) VALUES ('"+username+"', '"+ password+"'," + employee + " )";
         System.out.println(query);
         try {
             statement.executeQuery(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void addAccount(String username, String password) {
+        addAccount(username, password, false);
     }
 
     public static String getUser(String username){
@@ -213,16 +217,6 @@ public class Dao {
             e.printStackTrace();
         }
         return person;
-    }
-
-    public static void addEmpAccount(String username, String password){
-        String query = "INSERT INTO account (username,password, employee) VALUES ('"+username+"', '"+ password+"', true)";
-        System.out.println(query);
-        try {
-            statement.executeQuery(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public static String getAccount(String email){
