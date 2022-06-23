@@ -38,7 +38,7 @@ function signUp() {
     let password = stringToHashConversion(document.getElementById('signupPassword').value);
     let code = document.getElementById('empCode').value;
     let response;
-    if (code === "BetterBe_3") {
+    if (code !== null) {
         response = {email, password, code};
     } else {
         response = {email, password};
