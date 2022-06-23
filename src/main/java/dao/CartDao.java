@@ -1,30 +1,51 @@
 package dao;
 
-import model.CarOrder;
+import model.Account;
+import model.Cart;
+import model.Session;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public enum CartDao {
     instance;
 
-    private Map<Long, ArrayList<CarOrder>> carts = new HashMap<>();
+    private Map<String, Cart> carts = new HashMap<>();
 
     private CartDao() {
     }
 
-    public ArrayList<CarOrder> getCart(Long sessionId) {
-        return carts.get(sessionId);
+    private String getEmail(Long sessionId) {
+        return SessionDao.instance.getSession(sessionId).getAccount().getUsername();
     }
 
-    public void addOrder(Long sessionId, CarOrder order) {
-        if (!carts.containsKey(sessionId)) {
-            carts.put(sessionId, new ArrayList<>());
+    public Cart getCart(Long sessionId) {
+        Session session = SessionDao.instance.getSession(sessionId);
+        Account account = session.getAccount();
+        String email = account.getUsername();
+        System.out.println("getCart");
+        System.out.println(sessionId);
+        System.out.println(email);
+        System.out.println(carts);
+        return carts.get(email);
+    }
+
+    public void emptyCart(Long sessionId) {
+        String email = getEmail(sessionId);
+        carts.put(email, new Cart());
+    }
+
+    public void addOrder(Long sessionId, Long orderId, Long carId) {
+        String email = getEmail(sessionId);
+        if (!carts.containsKey(email)) {
+            carts.put(email, new Cart(carId));
         }
-        ArrayList<CarOrder> cart = carts.get(sessionId);
-        cart.add(order);
+        System.out.println(carts);
+        System.out.println(email);
+        Cart cart = carts.get(email);
+        System.out.println(cart);
+        cart.addOption(orderId);
     }
 
 

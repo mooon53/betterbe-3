@@ -37,10 +37,10 @@ public class AccountResource {
         JSONObject response = new JSONObject();
         String email = "";
         String password = "";
-        Long sessionId = Long.parseLong((String) request.get("sessionId"));
+        Long sessionId = Long.parseLong(request.getString("sessionId"));
         System.out.println(sessionId);
         if (request.has("email")) {
-            email = (String) request.get("email");
+            email = request.getString("email");
         }
         if (request.has("password")) {
             password = request.getString("password");
