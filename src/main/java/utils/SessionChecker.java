@@ -5,13 +5,13 @@ import model.Session;
 
 import java.util.Date;
 
-public class sessionChecker implements Runnable {
+public class SessionChecker implements Runnable {
     Session session;
     Date now = new Date();
 
-    public sessionChecker() {};
+    public SessionChecker() {};
 
-    public sessionChecker(Session session) {
+    public SessionChecker(Session session) {
         this.session = session;
     }
 
