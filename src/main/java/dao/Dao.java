@@ -215,6 +215,16 @@ public class Dao {
         return person;
     }
 
+    public static void addEmpAccount(String username, String password){
+        String query = "INSERT INTO account (username,password, employee) VALUES ('"+username+"', '"+ password+"', true)";
+        System.out.println(query);
+        try {
+            statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static String getAccount(String email){
         String account = "";
         String query = "SELECT row_to_json(account)\n" +
