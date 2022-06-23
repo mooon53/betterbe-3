@@ -38,7 +38,7 @@ function signUp() {
     let password = stringToHashConversion(document.getElementById('signupPassword').value);
     let code = document.getElementById('empCode').value;
     let response;
-    if (code === "BetterBe_3") {
+    if (code !== null) {
         response = {email, password, code};
     } else {
         response = {email, password};
@@ -47,10 +47,10 @@ function signUp() {
     request.open("POST", "http://localhost:8080/betterbe_3/rest/signup", true);
     request.setRequestHeader("Accept", "application/json");
 
-    getRequest.setRequestHeader("Content-Type", "application/json");
+    request.setRequestHeader("Content-Type", "application/json");
     console.log(response);
     console.log(responseString);
-    getRequest.send(responseString);
+    request.send(responseString);
 
 }
 
@@ -62,5 +62,5 @@ function stringToHashConversion(string) {
         hashVal = ((hashVal << 5) - hashVal) + char;
         hashVal = hashVal & hashVal;
     }
-    return hashVal;
+    return String(hashVal);
 }

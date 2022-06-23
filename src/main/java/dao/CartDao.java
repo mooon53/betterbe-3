@@ -15,6 +15,10 @@ public enum CartDao {
     private CartDao() {
     }
 
+    public ArrayList<CarOrder> getCart(Long sessionId) {
+        return carts.get(sessionId);
+    }
+
     public void addOrder(Long sessionId, CarOrder order) {
         if (!carts.containsKey(sessionId)) {
             carts.put(sessionId, new ArrayList<>());

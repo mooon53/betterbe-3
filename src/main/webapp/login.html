@@ -30,7 +30,7 @@
 </main>
 <div class="container" id="container">
     <div class="form-container sign-up-container">
-        <form action="#">
+        <form action="" onsubmit="return false;">
             <h1>Create Account</h1>
             <div class="social-container">
 
@@ -38,6 +38,7 @@
 
             <input type="email" name="email" id="signupEmail" placeholder="Email"/>
             <input type="password" name="password" id="signupPassword" placeholder="Password"/>
+            <input type="password" name="empCode" id="empCode" placeholder="Code for employee"/>
             <button onclick="signUp()">sign up</button>
         </form>
     </div>
