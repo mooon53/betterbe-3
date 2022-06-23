@@ -9,7 +9,7 @@
     <script src="global.js"></script>
     <script src="accountDetails.js"></script>
 </head>
-<body onload="onLoad()" id="body">
+<body onload="onLoad(); displayEmail()" id="body">
 
 <!--Header-->
 <main>
@@ -39,10 +39,6 @@
 
 <div>
     <img class="picture" id="pic" src="images/GigaCoin.png">
-</div>
-
-<div class="history">
-    <button class="historicalPage" id="moveToHistory" onclick="historyPage()"> Go to historical data page</button>
 </div>
 
 <div class="addCarPage">
