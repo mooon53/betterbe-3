@@ -2,22 +2,16 @@ body {
     background: #f6f5f7;
     display: flex;
     justify-content: left;
-    /*align-items: center;*/
     flex-direction: column;
     font-family: Poppins;
     margin: 5px 0 30px;
 }
-table, th, td {
-    border-bottom: 2px solid #ddd;
 
-}
-tr:hover {background-color: coral;}
 /* Header/Logo Title */
+
+
 .menu_nav {
-    overflow: hidden;
-    display: inline-block;
-    border: none;
-    vertical-align: middle;
+    overflow: visible;
 }
 
 .menu_nav a {
@@ -26,8 +20,8 @@ tr:hover {background-color: coral;}
     text-align: left;
     padding: 14px 16px;
     text-decoration: none;
+    font-family: Poppins;
     font-size: 25px;
-
 }
 
 .menu_nav a:hover {
@@ -41,7 +35,7 @@ tr:hover {background-color: coral;}
     float: right;
     color: black;
     text-align: left;
-    padding: 14px 16px;
+    padding: 15px 16px;
     text-decoration: none;
     font-size: 25px;
 }
@@ -70,11 +64,7 @@ tr:hover {background-color: coral;}
     background-color: #e73053;
     color: white;
 }
-.tablee {
-    display: inline-block;
-    border: none;
-    vertical-align: middle;
-}
+
 
 .menu_nav {
     overflow: hidden;
@@ -106,3 +96,98 @@ tr:hover {background-color: coral;}
     text-decoration: none;
     font-size: 25px;
 }
+
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin-top: 50px;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+tr:hover {background-color: #e73053;}
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+
+table tr {
+    background-color: #959BA9;
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+}
+
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+    table {
+        border: 0;
+    }
+
+    table caption {
+        font-size: 1.3em;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table td::before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        content: attr(data-label);
+        float: left;
+        /*font-weight: bold;*/
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
