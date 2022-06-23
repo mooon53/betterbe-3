@@ -12,8 +12,9 @@
 
 </head>
 <body onload="onLoad()">
-<main>
 
+<! ╌header ╌>
+<main>
     <div class="menu_nav">
         <a href="/configurator.html">Lease</a>
         <a href="#about">About</a>
@@ -23,41 +24,42 @@
         <div class="image-logo" onclick="location.href='/betterbe_3'">
             <img src="https://www.betterbe.com/wp-content/themes/betterbe/img/logo.svg"/>
         </div>
-
     </div>
-
     <hr class="line">
-
-
-
 </main>
-<div class="titles">
+<! ╌end of header ╌>
 
+
+<!-- boxes -->
+
+<div >
+    <h1 id="title" align="center"> Add New Car </h1>
 </div>
 <div class="container">
-    <div class="sidebyside">
-        <h1 id="title"> Add New Car </h1>
+    <div class = "info">
         <form class="form-horizontal">
-            <div class="form-group">
-                <label for="make" class="car"> Manufacturer</label>
-                <div>
-                    <input class="car" id="make" placeholder="Mazda" type="text">
-                </div>
+
+
+
+            <div label for="make" class="car"> <p>Manufacturer</p></div>
+            <div>
+                <input class= "input" id="make" placeholder="Mazda" type="text">
             </div>
 
-            <label for="model" class="car">Model </label>
+
+            <div label for="model" class="car"><p >Model </p></div>
             <div class="col-sm-9">
-                <input type="text" class="car" id="model" placeholder="MX-5">
+                <input class= "input" type="text" id="model" placeholder="MX-5">
             </div>
 
-            <label for="year" class="car"> Production Year</label>
+            <div label for="year" class="car"><p> Production Year</p></div>
             <div>
-                <input type="text" class="car" id="year" placeholder="2021">
+                <input class= "input" type="text" id="year" placeholder="2022">
             </div>
 
-            <label for="bodyType" class="car"> Body type</label>
+            <div label for="bodyType" class="car"> <p>Body type</p></div>
             <div>
-                <select id="bodyType" class="car">
+                <select class= "input" id="bodyType">
                     <option value="coupe">COUPE</option>
                     <option value="cabriolet">CABRIOLET</option>
                     <option value="sedan">SEDAN</option>
@@ -69,22 +71,24 @@
                 </select>
             </div>
 
-            <label for="driveLayout" class="car">Drive layout</label>
+            <div label for="driveLayout" class="car"><p>Drive layout</p></div>
             <div>
-                <select id="driveLayout" class="car">
+                <select class= "input" id="driveLayout">
                     <option value="FWD">FWD</option>
                     <option value="RWD">RWD</option>
                     <option value="AWD">AWD</option>
                     <option value="4WD">4WD</option>
                 </select>
             </div>
-            <div label for="Price" class="option"> Price</div>
+
+            <div label for="Price" class="car" ><p> Price</p></div>
             <div class="col-sm-9">
-                <input type="text" class="car" id="price" placeholder="10">
+                <input class= "input" type="text" id="price" placeholder="10">
             </div>
-            <label for="size" class="car"> Size</label>
+
+            <div label for="size" class="car"><p> Size</p></div>
             <div>
-                <select id="size" class="car">
+                <select class= "input" id="size">
                     <option value="SUBCOMPACT">SUBCOMPACT</option>
                     <option value="COMPACT">COMPACT</option>
                     <option value="MID-SIZE">MID-SIZE</option>
@@ -92,83 +96,93 @@
                 </select>
             </div>
 
-
         </form>
+
     </div>
+
     <div class="sidebyside">
         <div class="options">
             <h3>Options</h3>
 
-            <fieldset class="css-18z6yag">
 
+            <label for="Type">Type</label>
+            <div class="col-sm-9">
+                <input type = "text" id="Type" placeholder="colour">
+            </div>
 
-                <label for="Type" class="car">Type</label>
-                <div class="col-sm-9">
-                    <input class="car" id="Type" placeholder="colour">
-                </div>
+            <div label for="Name" >Name</div>
+            <div class="col-sm-9">
+                <input type="text" class="option" id="Name" placeholder="red">
+            </div>
+            <label for="priceForOption" class="option" >Price</label>
+            <div class="col-sm-9">
+                <input  type="number" class="option" id="priceForOption" placeholder="10">
+            </div>
 
-                <label for="Name" class="car">Name</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="Name" placeholder="red">
-                </div>
-                <label for="priceForOption" class="option">Price</label>
-                <div class="col-sm-9">
-                    <input type="number" class="option" id="priceForOption" placeholder="10">
-                </div>
+            <button class="button button1" onclick="addOption()" style = color:white>ADD</button>
 
-                <button class="button button1" onclick="addOption()">ADD</button>
-            </fieldset>
 
         </div>
-        <div id="options" class="options">
-
-            <table>
-                <thead>
-                <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                </tr>
-                </thead>
-                <tbody id="optionsTable">
-                </tbody>
-            </table>
-        </div>
-
-
-        <div class="optionss">
-            <h3>Rules</h3>
-            <fieldset class="css-18z6yag">
-
-                <div id="optionsForRule"></div>
-                <input type="checkbox" id="mandatory">
-                <label for="mandatory">Mandatory</label>
-                <input type="checkbox" id="exclusive">
-                <label for="exclusive">Exclusive</label>
-                <button class="button button1" onclick="addRule()">ADD</button>
-            </fieldset>
-        </div>
-        <div id="rules" class= "optionss">
-
-            <table>
-                <thead>
-                <tr>
-                    <th>Options</th>
-                    <th>Mandatory</th>
-                    <th>Exclusive</th>
-                </tr>
-                </thead>
-                <tbody id="rulesTable">
-                </tbody>
-            </table>
-        </div>
-        </form>
     </div>
 </div>
-<div class="titles">
-    <h2>Have you added all options?</h2>
+<div class="sidebyside">
+    <div id="options" >
+        <table>
+            <thead>
+            <tr>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody id="optionsTable">
+            </tbody>
+        </table>
 
-</div><button class="button button3" onclick=addCar()>ADD CAR</button>
+    </div>
+
+
+    <div class="optionss">
+        <h3>Rules</h3>
+
+
+        <div id="optionsForRule">
+            <div class="col-sm-9">
+                <div label for="mandatory">Mandatory</div>
+                <input type="checkbox" id="mandatory">
+
+            </div>
+            <div class="col-sm-9">
+
+                <div label for="exclusive">Exclusive
+                    <input type="checkbox" id="exclusive"></div>
+            </div>
+            <button class="button button1" onclick="addRule()" style = color:white>ADD</button>
+        </div>
+
+    </div>
+
+    <div id="rules">
+        <table>
+            <thead>
+            <tr>
+                <th>Options</th>
+                <th>Mandatory</th>
+                <th>Exclusive</th>
+            </tr>
+            </thead>
+            <tbody id="rulesTable">
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<div class="titles">
+    <h2>Have you added all options?</h2>    </div>
+
+</div><button class="button button3" onclick=addCar() style=color:white>ADD CAR</button>
 
 </body>
 </html>
