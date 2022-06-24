@@ -7,6 +7,7 @@ let price;
 
 function onLoad() { //When the page is loaded
 	sessionId();
+	changeLogInButton();
 	let url = new URL(location.href); //Get the current url
 	let searchParams = url.searchParams; //Get the search parameters (?carID=<search parameter>)
 	let carId = searchParams.get("carID"); //Get the id in the search parameters
@@ -194,4 +195,9 @@ function addToCart() {
 		postRequest.setRequestHeader("Content-Type", "application/json");
 		postRequest.send(carConfString);
 	}
+}
+
+function checkout() {
+	addToCart();
+	location.href="checkout.html";
 }

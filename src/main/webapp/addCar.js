@@ -3,6 +3,7 @@ let rules = [];
 
 function onLoad() {
     sessionId();
+    changeLogInButton();
     nonEmployeeDestroyer();
 }
 
@@ -16,6 +17,15 @@ function addCar(){
     let layout = document.getElementById('driveLayout').value;
     let type = document.getElementById('bodyType').value;
     let size = document.getElementById('size').value;
+
+    document.getElementById('make').value = null;
+    document.getElementById('model').value = null;
+    document.getElementById('price').value = null;
+    document.getElementById('year').value = null;
+    document.getElementById('driveLayout').value = null;
+    document.getElementById('bodyType').value = null;
+    document.getElementById('size').value = null;
+    document.getElementById("Name").value = null;
 
     //create a car object and add it to the database
     let car = {make, model, price, year, layout, type, size};
@@ -48,6 +58,8 @@ function addOption() {
     optionHTML = `<p></p><input type="checkbox" name="` + optionName + `" id="` + optionId + `" class="optionForRule">
                    <label for="` + optionId + `">` + option_type + ` : ` + value + `</label></>`
     document.getElementById("optionsForRule").innerHTML += optionHTML;
+    document.getElementById("Name").value = "";
+    document.getElementById("priceForOption").value = null;
 }
 
 function addRule() {
@@ -59,10 +71,13 @@ function addRule() {
         if (option.checked) {
             chosenOptions.push(Number(option.id));
             chosenOptionsNames.push(option.name);
+            option.checked = false;
         }
     }
     let mandatory = document.getElementById("mandatory").checked;
     let exclusive = document.getElementById("exclusive").checked;
+    document.getElementById("mandatory").checked = false;
+    document.getElementById("exclusive").checked = false;
     let ruleHTML = `<tr>
                         <td>`
     for (let optionIndex in chosenOptions) {

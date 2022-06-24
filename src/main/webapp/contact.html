@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
     <meta charset="utf-8">
 
@@ -7,9 +7,9 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 
     <script src="global.js"></script>
-    <script src="checkout.js"></script>
+    <script src="contact.js"></script>
 
-    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="contact.css">
     <link rel="icon" href="images/bettericon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
@@ -21,60 +21,39 @@
   <main>
    
 <div class="menu_nav">
-    <a class="active">Lease</a>
+    <a href="configurator.html">Lease</a>
     <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+    <a class="active">Contact</a>
     <a href="account.html" id="logIn">Log in</a>
 
     <div class="image-logo" onclick="location.href='/betterbe_3'">
         <img src="https://www.betterbe.com/wp-content/themes/betterbe/img/logo.svg" alt="BetterBe logo">
     </div>
+  
 </div>
     
-<hr class="line">
-
-<!--  Form  -->
-        
-<div class="wrapper">
-  <div class="card">
-    <div class="product-left">
-      <div class="header">
-        <h1 id="carName">Make Model</h1>
-      </div>
-      
-      <!--DESCRIPTION / DETAILS-->
-      <div class="product-main">
-        <div class="focus">
-          <span>Description</span>
-        </div>
-        <article>
-	<h2>Order Summary</h2>
-	<ul class="tilt" id="options"></ul>
-</article>
-      </div>
-      <!--CHOOSE PRODUCT DETAILS-->
-      <div class="product-details">
-        
-        <!--PRODUCT TOTAL-->
-        <div class="product-total">
-          <h3>Mounthly</h3>
-          <p>$420</p>
-        </div>
-      </div>
-      <!-- ADD TO CART BUTTON -->
-      <div class="product-btns">
-        <a href="#" class="product-add">Proceed to payment</a>
-      </div>
-    </div>
-    <div class="product-right">
-      <img src="https://c4.wallpaperflare.com/wallpaper/401/347/607/mazda-mazda-cx-9-blue-car-car-suv-hd-wallpaper-preview.jpg" alt="Mazda CX-9">
-    </div>
-  </div>
-</div>
+       <hr class="line">
 
 
-<!--  Form  -->
+<!-- Contact form -->
     
+    <h1 id="contact-header">Let us know what you think!</h1>
+    
+<form>      
+  
+  <input name="name" type="text" class="feedback-input" placeholder="Name" />   
+  
+  <input name="email" type="text" class="feedback-input" placeholder="Email" />
+  
+  <textarea name="text" class="feedback-input" placeholder="Comment">
+    
+  </textarea>
+  
+  <input type="submit" value="SUBMIT" id="submit-main"/>
+</form>
+    
+<!--   End of contact form   -->
+        
 <!-- Footer -->
       <div class="footer">
           <div class ="footer-content">
@@ -121,9 +100,5 @@
           &copy; utwente.nl | Made by Utwente Students
         </div>
       </div>
-</body>
-</html>
-<!-- partial -->
-  
 </body>
 </html>

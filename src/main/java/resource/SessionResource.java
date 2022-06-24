@@ -30,7 +30,7 @@ public class SessionResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getStatus() {
-        Session session = instance.getSession(sessionId);
+        Session session = SessionDao.instance.getSession(sessionId);
         JSONObject response = new JSONObject();
         response.put("sessionId", sessionId.toString());
         response.put("loggedIn", session.getLoggedIn());

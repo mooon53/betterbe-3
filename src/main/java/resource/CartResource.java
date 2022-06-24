@@ -14,10 +14,11 @@ import java.util.ArrayList;
 public class CartResource {
 
     @GET
-    @Consumes(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String getCart(String input) {
-        Long sessionId = Long.parseLong(input);
+        JSONObject request = new JSONObject(input);
+        Long sessionId = Long.parseLong(request.getString("sessionId"));
         Cart cart = CartDao.instance.getCart(sessionId);
         JSONObject response = new JSONObject();
         response.put("carId", cart.getCarObj().getId());

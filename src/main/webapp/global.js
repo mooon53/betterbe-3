@@ -1,8 +1,10 @@
 function sessionId() {
-	console.log("sup");
 	let cookieMap = getCookies();
-	console.log(cookieMap);
-	if (!cookieMap.has("sessionId") || !sessionValid()) setSessionId();
+	if (!cookieMap.has("sessionId") || !sessionValid().valid) setSessionId();
+}
+
+function changeLogInButton() {
+	if (sessionValid().loggedIn) document.getElementById("logIn").innerText = "My account";
 }
 
 function setSessionId() {
@@ -10,7 +12,6 @@ function setSessionId() {
 	request.onreadystatechange = function() {
 		if (this.readyState === 4 && this.status === 200) {
 			let response = JSON.parse(this.responseText);
-			console.log(response);
 			let expiration = new Date(response.expiration);
 			document.cookie = "sessionId=" + response.sessionId + ";expires=" + expiration.toUTCString();
 		}
@@ -34,15 +35,22 @@ function getSessionId() {
 function sessionValid() {
 	let valid = false;
 	let session = getSessionId();
-	console.log(session);
 	let request = new XMLHttpRequest();
+	let result = {};
 	request.onreadystatechange = function() {
 		valid = this.status !== 500;
+		if (this.readyState === 4 && this.status === 200) {
+			let response = JSON.parse(this.responseText);
+			result["loggedIn"] = response.loggedIn;
+			result["sessionId"] = response.sessionId;
+			result["account"] = response.account;
+		}
 	}
 	request.open("GET", "http://localhost:8080/betterbe_3/rest/sessions/" + session, false);
 	request.setRequestHeader("Accept", "application/json");
 	request.send()
-	return valid;
+	result["valid"] = valid;
+	return result;
 }
 
 function getCookies() {
@@ -70,15 +78,12 @@ function employeeCheck() {
 	let employee = false;
 	request.onreadystatechange = function() {
 		if (this.readyState === 4 && this.status === 200) {
-			console.log(this.responseText);
 			let response = JSON.parse(this.responseText);
-			console.log(response)
 			employee = (response.loggedIn && response.account.employee);
 		}
 	}
 	request.open("GET", "http://localhost:8080/betterbe_3/rest/sessions/" + session, false);
 	request.setRequestHeader("Accept", "application/json");
 	request.send();
-	console.log(employee)
 	return employee;
 }

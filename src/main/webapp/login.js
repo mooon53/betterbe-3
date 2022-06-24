@@ -1,5 +1,6 @@
 function onLoad() {
     sessionId();
+    changeLogInButton();
     let container = document.getElementById("container");
 }
 

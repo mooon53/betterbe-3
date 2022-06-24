@@ -2,7 +2,12 @@ let sessionID = getSessionId();
 let acc;
 let responsse;
 function onLoad() {
+	changeLogInButton();
 	sessionId();
+	let session = sessionValid();
+	if (!session.loggedIn) {
+		location.href = "login.html";
+	}
 }
 
 function addCarPage(){
@@ -22,7 +27,7 @@ function displayEmail(){
 	}
 	request.open("GET", "http://localhost:8080/betterbe_3/rest/sessions/" + sessionID, false);
 	request.send();
-	if(sessionValid()){
+	if(sessionValid().valid){
 		console.log(responsse);
 		let email = acc.account.email;
 		console.log(email);

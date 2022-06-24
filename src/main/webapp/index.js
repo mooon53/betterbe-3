@@ -1,5 +1,6 @@
 function onLoad() {
 	sessionId();
+	changeLogInButton();
 	let nextPage = "configurator.html?carID=";
 	let buttonText = "Lease";
 	if (employeeCheck()) {
