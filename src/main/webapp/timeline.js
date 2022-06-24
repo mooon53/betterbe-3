@@ -30,7 +30,7 @@ function onload() {
                             <td>${line.optionType}</td>
                             <td>${line.optionValue}</td>
                             <td>${line.optionPrice}</td>
-                            <td><button onclick="removeOption(${line.id})">remove option</button></td>
+                            <td><button class="button" onclick="removeOption(${line.id})">remove option</button></td>
                         </tr>`;
 			}
 		}

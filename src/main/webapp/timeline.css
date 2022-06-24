@@ -50,7 +50,7 @@ body {
 /* End of header menu style */
 .button {
     border: none;
-    color: white;
+    color: black;
     padding: 8px 32px;
     text-align: center;
     text-decoration: none;
@@ -59,15 +59,19 @@ body {
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
+    background-color: #FCFCFC;
+    border-radius: 25px;
 }
-
 .button1 {
-    background-color: white;
-    color: black;
-    border: 2px solid #e73053;
+    margin-top: 30px;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:20px;
+    width: 50%;
 }
 
-.button1:hover {
+
+.button:hover {
     background-color: #e73053;
     color: white;
 }
@@ -108,8 +112,9 @@ table {
     border: 1px solid #ccc;
     border-collapse: collapse;
     margin-top: 50px;
+    margin:auto;
     padding: 0;
-    width: 100%;
+    width: 98%;
     table-layout: fixed;
 }
 tr:hover {background-color: #0098B5;
