@@ -16,41 +16,14 @@ function onload() {
 			console.log(this.responseText);
 			//String date, String make, String model, Long year, Double basePrice,
 			// String optionType, String optionValue, Double optionPrice
-			let table = `<body onload="onLoad()">
-			<main class = "header">
-			
-				<div class="menu_nav">
-					<a href="/configurator.html">Lease</a>
-					<a href="#about">About</a>
-					<a href="#contact">Contact</a>
-					<a href="account.html">My Account</a>
-			
-					<div class="image-logo" onclick="location.href='/betterbe_3'">
-						<img src="https://www.betterbe.com/wp-content/themes/betterbe/img/logo.svg"/>
-					</div>
-			
-				</div>
-			
-				<hr class="line">
-			</main>
-			<div id="table" class="table"><table><thead>
-                    <tr>
-                            <th>Start Date</th>
-                            <th>End date</th>
-                            <th>Base Price</th>
-                            <th>Option Type</th>
-                            <th>Value</th>
-                            <th>Effect</th>
-                            <th>Remove option</th>
-                    </tr></thead><tbody>`;
-
+			let table = document.getElementById("timeline");
 			for (let i in response) {
 				let line = response[i];
 				console.log(line);
 				if (line.end_date === null){
 					line.end_date = "-";
 				}
-				table += `<tr>
+				table.innerHTML += `<tr>
                             <td>${line.date}</td>
                             <td>${line.end_date}</td>
                             <td>${line.basePrice}</td>
@@ -60,8 +33,6 @@ function onload() {
                             <td><button onclick="removeOption(${line.id})">remove option</button></td>
                         </tr>`;
 			}
-			table += `</tbody></table></div></div>`;
-			document.getElementById("timeline").innerHTML += table;
 		}
 	}
 	getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/timeline/"+carId, true);

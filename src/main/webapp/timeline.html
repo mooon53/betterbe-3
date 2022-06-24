@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="timeline.css">
 
 </head>
+<body onload="onload()">
 <main class = "header">
 
     <div class="menu_nav">
@@ -28,7 +29,21 @@
 
 
 </main>
-<body id="timeline" onload="onload()">
+
+
+<div id="table" class="table"><table><thead>
+<tr>
+    <th>Start Date</th>
+    <th>End date</th>
+    <th>Base Price</th>
+    <th>Option Type</th>
+    <th>Value</th>
+    <th>Effect</th>
+    <th>Remove option</th>
+</tr></thead>
+    <tbody id="timeline"></tbody>
+</table>
+</div>
 <button onclick="addOptionToCar()">add option to car</button>
 </body>
 </html>
