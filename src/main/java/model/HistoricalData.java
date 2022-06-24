@@ -2,6 +2,7 @@ package model;
 
 public class HistoricalData {
     //o.start_date, c.make, c.model, c.production_year, o.option_type, o.value, o.price
+    private Long id;
     private String date;
     private Double basePrice;
     private String end_date;
@@ -12,7 +13,8 @@ public class HistoricalData {
     public HistoricalData() {
     }
 
-    public HistoricalData(String start_date, String end_date, Double basePrice, String optionType, String optionValue, Double optionPrice) {
+    public HistoricalData(Long id, String start_date, String end_date, Double basePrice, String optionType, String optionValue, Double optionPrice) {
+        this.id = id;
         this.basePrice = basePrice;
         this.date = start_date;
         this.optionType = optionType;
@@ -21,7 +23,8 @@ public class HistoricalData {
         this.end_date=end_date;
     }
 
-    public HistoricalData(String start_date, Double basePrice, String optionType, String optionValue, Double optionPrice) {
+    public HistoricalData(Long id, String start_date, Double basePrice, String optionType, String optionValue, Double optionPrice) {
+        this.id = id;
         this.basePrice = basePrice;
         this.date = start_date;
         this.optionType = optionType;
@@ -80,5 +83,11 @@ public class HistoricalData {
         this.optionValue = optionValue;
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

@@ -4,6 +4,8 @@ import model.*;
 import utils.DatabaseConnectionChecker;
 
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -293,7 +295,21 @@ public class Dao {
         return data;
     }
 
+    public static void editOption(Long id) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String query = "UPDATE option\n" +
+                "SET end_date = '" + now + "'\n" +
+                "WHERE id = " + id;
+        try {
+            statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
+
 
 
 //extract data of configuration from db

@@ -1,9 +1,11 @@
+let carId;
+
 function onload() {
 	sessionId();
 	nonEmployeeDestroyer()
 	let url = new URL(location.href); //Get the current url
 	let searchParams = url.searchParams; //Get the search parameters (?carID=<search parameter>)
-	let carId = searchParams.get("carId"); //Get the id in the search parameters
+	carId = searchParams.get("carId"); //Get the id in the search parameters
 
 	let getRequest = new XMLHttpRequest();
 	getRequest.onreadystatechange = function () {
@@ -39,6 +41,7 @@ function onload() {
                             <th>Option Type</th>
                             <th>Value</th>
                             <th>Effect</th>
+                            <th>Remove option</th>
                     </tr></thead><tbody>`;
 
 			for (let i in response) {
@@ -54,6 +57,7 @@ function onload() {
                             <td>${line.optionType}</td>
                             <td>${line.optionValue}</td>
                             <td>${line.optionPrice}</td>
+                            <td><button onclick="removeOption(${line.id})">remove option</button></td>
                         </tr>`;
 			}
 			table += `</tbody></table></div></div>`;
@@ -63,4 +67,21 @@ function onload() {
 	getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/timeline/"+carId, true);
 	getRequest.setRequestHeader("Accept", "application/json");
 	getRequest.send();
+}
+
+function addOptionToCar() {
+
+}
+
+function removeOption(id) {
+	let request = new XMLHttpRequest();
+	let string = {id}
+	console.log(id);
+	console.log(string);
+	let responseString = JSON.stringify(string);
+	console.log(responseString);
+	request.open("POST", "http://localhost:8080/betterbe_3/rest/edit", true);
+	request.setRequestHeader("Content-Type", "application/json");
+	request.setRequestHeader("Accept", "application/json");
+	request.send(responseString);
 }

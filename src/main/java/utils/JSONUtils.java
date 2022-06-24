@@ -116,17 +116,19 @@ public class JSONUtils {
     }
 
     public static HistoricalData jsonStringToHistoricalData(String timelineStr) {
+        System.out.println(timelineStr);
         JSONObject timelineJSON = new JSONObject(timelineStr);
+        System.out.println(timelineJSON);
         return jsonToHistoricalData(timelineJSON);
     }
 
     //o.start_date, c.make, c.model, c.production_year, o.option_type, o.value, o.price
     public static HistoricalData jsonToHistoricalData(JSONObject timelineJSON) {
         try {
-            return new HistoricalData(timelineJSON.getString("start_date"), timelineJSON.getString("end_date"), timelineJSON.getDouble("price"), timelineJSON.getString("option_type"), timelineJSON.getString("value"), timelineJSON.getDouble("price"));
+            return new HistoricalData(timelineJSON.getLong("id"), timelineJSON.getString("start_date"), timelineJSON.getString("end_date"), timelineJSON.getDouble("price"), timelineJSON.getString("option_type"), timelineJSON.getString("value"), timelineJSON.getDouble("price"));
         } catch (JSONException e) {
 //            e.printStackTrace();
-            return new HistoricalData(timelineJSON.getString("start_date"), timelineJSON.getDouble("price"), timelineJSON.getString("option_type"), timelineJSON.getString("value"), timelineJSON.getDouble("price"));
+            return new HistoricalData(timelineJSON.getLong("id"), timelineJSON.getString("start_date"), timelineJSON.getDouble("price"), timelineJSON.getString("option_type"), timelineJSON.getString("value"), timelineJSON.getDouble("price"));
         }
     }
 
