@@ -41,6 +41,7 @@ html, body {
     padding: 28px 16px;
     text-decoration: none;
     font-size: 25px;
+
 }
 /* End of header menu style */
 
@@ -53,15 +54,20 @@ html, body {
 .moveToAdd{
     float: right;
     color: white;
-    background-color: #E73053;
+    background-color: #e84a67;
     position: relative;
     bottom: 60px;
     right: 100px;
     border-radius: 25px;
+    transition-duration: 0.4s;
     width: 210px;
     height: 40px;
-    font-size: 19px;
-    font-weight: bold;
+    font-size: 18px;
+    border:none;
+}
+.moveToAdd:hover{
+    background-color:  #00809D;
+    color: white;
 }
 .moveToCheckout{
     float: right;
@@ -70,11 +76,16 @@ html, body {
     position: relative;
     bottom: 60px;
     right: 100px;
+    transition-duration: 0.4s;
     border-radius: 25px;
     width: 210px;
     height: 40px;
-    font-size: 19px;
-    font-weight: bold;
+    font-size: 18px;
+    border:none;
+}
+.moveToCheckout:hover{
+    background-color: #e84a67;
+    color: white;
 }
 .email{
     color: #333333;

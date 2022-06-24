@@ -112,7 +112,8 @@ table {
     width: 100%;
     table-layout: fixed;
 }
-tr:hover {background-color: #0098B5;}
+tr:hover {background-color: #0098B5;
+    color: white;}
 table caption {
     font-size: 1.5em;
     margin: .5em 0 .75em;

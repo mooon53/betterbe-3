@@ -53,7 +53,7 @@ tr:hover {background-color: #0098B5; color: white;}
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 18px;
     margin: 10px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
@@ -75,7 +75,7 @@ tr:hover {background-color: #0098B5; color: white;}
     grid-column: 1/1;
     position: static;
     padding-left: 15px;
-
+    font-size: 15px;
     background-color: #EAECEE;
     border: none;
     border-radius: 15px;
@@ -105,7 +105,7 @@ tr:hover {background-color: #0098B5; color: white;}
     width: 80%;
     padding: 10px;
 
-    justify-content: space-around;
+
 
 }
 .info {
