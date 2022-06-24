@@ -63,7 +63,19 @@ html, body {
     font-size: 19px;
     font-weight: bold;
 }
-
+.moveToCheckout{
+    float: right;
+    color: white;
+    background-color: #00809D;
+    position: relative;
+    bottom: 60px;
+    right: 100px;
+    border-radius: 25px;
+    width: 210px;
+    height: 40px;
+    font-size: 19px;
+    font-weight: bold;
+}
 .email{
     color: #333333;
 }

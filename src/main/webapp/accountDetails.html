@@ -9,7 +9,7 @@
     <script src="global.js"></script>
     <script src="accountDetails.js"></script>
 </head>
-<body onload="onLoad(); displayEmail()" id="body">
+<body onload="onLoad(); displayEmail(); empCheck()" id="body">
 
 <!--Header-->
 <main>
@@ -41,8 +41,12 @@
     <img class="picture" id="pic" src="images/GigaCoin.png">
 </div>
 
-<div class="addCarPage">
+<div class="addCarPage" id="add">
     <button class="moveToAdd" id="moveToAdd" onclick="addCarPage()"> Go to add car page</button>
+</div>
+
+<div class="checkoutPage" id="checkout">
+    <button class="moveToCheckout" id="moveToCheckout" onclick = "checkoutPage()"> Go to checkout</button>
 </div>
 <!--Footer-->
 <div class="footer">
