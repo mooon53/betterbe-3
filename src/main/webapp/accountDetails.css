@@ -64,6 +64,7 @@ html, body {
     height: 40px;
     font-size: 18px;
     border:none;
+    margin-left: 5px;
 }
 .moveToAdd:hover{
     background-color:  #00809D;
