@@ -17,6 +17,11 @@ function checkoutPage(){
 	location.href = "checkout.html";
 }
 
+function logout(){
+	alert("logged out successfully!")
+	location.href = "./";
+}
+
 function displayEmail(){
 	let request = new XMLHttpRequest();
 	request.onreadystatechange = function () {

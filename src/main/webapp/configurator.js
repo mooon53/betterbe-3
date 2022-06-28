@@ -199,5 +199,7 @@ function addToCart() {
 
 function checkout() {
 	addToCart();
-	location.href="checkout.html";
+	if (mandatoryCheck()) {
+		location.href = "checkout.html";
+	}
 }

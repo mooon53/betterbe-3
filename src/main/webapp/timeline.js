@@ -42,7 +42,18 @@ function onload() {
 }
 
 function addOptionToCar() {
-
+	let request = new XMLHttpRequest();
+	console.log(carId);
+	let value = document.getElementById("Name").value;
+	let price = Number(document.getElementById("priceForOption").value);
+	let option_type = document.getElementById("Type").value;
+	let string = {carId, value, price, option_type}
+	let responseString = JSON.stringify(string);
+	console.log(responseString)
+	request.open("POST", "http://localhost:8080/betterbe_3/rest/addOption", true);
+	request.setRequestHeader("Content-Type", "application/json");
+	request.setRequestHeader("Accept", "application/json");
+	request.send(responseString);
 }
 
 function removeOption(id) {

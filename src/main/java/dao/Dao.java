@@ -308,6 +308,20 @@ public class Dao {
         }
     }
 
+    public static void addOptionToCar(int option_id, Long id, String value, int price, String option_type) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String query = "INSERT INTO option (id, value, manufacturer, car_id, option_type, price, start_date)\n" +
+                "VALUES(" + option_id + ",'" + value + "','null'," +
+                id + ",'" + option_type + "'," + price + ",'" +
+                now + "');";
+        try {
+            statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
 
