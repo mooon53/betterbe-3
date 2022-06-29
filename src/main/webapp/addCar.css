@@ -44,7 +44,7 @@ table, th, td {
     border-bottom: 2px solid #ddd;
 
 }
-tr:hover {background-color: #0098B5; color: white;}
+tr:hover {background-color: #00809D; color: white;}
 .button {
 
     border: none;
@@ -65,7 +65,7 @@ tr:hover {background-color: #0098B5; color: white;}
 
 
 .button:hover {
-    background-color: #3C3478;
+    background-color: #00809D;
     color: white;
 }
 
