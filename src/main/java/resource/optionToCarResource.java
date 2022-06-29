@@ -21,7 +21,7 @@ public class optionToCarResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String editOption(String input) {
+    public String addOption(String input) {
         System.out.println(input);
         JSONObject response = new JSONObject(input);
         Long id = null;
