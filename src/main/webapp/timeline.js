@@ -1,5 +1,5 @@
 let carId;
-
+let optionsNames = {};
 function onload() {
     sessionId();
     changeLogInButton();
@@ -24,6 +24,7 @@ function onload() {
                 if (line.end_date === null) {
                     line.end_date = "-";
                 }
+                optionsNames[line.id] = line.value;
                 table.innerHTML += `<tr>
                             <td>${line.startDate}</td>
                             <td>${line.endDate}</td>
@@ -37,9 +38,12 @@ function onload() {
             let rulesTable = document.getElementById("rulesTable");
             for (let i in response.rules) {
                 let line = response.rules[i];
-                console.log(line);
+                let ruleNames = [];
+                for(let j in line.options) {
+                    ruleNames.push(optionsNames[line.options[j]]);
+                }
                 rulesTable.innerHTML += `<tr>
-                            <td>${line.options}</td>
+                            <td>${ruleNames}</td>
                             <td>${line.exclusive}</td>
                             <td>${line.mandatory}</td>
                         </tr>`;
@@ -53,13 +57,11 @@ function onload() {
 
 function addOptionToCar() {
     let request = new XMLHttpRequest();
-    console.log(carId);
     let value = document.getElementById("Name").value;
     let price = Number(document.getElementById("priceForOption").value);
     let option_type = document.getElementById("Type").value;
     let string = {carId, value, price, option_type}
     let responseString = JSON.stringify(string);
-    console.log(responseString)
     request.open("POST", "http://localhost:8080/betterbe_3/rest/addOption", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
@@ -69,10 +71,7 @@ function addOptionToCar() {
 function removeOption(id) {
     let request = new XMLHttpRequest();
     let string = {id}
-    console.log(id);
-    console.log(string);
     let responseString = JSON.stringify(string);
-    console.log(responseString);
     request.open("POST", "http://localhost:8080/betterbe_3/rest/remove", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
@@ -84,8 +83,6 @@ function editOption(id) {
     let string = {id}
     let responseString = JSON.stringify(string);
     request.onreadystatechange = function () {
-        console.log(this.status)
-        console.log(this.readyState)
         if (this.readyState === 4 && this.status === 200) {
             let response = JSON.parse(this.responseText);
             console.log(response);
@@ -109,7 +106,6 @@ function editOption(id) {
         }
     }
 
-console.log(responseString);
 request.open("POST", "http://localhost:8080/betterbe_3/rest/edit", true);
 request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader("Accept", "application/json");
