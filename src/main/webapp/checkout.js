@@ -14,7 +14,7 @@ function onLoad() {
 			}
 		}
 	}
-	request.open("GET", "http://localhost:8080/betterbe_3/rest/cart", true);
+	request.open("GET", url + "/cart", true);
 	request.setRequestHeader("Content-Type", "text/plain");
 	request.setRequestHeader("Accept", "application/json");
 	let json = {"sessionId":getSessionId().toString()};
@@ -29,7 +29,7 @@ function loadCarInfo(carId) {
 			document.getElementById("carName").innerText = `${response.car.make} ${response.car.model}`;
 		}
 	}
-	request.open("GET", "http://localhost:8080/betterbe_3/rest/cars/" + carId, true);
+	request.open("GET", url + "/cars/" + carId, true);
 	request.setRequestHeader("Accept", "application/json");
 	request.send();
 }

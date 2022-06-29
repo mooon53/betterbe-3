@@ -1,4 +1,7 @@
+var url;
+
 function sessionId() {
+	url = new URL(location.href).origin + "/betterbe_3/rest";
 	let cookieMap = getCookies();
 	if (!cookieMap.has("sessionId") || !sessionValid().valid) setSessionId();
 }
@@ -16,7 +19,7 @@ function setSessionId() {
 			document.cookie = "sessionId=" + response.sessionId + ";expires=" + expiration.toUTCString();
 		}
 	};
-	request.open("GET", "http://localhost:8080/betterbe_3/rest/sessions", false);
+	request.open("GET", url + "/sessions", false);
 	request.setRequestHeader("Accept", "application/json");
 	request.setRequestHeader("Content-Type", "application/json")
 	request.send();
@@ -46,7 +49,9 @@ function sessionValid() {
 			result["account"] = response.account;
 		}
 	}
-	request.open("GET", "http://localhost:8080/betterbe_3/rest/sessions/" + session, false);
+	console.log(url);
+	console.log(url + "/sessions/" + session);
+	request.open("GET", url + "/sessions/" + session, false);
 	request.setRequestHeader("Accept", "application/json");
 	request.send()
 	result["valid"] = valid;
@@ -82,7 +87,7 @@ function employeeCheck() {
 			employee = (response.loggedIn && response.account.employee);
 		}
 	}
-	request.open("GET", "http://localhost:8080/betterbe_3/rest/sessions/" + session, false);
+	request.open("GET", url + "/sessions/" + session, false);
 	request.setRequestHeader("Accept", "application/json");
 	request.send();
 	return employee;

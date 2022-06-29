@@ -33,7 +33,7 @@ function onLoad() {
 			}
 		}
 	};
-	getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/cars", true); //open the request, set the type and uri
+	getRequest.open("GET", url + "/cars", true); //open the request, set the type and uri
 	getRequest.setRequestHeader("Accept", "application/json"); //Tell the server we're accepting JSON responses only
 	getRequest.send(); //Send the request)
 }

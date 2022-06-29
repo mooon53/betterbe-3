@@ -20,7 +20,7 @@ function login() {
     console.log(password);
     console.log(email);
     let responseString = JSON.stringify({sessionId, email, password});
-    request.open("POST", "http://localhost:8080/betterbe_3/rest/account", true);
+    request.open("POST", url + "/account", true);
     request.setRequestHeader("Accept", "application/json");
     request.setRequestHeader("Content-Type", "application/json");
     console.log(responseString);
@@ -46,7 +46,7 @@ function signUp() {
         response = {email, password};
     }
     let responseString = JSON.stringify(response);
-    request.open("POST", "http://localhost:8080/betterbe_3/rest/signup", true);
+    request.open("POST", url + "/signup", true);
     request.setRequestHeader("Accept", "application/json");
 
     request.setRequestHeader("Content-Type", "application/json");

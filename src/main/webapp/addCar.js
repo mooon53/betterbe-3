@@ -33,7 +33,7 @@ function addCar(){
     let response = {sessionId, car, options, rules};
     let responseString = JSON.stringify(response);
 
-    request.open("POST", "http://localhost:8080/betterbe_3/rest/cars", true);
+    request.open("POST", url + "/cars", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
     request.send(responseString);

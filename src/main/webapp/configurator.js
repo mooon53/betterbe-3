@@ -31,8 +31,8 @@ function loadConfigurator(carId) {
 	// document.getElementById("mandatoryCheck").innerHTML = ""; //Remove checking button
 	// let carId = document.getElementById("cars").value; //Find the carID from the dropdown menu
 	if (carId !== null && carId !== "null") { //If a car has been selected
-		let url = new URL(location.href); //Get the current url
-		let searchParams = url.searchParams; //Get the parameters of the url
+		let urlLocal = new URL(location.href); //Get the current url
+		let searchParams = urlLocal.searchParams; //Get the parameters of the url
 		if (searchParams.get("carID") !== carId) { //If the carID in the parameters is not the actual carID (or does not exist)
 			history.replaceState("","","?carID=" + carId); //Change the parameter to have teh right carID
 		}
@@ -85,7 +85,7 @@ function loadConfigurator(carId) {
 				// document.getElementById("mandatoryCheck").innerHTML = `<button onclick="mandatoryCheck()">Check configuration</button>`; //Add the check button
 			}
 		}
-		getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/cars/" + carId, true); //Set request to be a get request and set url
+		getRequest.open("GET", url + "/cars/" + carId, true); //Set request to be a get request and set url
 		getRequest.setRequestHeader("Accept", "application/json"); //Set the accept-header
 		getRequest.send(); //Send the request
 	} else { //If there's no option chosen (default)
@@ -190,7 +190,7 @@ function addToCart() {
 		let carConfiguration = {carId, chosenOptions, price, sessionId};
 		let carConfString = JSON.stringify(carConfiguration);
 		console.log(carConfString);
-		postRequest.open("POST", "http://localhost:8080/betterbe_3/rest/checkout", true);
+		postRequest.open("POST", url + "/checkout", true);
 		postRequest.setRequestHeader("Accept", "application/json");
 		postRequest.setRequestHeader("Content-Type", "application/json");
 		postRequest.send(carConfString);

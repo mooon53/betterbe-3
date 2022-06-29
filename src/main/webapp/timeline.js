@@ -4,8 +4,8 @@ function onload() {
 	sessionId();
 	changeLogInButton();
 	nonEmployeeDestroyer()
-	let url = new URL(location.href); //Get the current url
-	let searchParams = url.searchParams; //Get the search parameters (?carID=<search parameter>)
+	let urlLocal = new URL(location.href); //Get the current url
+	let searchParams = urlLocal.searchParams; //Get the search parameters (?carID=<search parameter>)
 	carId = searchParams.get("carId"); //Get the id in the search parameters
 
 	let getRequest = new XMLHttpRequest();
@@ -37,7 +37,7 @@ function onload() {
 			}
 		}
 	}
-	getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/timeline/"+carId, true);
+	getRequest.open("GET", url + "/timeline/"+carId, true);
 	getRequest.setRequestHeader("Accept", "application/json");
 	getRequest.send();
 }
@@ -51,7 +51,7 @@ function addOptionToCar() {
 	let string = {carId, value, price, option_type}
 	let responseString = JSON.stringify(string);
 	console.log(responseString)
-	request.open("POST", "http://localhost:8080/betterbe_3/rest/addOption", true);
+	request.open("POST", url + "/addOption", true);
 	request.setRequestHeader("Content-Type", "application/json");
 	request.setRequestHeader("Accept", "application/json");
 	request.send(responseString);
@@ -64,7 +64,7 @@ function removeOption(id) {
 	console.log(string);
 	let responseString = JSON.stringify(string);
 	console.log(responseString);
-	request.open("POST", "http://localhost:8080/betterbe_3/rest/edit", true);
+	request.open("POST", url + "/edit", true);
 	request.setRequestHeader("Content-Type", "application/json");
 	request.setRequestHeader("Accept", "application/json");
 	request.send(responseString);
@@ -75,7 +75,7 @@ function editOption(id) {
 	let string = {id}
 	let responseString = JSON.stringify(string);
 	console.log(responseString);
-	request.open("GET", "http://localhost:8080/betterbe_3/rest/edit", true);
+	request.open("GET", url + "/edit", true);
 	request.setRequestHeader("Content-Type", "application/json");
 	request.setRequestHeader("Accept", "application/json");
 	request.send(responseString);

@@ -1,6 +1,6 @@
 let sessionID = getSessionId();
 let acc;
-let responsse;
+let response;
 function onLoad() {
 	changeLogInButton();
 	sessionId();
@@ -26,18 +26,17 @@ function displayEmail(){
 	let request = new XMLHttpRequest();
 	request.onreadystatechange = function () {
 		if (this.readyState === 4 && this.status === 200) {
-			responsse = this.response;
-			acc = JSON.parse(responsse);
+			response = JSON.parse(this.responseText);
+			if (sessionValid().valid && response.loggedIn){
+				console.log(response);
+				let email = response.account.email;
+				console.log(email);
+				document.getElementById("emailDisplay").innerHTML = email;
+			}
 		}
 	}
-	request.open("GET", "http://localhost:8080/betterbe_3/rest/sessions/" + sessionID, false);
+	request.open("GET", url + "/sessions/" + sessionID, false);
 	request.send();
-	if(sessionValid().valid){
-		console.log(responsse);
-		let email = acc.account.email;
-		console.log(email);
-		document.getElementById("emailDisplay").innerHTML = email;
-	}
 	document.getElementById("moveToAdd").style.visibility = 'hidden';
 	document.getElementById("moveToCheckout").style.visibility = 'hidden';
 
