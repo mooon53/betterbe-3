@@ -6,7 +6,6 @@ body {
     font-family:  Poppins;
     vertical_align: middle;
     justify-content: space-around;
-
 }
 
 /* Header/Logo Title */
@@ -25,6 +24,7 @@ body {
 
 .menu_nav a:hover {
     color: #0098B5;
+    transition: all .3s;
 }
 
 .menu_nav a.active {
@@ -131,7 +131,8 @@ tr:hover {background-color: #0098B5; color: white;}
     background-color: #E73053;
     color: black;
     width:45vw;
-    margin:auto;
+    margin: auto auto 85px ;
+    /*margin:auto;*/
 }
 
 
@@ -161,7 +162,7 @@ p{
 }
 
 input[type = text], select{
-    width: 80%;
+    width: 100%;
     padding: 12px 20px;
     margin: 6px 0;
     display: inline-block;
@@ -170,7 +171,7 @@ input[type = text], select{
     box-sizing: border-box;
 }
 input[type = number]{
-    width: 80%;
+    width: 100%;
     padding: 12px 20px;
     margin: 6px 0;
     display: inline-block;
@@ -200,6 +201,24 @@ table{
     justify-content: space-around;
 
     width: 80%;
+}
+
+@media (max-width: 660px) {
+
+    @keyframes fadeInDown {
+        0% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
 
+    .image-logo {
+        visibility: hidden;
+        position: absolute;
+    }
 }

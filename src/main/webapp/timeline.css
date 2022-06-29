@@ -34,6 +34,7 @@ body {
 
 .menu_nav a:hover {
     color: #0098B5;
+    transition: all .3s;
 }
 
 .menu_nav a.active {
@@ -192,6 +193,18 @@ table th {
     }
 }
 
+@media (max-width: 660px) {
+
+    @keyframes fadeInDown {
+        0% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
 .options {
     grid-column: 1/1;
@@ -249,6 +262,12 @@ table th {
     margin: auto;
 }
 
+
+    .image-logo {
+        visibility: hidden;
+        position: absolute;
+    }
+}
 
 
 
