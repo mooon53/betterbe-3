@@ -64,7 +64,7 @@ function removeOption(id) {
 	console.log(string);
 	let responseString = JSON.stringify(string);
 	console.log(responseString);
-	request.open("POST", "http://localhost:8080/betterbe_3/rest/edit", true);
+	request.open("POST", "http://localhost:8080/betterbe_3/rest/remove", true);
 	request.setRequestHeader("Content-Type", "application/json");
 	request.setRequestHeader("Accept", "application/json");
 	request.send(responseString);
@@ -74,8 +74,34 @@ function editOption(id) {
 	let request = new XMLHttpRequest();
 	let string = {id}
 	let responseString = JSON.stringify(string);
+	if (this.readyState === 4 && this.status === 200) {
+		document.getElementById("timeline").innerHTML = '' + '';
+		let response = JSON.parse(this.responseText);
+		console.log(response);
+		console.log(this.responseText);
+		//String date, String make, String model, Long year, Double basePrice,
+		// String optionType, String optionValue, Double optionPrice
+		let table = document.getElementById("timeline");
+		for (let i in response) {
+			let line = response[i];
+			console.log(line);
+			if (line.end_date === null){
+				line.end_date = "-";
+			}
+			table.innerHTML += `<tr>
+                            <td>${line.date}</td>
+                            <td>${line.end_date}</td>
+                            <td>${line.basePrice}</td>
+                            <td>${line.optionType}</td>
+                            <td>${line.optionValue}</td>
+                            <td>${line.optionPrice}</td>
+                            <td><button class="button" onclick="removeOption(${line.id})">remove option</button></td>
+                            <td><button class="button" onclick="editOption(${line.id})">Edit option</button></td>
+                        </tr>`;
+		}
+	}
 	console.log(responseString);
-	request.open("GET", "http://localhost:8080/betterbe_3/rest/edit", true);
+	request.open("POST", "http://localhost:8080/betterbe_3/rest/edit", true);
 	request.setRequestHeader("Content-Type", "application/json");
 	request.setRequestHeader("Accept", "application/json");
 	request.send(responseString);
