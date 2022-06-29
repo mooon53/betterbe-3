@@ -12,8 +12,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
-@Path("/edit")
-public class editOptionsResource {
+@Path("/remove")
+public class removeOptionsResource {
     @Context
     UriInfo uriInfo;
     @Context
@@ -22,7 +22,7 @@ public class editOptionsResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String editOption(String input) {
+    public String removeOption(String input) {
         System.out.println(input);
         JSONObject response = new JSONObject(input);
         Long id = null;
