@@ -18,21 +18,30 @@ function onload() {
             //String date, String make, String model, Long year, Double basePrice,
             // String optionType, String optionValue, Double optionPrice
             let table = document.getElementById("timeline");
-            for (let i in response) {
-                let line = response[i];
+            for (let i in response.options) {
+                let line = response.options[i];
                 console.log(line);
                 if (line.end_date === null) {
                     line.end_date = "-";
                 }
                 table.innerHTML += `<tr>
-                            <td>${line.date}</td>
-                            <td>${line.end_date}</td>
-                            <td>${line.basePrice}</td>
+                            <td>${line.startDate}</td>
+                            <td>${line.endDate}</td>
                             <td>${line.optionType}</td>
-                            <td>${line.optionValue}</td>
-                            <td>${line.optionPrice}</td>
+                            <td>${line.value}</td>
+                            <td>${line.price}</td>
                             <td><button class="button" onclick="removeOption(${line.id})">remove option</button></td>
                             <td><button class="button" onclick="editOption(${line.id})">Edit option</button></td>
+                        </tr>`;
+            }
+            let rulesTable = document.getElementById("rulesTable");
+            for (let i in response.rules) {
+                let line = response.rules[i];
+                console.log(line);
+                rulesTable.innerHTML += `<tr>
+                            <td>${line.options}</td>
+                            <td>${line.exclusive}</td>
+                            <td>${line.mandatory}</td>
                         </tr>`;
             }
         }
