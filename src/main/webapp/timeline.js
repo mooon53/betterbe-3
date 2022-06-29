@@ -32,6 +32,7 @@ function onload() {
                             <td>${line.optionValue}</td>
                             <td>${line.optionPrice}</td>
                             <td><button class="button" onclick="removeOption(${line.id})">remove option</button></td>
+                            <td><button class="button" onclick="editOption(${line.id})">Edit option</button></td>
                         </tr>`;
 			}
 		}
@@ -64,6 +65,17 @@ function removeOption(id) {
 	let responseString = JSON.stringify(string);
 	console.log(responseString);
 	request.open("POST", "http://localhost:8080/betterbe_3/rest/edit", true);
+	request.setRequestHeader("Content-Type", "application/json");
+	request.setRequestHeader("Accept", "application/json");
+	request.send(responseString);
+}
+
+function editOption(id) {
+	let request = new XMLHttpRequest();
+	let string = {id}
+	let responseString = JSON.stringify(string);
+	console.log(responseString);
+	request.open("GET", "http://localhost:8080/betterbe_3/rest/edit", true);
 	request.setRequestHeader("Content-Type", "application/json");
 	request.setRequestHeader("Accept", "application/json");
 	request.send(responseString);
