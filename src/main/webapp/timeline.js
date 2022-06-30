@@ -35,6 +35,9 @@ function onload() {
                             <td><button class="button" onclick="removeOption(${line.id})">remove option</button></td>
                             <td><button class="button" onclick="editOption(${line.id})">Edit option</button></td>
                         </tr>`;
+                let optionHTML = `<p></p><input type="checkbox" name="` + line.value + `" id="` + line.id + `" class="optionForRule">
+                   <label for="` + line.id + `">` + line.optionType + ` : ` + line.value + `</label></>`
+                document.getElementById("optionsForRule").innerHTML += optionHTML;
             }
             let rulesTable = document.getElementById("rulesTable");
             for (let i in response.rules) {
@@ -132,4 +135,37 @@ function removeRule() {
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
     request.send(responseString);
+}
+
+function addRuleToCar() {
+    let request = new XMLHttpRequest();
+    let optionButtons = document.getElementsByClassName("optionForRule");
+    let chosenOptions = [];
+    let chosenOptionsNames = [];
+    for (let i = 0; i < optionButtons.length; i++) {
+        let option = optionButtons.item(i);
+        if (option.checked) {
+            chosenOptions.push(Number(option.id));
+            chosenOptionsNames.push(option.name);
+            option.checked = false;
+        }
+    }
+    let mandatory = document.getElementById("mandatory").checked;
+    let exclusive = document.getElementById("exclusive").checked;
+    document.getElementById("mandatory").checked = false;
+    document.getElementById("exclusive").checked = false;
+    let ruleHTML = `<tr>
+                        <td>`
+    for (let optionIndex in chosenOptions) {
+        let option = chosenOptionsNames[optionIndex];
+        ruleHTML += option;
+        if (chosenOptions.indexOf(option) !== chosenOptions.length -1) ruleHTML += `<br>`;
+    }
+
+    let rule = {options: chosenOptions, mandatory, exclusive, carId};
+    let ruleString = JSON.stringify(rule);
+    request.open("POST", "http://localhost:8080/betterbe_3/rest/addRule", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.setRequestHeader("Accept", "application/json");
+    request.send(ruleString);
 }
