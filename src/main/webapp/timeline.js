@@ -1,5 +1,6 @@
 let carId;
 let optionsNames = {};
+let rules = [];
 function onload() {
     sessionId();
     changeLogInButton();
@@ -39,13 +40,17 @@ function onload() {
             for (let i in response.rules) {
                 let line = response.rules[i];
                 let ruleNames = [];
+                rules = [];
                 for(let j in line.options) {
                     ruleNames.push(optionsNames[line.options[j]]);
+                    rules.push(line.options[j]);
                 }
+                console.log(rules)
                 rulesTable.innerHTML += `<tr>
                             <td>${ruleNames}</td>
                             <td>${line.exclusive}</td>
                             <td>${line.mandatory}</td>
+                            <td><button class="button" onclick="removeRule.apply(this, [` + rules.toString() + `])">remove rule</button></td>
                         </tr>`;
             }
         }
@@ -110,4 +115,21 @@ request.open("POST", "http://localhost:8080/betterbe_3/rest/edit", true);
 request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader("Accept", "application/json");
 request.send(responseString);
+}
+
+function removeRule() {
+    let request = new XMLHttpRequest();
+    console.log(rules)
+    let ruleArray = [];
+    for(let i in rules) {
+        ruleArray.push(rules[i]);
+    }
+    console.log(ruleArray)
+    let string = {ruleArray}
+    let responseString = JSON.stringify(string);
+    console.log(responseString)
+    request.open("POST", "http://localhost:8080/betterbe_3/rest/removeRule", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.setRequestHeader("Accept", "application/json");
+    request.send(responseString);
 }
