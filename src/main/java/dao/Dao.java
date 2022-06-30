@@ -321,7 +321,14 @@ public class Dao {
             e.printStackTrace();
         }
     }
-
+    public static void removeRule(Long[] ruleId) {
+        String query = "DELETE FROM rule WHERE options = '" + intArrayToSqlArray(ruleId) + "'";
+        try {
+            statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

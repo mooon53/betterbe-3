@@ -1,6 +1,7 @@
 package resource;
 
 import dao.Dao;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.ws.rs.Consumes;
@@ -11,8 +12,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
-@Path("/edit")
-public class editOptionsResource {
+import java.util.ArrayList;
+
+@Path("/removeRule")
+public class removeRuleResource {
     @Context
     UriInfo uriInfo;
     @Context
@@ -22,14 +25,18 @@ public class editOptionsResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String removeOption(String input) {
-        System.out.println(input);
+        System.out.println("input: " + input);
         JSONObject response = new JSONObject(input);
-        Long id = null;
-        if (response.has("id")) {
-            id = response.getLong("id");
+        Long[] id = new Long[0];
+        if (response.has("ruleArray")) {
+            JSONArray options = response.getJSONArray("ruleArray");
+            id = new Long[options.length()];
+            for (int i = 0; i < id.length; i++) {
+                id[i] = options.getLong(i);
+            }
         }
-        String option = Dao.getOption(id);
-        System.out.println("option: " + option);
-        return option;
+        System.out.println(id);
+        Dao.removeRule(id);
+        return response.toString();
     }
 }

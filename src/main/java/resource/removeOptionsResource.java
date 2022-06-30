@@ -1,18 +1,19 @@
 package resource;
 
+import dao.CartDao;
 import dao.Dao;
+import model.Cart;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
-@Path("/edit")
-public class editOptionsResource {
+
+@Path("/remove")
+public class removeOptionsResource {
     @Context
     UriInfo uriInfo;
     @Context
@@ -28,8 +29,7 @@ public class editOptionsResource {
         if (response.has("id")) {
             id = response.getLong("id");
         }
-        String option = Dao.getOption(id);
-        System.out.println("option: " + option);
-        return option;
+        Dao.editOption(id);
+        return response.toString();
     }
 }

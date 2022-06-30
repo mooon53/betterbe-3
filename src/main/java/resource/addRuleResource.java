@@ -1,6 +1,7 @@
 package resource;
 
 import dao.Dao;
+import model.Rule;
 import org.json.JSONObject;
 
 import javax.ws.rs.Consumes;
@@ -11,8 +12,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
-@Path("/edit")
-public class editOptionsResource {
+import java.util.List;
+
+@Path("/addRule")
+public class addRuleResource {
     @Context
     UriInfo uriInfo;
     @Context
@@ -21,15 +24,11 @@ public class editOptionsResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String removeOption(String input) {
-        System.out.println(input);
-        JSONObject response = new JSONObject(input);
-        Long id = null;
-        if (response.has("id")) {
-            id = response.getLong("id");
-        }
-        String option = Dao.getOption(id);
-        System.out.println("option: " + option);
-        return option;
+    public String addRule(Rule rule) {
+        System.out.println(rule);
+//        JSONObject response = new JSONObject(input);
+        Dao.addRule(rule);
+        return rule.toString();
     }
+
 }

@@ -35,7 +35,6 @@
 <tr>
     <th>Start Date</th>
     <th>End date</th>
-    <th>Base Price</th>
     <th>Option Type</th>
     <th>Value</th>
     <th>Effect</th>
@@ -45,19 +44,80 @@
     <tbody id="timeline"></tbody>
 </table>
 </div>
-<label for="Type">Type</label>
-<div class="col-sm-9">
-    <input type = "text" id="Type" placeholder="colour">
+
+
+<br>
+<div class="sidebyside">
+    <div class="options">
+        <h3>Options</h3>
+
+
+        <label for="Type">Type</label>
+        <div class="col-sm-9">
+            <input type = "text" id="Type" placeholder="colour">
+        </div>
+
+        <div label for="Name" >Name</div>
+        <div class="col-sm-9">
+            <input type="text" class="option" id="Name" placeholder="red">
+        </div>
+        <label for="priceForOption" class="option" >Price</label>
+        <div class="col-sm-9">
+            <input  type="number" class="option" id="priceForOption" placeholder="10">
+        </div>
+
+        <button class="button button1" onclick="addOptionToCar()" >ADD</button>
+
+
+    </div>
+</div>
+<br>
+<div class="sidebyside">
+    <div id="options" >
+
+
+    </div>
+
+    <div id="CarRules" class="CarRules">
+        <table>
+            <thead>
+            <tr>
+                <th>Options</th>
+                <th>Mandatory</th>
+                <th>Exclusive</th>
+                <th>Remove rule</th>
+            </tr>
+            </thead>
+            <tbody id="rulesTable">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="optionss">
+        <h3>Rules</h3>
+
+
+        <div>
+            <div class="col-sm-9">
+                <label for="mandatory">Mandatory</label>
+                <input type="checkbox" id="mandatory">
+
+            </div>
+            <div class="col-sm-9">
+
+                <label for="exclusive">Exclusive</label>
+                <input type="checkbox" id="exclusive">
+            </div>
+            <div id="optionsForRule"></div>
+            <button class="button button1" onclick="addRuleToCar()" >ADD</button>
+        </div>
+    </div>
+
+
+
 </div>
 
-<div label for="Name" >Name</div>
-<div class="col-sm-9">
-    <input type="text" class="option" id="Name" placeholder="red">
-</div>
-<label for="priceForOption" class="option" >Price</label>
-<div class="col-sm-9">
-    <input  type="number" class="option" id="priceForOption" placeholder="10">
-</div>
-<button class= "button button1" onclick="addOptionToCar()">add option to car</button>
+
+
 </body>
 </html>
