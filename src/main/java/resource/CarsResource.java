@@ -13,7 +13,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
-import javax.xml.bind.JAXBElement;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -48,7 +47,7 @@ public class CarsResource {
             JSONObject lastCar = new JSONObject(cars.get(cars.size() - 1));
             Long carId = lastCar.getLong("id") + 1L;
             carJSON.put("id", carId);
-            List<String> oldOptions = Dao.getOptions();
+            List<String> oldOptions = Dao.getAllOptions();
             JSONObject lastOption = new JSONObject(oldOptions.get(oldOptions.size() - 1));
             Long optionId = lastOption.getLong("id") + 1L;
             List<JSONObject> rulesJSONS = new ArrayList<>();

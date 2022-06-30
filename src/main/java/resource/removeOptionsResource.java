@@ -2,7 +2,6 @@ package resource;
 
 import dao.CartDao;
 import dao.Dao;
-import model.Cart;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

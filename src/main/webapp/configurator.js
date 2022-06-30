@@ -10,7 +10,7 @@ function onLoad() { //When the page is loaded
 	changeLogInButton();
 	let url = new URL(location.href); //Get the current url
 	let searchParams = url.searchParams; //Get the search parameters (?carID=<search parameter>)
-	let carId = searchParams.get("carID"); //Get the id in the search parameters
+	carId = searchParams.get("carID"); //Get the id in the search parameters
 	if (carId !== null) { //If there is 1 set
 		// dropDown.value = carId; //Set the dropdown to select this car
 		loadConfigurator(carId); //Load the configurator for this car
@@ -175,11 +175,11 @@ function mandatoryCheck() { //To check if the mandatory options have been chosen
 		}
 		if (rule.mandatory && count < 1) allowed = false; //If a rule isn't followed, set allowed to false
 	}
-	if (allowed) { //If the configuration is allowed
+	/*if (allowed) { //If the configuration is allowed
 		alert("legal configuration!"); //Tell the user
 	} else { //If not
 		alert("illegal configuration"); //Tell the user
-	}
+	}*/
 	return allowed;
 }
 
@@ -187,10 +187,10 @@ function addToCart() {
 	if(mandatoryCheck()) {
 		let postRequest = new XMLHttpRequest();
 		let sessionId = getSessionId();
-		let carConfiguration = {carId, chosenOptions, price, sessionId};
+		let carConfiguration = {carId, "options": chosenOptions, sessionId};
 		let carConfString = JSON.stringify(carConfiguration);
 		console.log(carConfString);
-		postRequest.open("POST", url + "/checkout", true);
+		postRequest.open("POST", url + "/cart", true);
 		postRequest.setRequestHeader("Accept", "application/json");
 		postRequest.setRequestHeader("Content-Type", "application/json");
 		postRequest.send(carConfString);

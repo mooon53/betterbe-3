@@ -2,8 +2,8 @@ let sessionID = getSessionId();
 let acc;
 let response;
 function onLoad() {
-	changeLogInButton();
 	sessionId();
+	changeLogInButton();
 	let session = sessionValid();
 	if (!session.loggedIn) {
 		location.href = "login.html";

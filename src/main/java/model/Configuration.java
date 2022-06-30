@@ -1,27 +1,27 @@
 package model;
 
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static dao.Dao.*;
 import static utils.JSONUtils.*;
 
-public class Cart {
+public class Configuration {
 
     Car car;
     ArrayList<Option> options;
 
-    public Cart() {
+    public Configuration() {
     }
 
-    public Cart(Long carId) {
+    public Configuration(Long carId) {
         this(carId, new ArrayList<>());
     }
 
-    public Cart(Long carId, ArrayList<Option> options) {
+    public Configuration(Long carId, ArrayList<Option> options) {
         this.car = getCarObj(carId);
         this.options = options;
     }
@@ -33,6 +33,13 @@ public class Cart {
     public void addOption(Long optionId) {
         Option option = jsonStringToOption(getOption(optionId));
         options.add(option);
+    }
+
+    public JSONObject toJSON() {
+        JSONObject JSON = new JSONObject();
+        JSON.put("car", car.toJSON());
+        JSON.put("options", new JSONArray(options));
+        return JSON;
     }
 
     public Car getCarObj() {

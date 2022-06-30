@@ -34,8 +34,8 @@ public class CarResource {
         System.out.println(Dao.getCar(id));
         Car car = jsonStringToCar(Dao.getCar(id));
         response.put("car", car.toJSON());
-        List<Option> options = jsonStringsToOptions(Dao.getOptions(id));
-        System.out.println(Dao.getOptions(id));
+        List<Option> options = jsonStringsToOptions(Dao.getAllOptions(id));
+        System.out.println(Dao.getAllOptions(id));
         System.out.println(options);
         for (Option option : options) {
             System.out.print(option.getCarID());

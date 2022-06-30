@@ -36,7 +36,7 @@ public class TimelineResource {
         Car car = jsonStringToCar(Dao.getCar(Long.valueOf(id)));
         response.put("car", car.toJSON());
         List<Option> options = jsonStringsToOptions(Dao.getHistoricalData(Long.valueOf(id)));
-        System.out.println(Dao.getOptions(Long.valueOf(id)));
+        System.out.println(Dao.getAllOptions(Long.valueOf(id)));
         System.out.println(options);
         for (Option option : options) {
             System.out.print(option.getCarID());

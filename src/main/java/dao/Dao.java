@@ -74,7 +74,7 @@ public class Dao {
         return car;
     }
 
-    public static List<String> getOptions(Long carId) {
+    public static List<String> getAllOptions(Long carId) {
         List<String> options = new ArrayList<>();
         String query = "SELECT row_to_json(option)\n" +
                 "FROM option\n" +
@@ -92,7 +92,7 @@ public class Dao {
         return options;
     }
 
-    public static List<String> getOptions() {
+    public static List<String> getAllOptions() {
         List<String> options = new ArrayList<>();
         String query = "SELECT row_to_json(option)\n" +
                 "FROM option\n" +
@@ -121,6 +121,14 @@ public class Dao {
             e.printStackTrace();
         }
         return option;
+    }
+
+    public static List<String> getOptions(List<Long> optionIDs) {
+        ArrayList<String> options = new ArrayList<>();
+        for (Long optionID : optionIDs) {
+            options.add(getOption(optionID));
+        }
+        return options;
     }
 
     public static List<String> getRules(Long carId) {

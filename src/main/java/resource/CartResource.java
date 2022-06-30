@@ -1,7 +1,7 @@
 package resource;
 
 import dao.CartDao;
-import model.Cart;
+import model.Configuration;
 import model.Option;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,29 +14,29 @@ import java.util.ArrayList;
 public class CartResource {
 
     @GET
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     public String getCart(String input) {
-        JSONObject request = new JSONObject(input);
-        Long sessionId = Long.parseLong(request.getString("sessionId"));
-        Cart cart = CartDao.instance.getCart(sessionId);
-        JSONObject response = new JSONObject();
-        response.put("carId", cart.getCarObj().getId());
-        JSONArray options = new JSONArray(cart.getOptions());
-        response.put("options", options);
-        return response.toString();
+        System.out.println(input);
+        Long sessionId = Long.parseLong(input);
+        return CartDao.instance.getCart(sessionId).toJSON().toString();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String addToCart(String input){
+    public String addToCart(String input) {
         JSONObject json = new JSONObject(input);
+        System.out.println(input);
         Long sessionId = Long.parseLong(json.getString("sessionId"));
-        Long optionId = json.getLong("optionId");
+        JSONArray optionsJSON = json.getJSONArray("options");
+        ArrayList<Long> optionIDs = new ArrayList<>();
+        for (int i = 0; i < optionsJSON.length(); i++) {
+            optionIDs.add(optionsJSON.getLong(i));
+        }
         Long carId = json.getLong("carId");
-        CartDao.instance.addOrder(sessionId, optionId, carId);
-        return getCart(sessionId.toString());
+        CartDao.instance.addOrder(sessionId, optionIDs, carId);
+        return CartDao.instance.getCart(sessionId).toJSON().toString();
     }
 
     @DELETE

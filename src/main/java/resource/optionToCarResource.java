@@ -43,7 +43,7 @@ public class optionToCarResource {
         System.out.println("carId : " + id);
         System.out.println(price);
         System.out.println(value);
-        int options_id = Dao.getOptions().size() + 1;
+        int options_id = Dao.getAllOptions().size() + 1;
         Dao.addOptionToCar(options_id, id, value, price, option_type);
         return response.toString();
     }
