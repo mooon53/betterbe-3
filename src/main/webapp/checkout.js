@@ -22,6 +22,7 @@ function onLoad() {
 	// console.log(JSON.stringify(json))
 	console.log(getSessionId());
 	request.send(getSessionId());
+	console.log(request);
 }
 
 function loadCarInfo(carId) {
