@@ -231,7 +231,7 @@ function addToCart() {
 	let sessionId = getSessionId();
 	let carConfiguration = {carId, "options": chosenOptions, sessionId};
 	let carConfString = JSON.stringify(carConfiguration);
-	postRequest.open("POST", "rest/cart", true);
+	postRequest.open("POST", "rest/cart", false);
 	postRequest.setRequestHeader("Accept", "application/json");
 	postRequest.setRequestHeader("Content-Type", "application/json");
 	postRequest.send(carConfString);
