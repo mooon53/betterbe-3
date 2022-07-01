@@ -36,68 +36,31 @@ html, body {
 
 /* */
 .accountDetails {
-    position: relative;
-    left: 550px;
+
+    display: flex;  /*
+    /*position: relative;*/
 }
 
-.moveToAdd{
-    margin-left: 1000px;
-    color: white;
-    background-color: #00809D;
-    position: relative;
-    top: 10px;
-    left: 125px;
-    border-radius: 25px;
-    transition-duration: 0.4s;
-    width: 210px;
-    height: 40px;
-    font-size: 18px;
-    border:none;
-}
-.moveToAdd:hover{
-    background-color:  #e84a67;
-    color: white;
-}
-
-.LogoutButt{
-    margin-left: 1225px;
+.UIbutton {
+    float: right;
     color: white;
     background-color: #e84a67;
     position: relative;
-    top: 30px;
-    right: 100px;
     border-radius: 25px;
     transition-duration: 0.4s;
     width: 210px;
     height: 40px;
     font-size: 18px;
     border:none;
+    margin: 5px;
 }
-
-.LogoutButt:hover{
+.UIbutton:hover{
     background-color:  #00809D;
     color: white;
 }
 
-.moveToCheckout{
-    margin-left: 1000px;
-    color: white;
-    background-color: #00809D;
-    position: relative;
-    bottom: 10px;
-    right: 100px;
-    transition-duration: 0.4s;
-    border-radius: 25px;
-    width: 210px;
-    height: 40px;
-    font-size: 18px;
-    border:none;
-}
-.moveToCheckout:hover{
-    background-color: #e84a67;
-    color: white;
-}
 .email{
+    /*flex: 2;*/
     color: #333333;
 }
 
@@ -109,8 +72,20 @@ html, body {
     max-height: 300px;
     max-width: 300px;
     position: relative;
-    bottom: 100px;
-    left: 95px;
+    flex: 1;
+}
+
+@media (max-width:500px)  {
+
+    .picture{
+        max-height: 120px;
+        max-width: 120px;
+    }
+
+    .UIbutton{
+        float: left;
+    }
+
 }
 
 .image-logo {
@@ -120,6 +95,52 @@ html, body {
     text-align: left;
     padding: 14px 16px;
     text-decoration: none;
+}
+
+article {
+    display: inline-block;
+    width: 100%;
+}
+
+.tilt {
+    position: relative;
+
+    height: 250px;
+    overflow-x: hidden;
+    overflow-y: scroll, hidden;
+    list-style: none;
+}
+
+.tilt li {
+    position: relative;
+    padding: 16px;
+    background: #eee;
+    color: #fff;
+    font-size: 18px;
+    background: #959BA9;
+}
+
+.tilt li:nth-child(odd) {
+    background:  #7E838F;
+}
+
+
+.ConfigButton{
+    color: white;
+    background-color: #e84a67;
+    position: relative;
+    border-radius: 25px;
+    transition-duration: 0.4s;
+    width: 150px;
+    height: 30px;
+    font-size: 18px;
+    border:none;
+    float: right;
+}
+
+.ConfigButton:hover{
+    background-color:  #00809D;
+    color: white;
 }
 
 .footer {

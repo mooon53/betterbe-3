@@ -29,30 +29,47 @@
     <hr class="line">
 </main>
 
+<h1> Account Details</h1>
+
 <!--body-->
 <div class="accountDetails">
-    <h1> Account Details </h1>
-        <div class="email">
+
+
+    <div>
+        <img class="picture" id="pic" src="images/GigaCoin.png">
+    </div>
+
+
+    <div class="email">
             <h3> Email Address </h3>
             <label class="emailDisplay" id ="emailDisplay">Here should be the email</label>
         </div>
+
+
 </div>
 
-<div>
-    <img class="picture" id="pic" src="images/GigaCoin.png">
-</div>
+
 
 <div class="addCarPage" id="add">
-    <button class="moveToAdd" id="moveToAdd" onclick="addCarPage()"> Go to add car page</button>
+    <button class="UIbutton" id="moveToAdd" onclick="addCarPage()"> Go to add car page</button>
 </div>
 
 <div class="Logoutt">
-    <button class="LogoutButt" id="Logout" onclick="setSessionId(); logout()"> Log out</button>
+    <button class="UIbutton" id="Logout" onclick="setSessionId(); logout()"> Log out</button>
 </div>
 
 
 <div class="checkoutPage" id="checkout">
-    <button class="moveToCheckout" id="moveToCheckout" onclick = "checkoutPage()"> Go to checkout</button>
+    <button class="UIbutton" id="moveToCheckout" onclick = "checkoutPage()"> Go to checkout</button>
+</div>
+
+
+<!--List of configs-->
+<div class="product-main">
+    <article>
+        <h2>Saved configurations</h2>
+        <ul class="tilt"><li>One <button class="ConfigButton" onclick=""> Open</button> </li>  <li>Two <button class="ConfigButton" onclick=""> Open</button> </li><li>Three <button class="ConfigButton" onclick=""> Open </button> </li><li>Four <button class="ConfigButton" onclick=""> Open </button> </li><li>Five <button class="ConfigButton" onclick=""> Open </button> </li><li>Six <button class="ConfigButton" onclick=""> Open </button> </li><li>Seven <button class="ConfigButton" onclick=""> Open </button> </li><li>Eight <button class="ConfigButton" onclick=""> Open </button> </li><li>Nine <button class="ConfigButton" onclick=""> Open </button> </li></ul>
+    </article>
 </div>
 
 <!-- Footer -->
