@@ -45,7 +45,7 @@ function onload() {
                             <td><button class="button" onclick="removeOption(${line.id})">remove option</button></td>
                             <td><button class="button" onclick="editOption(${line.id})">Edit option</button></td>
                         </tr>`;
-                if(!line.endDate) {
+                if(line.endDate === "-") {
                     let optionHTML = `<p></p><input type="checkbox" name="` + line.value + `" id="` + line.id + `" class="optionForRule">
                    <label for="` + line.id + `">` + line.optionType + ` : ` + line.value + `</label></>`
                     document.getElementById("optionsForRule").innerHTML += optionHTML;
@@ -115,9 +115,8 @@ function editOption(id) {
                 response.endDate = "-";
             }
             table.innerHTML += `<tr>
-                            <td>${response.startDate}</td>
+                            <td>${response.start_date}</td>
                             <td>${response.endDate}</td>
-                            <td>${response.price}</td>
                             <td><input type = "text" id="Type" placeholder=${response.option_type}></td>
                             <td><input type="text" class="option" id="Name" placeholder=${response.value}></td>
                             <td><input  type="number" class="option" id="priceForOption" placeholder=${response.price}></td>
