@@ -236,7 +236,6 @@ public class Dao {
 
     public static void addAccount(String username, String password, boolean employee) {
         String query = "INSERT INTO account (email, password, employee) VALUES ('" + username + "', '" + password + "'," + employee + " )";
-        System.out.println(query);
         try {
             statement.executeQuery(query);
         } catch (SQLException e) {
@@ -378,12 +377,10 @@ public class Dao {
                 "FROM configuration\n" +
                 "WHERE \"user\" = '" + user + "'\n" +
                 "ORDER BY id";
-        System.out.println(query);
         try {
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 configurations.add(resultSet.getString(1));
-                System.out.println(resultSet.getString(1));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -397,7 +394,6 @@ public class Dao {
                 "FROM configuration\n" +
                 "WHERE id = " + id + "\n" +
                 "ORDER BY id";
-        System.out.println(query);
         try {
             ResultSet resultSet = statement.executeQuery(query);
             resultSet.next();
@@ -444,7 +440,6 @@ public class Dao {
         }
         String query = "INSERT INTO configuration\n" +
                 "VALUES(" + id + ", '" + email + "'," + configuration.getCar().getId() + ",'" + longArrayToSqlArray(optionIDs) + "');";
-        System.out.println(query);
         try {
             statement.executeQuery(query);
         } catch (SQLException e) {

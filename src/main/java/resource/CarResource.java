@@ -23,7 +23,6 @@ public class CarResource {
     public CarResource(UriInfo uriInfo, Request request, String id) {
         this.uriInfo = uriInfo;
         this.request = request;
-        System.out.println(id);
         this.id = Long.parseLong(id);
     }
 
@@ -31,17 +30,9 @@ public class CarResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getCarInfo() {
         JSONObject response = new JSONObject();
-        System.out.println(Dao.getCar(id));
         Car car = jsonStringToCar(Dao.getCar(id));
         response.put("car", car.toJSON());
         List<Option> options = jsonStringsToOptions(Dao.getAllOptions(id));
-        System.out.println(Dao.getAllOptions(id));
-        System.out.println(options);
-        for (Option option : options) {
-            System.out.print(option.getCarID());
-            System.out.print(option.getManufacturer());
-            System.out.println(option.getValue());
-        }
         JSONArray optionsJSON = new JSONArray(options);
         response.put("options", optionsJSON);
         List<Rule> rules = jsonStringsToRules(Dao.getRules(id));

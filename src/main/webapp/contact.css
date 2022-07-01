@@ -1,9 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins);
 *{
-  margins:0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Poppins;
+  font-family: Poppins, Arial, sans-serif;
 }
 
 html, body {
@@ -34,8 +33,6 @@ html, body {
 }
 
 /* End of header menu style */
-
-/* */
 
 /* Remove margin between headers and descriptions */
 h3 {
@@ -134,7 +131,6 @@ a.spam-button:link {
 }
 
 .footer .footer-content {
-  /*     border: 1px solid red; */
   height: 350px;
   display: flex;
 
@@ -143,8 +139,6 @@ a.spam-button:link {
 .footer .footer-content .footer-section {
   flex: 1;
   padding: 25px;
-
-  /*     border:  1px solid white; */
 }
 
 .footer .footer-bottom {
@@ -155,8 +149,8 @@ a.spam-button:link {
   width: 100%;
   text-align: center;
   position: absolute;
-  bottom: 0px;
-  left: 0px;
+  bottom: 0;
+  left: 0;
   padding-top: 15px;
 }
 
@@ -259,9 +253,7 @@ a.spam-button:link {
   color:white;
   font-size:13px;
   padding-top:10px;
-  /*   padding-bottom:10px; */
   transition: all 0.3s;
-  /*   margin-top:-4px; */
   font-weight:700;
 }
 
@@ -298,7 +290,6 @@ a.spam-button:link {
     flex: 1;
     padding: 25px;
     display: none;
-    /*     border:  1px solid white; */
   }
 
   .footer .footer-bottom {
@@ -320,12 +311,6 @@ a.spam-button:link {
   #about-background{
     visibility: hidden;
   }
-
-
-  .menu_nav a {
-    /*   font-size: 4.2vw; */
-  }
-
 }
 
 @media (max-width: 660px) {

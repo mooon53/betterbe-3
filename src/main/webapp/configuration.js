@@ -1,5 +1,6 @@
 function onLoad() {
 	sessionId();
+	notLoggedInRedirecter();
 	changeLogInButton();
 	let optionsList = document.getElementById("options");
 	let request = new XMLHttpRequest();
@@ -23,10 +24,6 @@ function onLoad() {
 	request.open("GET", "rest/configurations/" + getSessionId() + "/" + configID, true);
 	request.setRequestHeader("Content-Type", "text/plain");
 	request.setRequestHeader("Accept", "application/json");
-	// let json = {"sessionId":getSessionId().toString()};
-	// console.log(json)
-	// console.log(JSON.stringify(json))
-	console.log(request);
 	request.send();
 }
 

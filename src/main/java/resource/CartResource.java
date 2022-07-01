@@ -28,11 +28,6 @@ public class CartResource {
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     public String getCart() {
-        System.out.println(sessionId);
-        System.out.println("here");
-        System.out.println(CartDao.instance.getCart(sessionId));
-        System.out.println(CartDao.instance.getCart(sessionId).toJSON());
-        System.out.println(CartDao.instance.getCart(sessionId).toJSON().toString());
         return CartDao.instance.getCart(sessionId).toJSON().toString();
     }
 }

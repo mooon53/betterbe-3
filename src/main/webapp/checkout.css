@@ -1,9 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins);
 *{
-  margins:0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Poppins;
+  font-family: Poppins, Arial, sans-serif;
 }
 
 html, body {
@@ -43,7 +42,6 @@ html, body {
 }
 
 .card {
-  /*   margin-top: 150px; */
   position: relative;
   display: flex;
   top: 0;
@@ -55,7 +53,6 @@ html, body {
   padding-left: 2rem;
   padding-right: 2rem;
   padding-bottom: 4rem;
-  /*   padding: 4rem 2rem; */
   flex-direction: column;
   background: #3C3478;
   color: #fff;
@@ -81,7 +78,7 @@ html, body {
 /* Price */
 
 .header h2 {
-  margin: 0rem 0 2rem 0;
+  margin: 0 0 2rem 0;
   font-weight: 300;
 }
 
@@ -215,7 +212,6 @@ a.spam-button:link {
 article {
   display: inline-block;
   width: 100%;
-  /* 	margin: 20px; */
 }
 
 /**
@@ -226,17 +222,14 @@ article {
   position: relative;
 
   height: 250px;
-  /*   margin: 0;
-    padding: 0; */
   overflow-x: hidden;
-  overflow-y: scroll, hidden;
+  overflow-y: scroll;
   list-style: none;
 }
 
 .tilt li {
   position: relative;
   padding: 16px;
-  background: #eee;
   color: #fff;
   font-size: 18px;
   background: #3C3478;
@@ -254,7 +247,6 @@ article {
 }
 
 .footer .footer-content {
-  /*     border: 1px solid red; */
   height: 350px;
   display: flex;
 
@@ -263,8 +255,6 @@ article {
 .footer .footer-content .footer-section {
   flex: 1;
   padding: 25px;
-
-  /*     border:  1px solid white; */
 }
 
 .footer .footer-bottom {
@@ -275,8 +265,8 @@ article {
   width: 100%;
   text-align: center;
   position: absolute;
-  bottom: 0px;
-  left: 0px;
+  bottom: 0;
+  left: 0;
   padding-top: 15px;
 }
 
@@ -379,9 +369,7 @@ article {
   color:white;
   font-size:13px;
   padding-top:10px;
-  /*   padding-bottom:10px; */
   transition: all 0.3s;
-  /*   margin-top:-4px; */
   font-weight:700;
 }
 
@@ -419,7 +407,6 @@ article {
     flex: 1;
     padding: 25px;
     display: none;
-    /*     border:  1px solid white; */
   }
 
   .footer .footer-bottom {
@@ -444,7 +431,6 @@ article {
 
 
   .menu_nav a {
-    /*   font-size: 4.2vw; */
   }
 
 }

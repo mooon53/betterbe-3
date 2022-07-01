@@ -1,44 +1,38 @@
 let sessionID = getSessionId();
 let acc;
-let response;
+
 function onLoad() {
 	sessionId();
+	notLoggedInRedirecter();
+	displayEmail();
 	changeLogInButton();
-	let session = sessionValid();
-	if (!session.loggedIn) {
-		location.href = "login.html";
-	} else {
-		empCheck();
-		displayEmail();
-		addConfigurations();
-	}
+	empCheck();
+	addConfigurations();
 }
 
-function addCarPage(){
+function addCarPage() {
 	location.href = "addCar.html";
 }
-function checkoutPage(){
+
+function checkoutPage() {
 	location.href = "checkout.html";
 }
 
-function logout(){
-	alert("logged out successfully!")
+function logout() {
+	// alert("logged out successfully!")
 	location.href = "./";
 }
 
-function displayEmail(){
+function displayEmail() {
 	let request = new XMLHttpRequest();
-	request.onreadystatechange = function () {
+	request.onreadystatechange = function() {
 		if (this.readyState === 4 && this.status === 200) {
-			response = JSON.parse(this.responseText);
-			if (sessionValid().valid && response.loggedIn){
-				console.log(response);
-				let email = response.account.email;
-				console.log(email);
-				document.getElementById("emailDisplay").innerHTML = email;
+			let response = JSON.parse(this.responseText);
+			if (sessionValid().valid && response.loggedIn) {
+				document.getElementById("emailDisplay").innerHTML = response.account.email;
 			}
 		}
-	}
+	};
 	request.open("GET", "rest/sessions/" + sessionID, false);
 	request.send();
 }
@@ -58,17 +52,15 @@ function addConfigurations() {
 					cars.set(carId, [configuration]);
 				}
 			}
-			console.log(cars)
 			for (const i in response) {
 				const configuration = response[i];
-				console.log(configuration);
 				let id = Number(cars.get(configuration.car.id).indexOf(configuration)) + 1;
 				document.getElementById("configs").innerHTML += `<li> ${configuration.car.make} ${configuration.car.model} ` + id + `
 					<button class="ConfigButton" onClick="location.href = 'configuration.html?config=${configuration.id}'"> Open</button>
-				</li>`
+				</li>`;
 			}
 		}
-	}
+	};
 	request.open("GET", "rest/configurations/" + getSessionId(), true);
 	request.setRequestHeader("Accept", "application/json");
 	request.send();

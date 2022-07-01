@@ -22,7 +22,6 @@ public class optionToCarResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String addOption(String input) {
-        System.out.println(input);
         JSONObject response = new JSONObject(input);
         Long id = null;
         String value = "";
@@ -40,9 +39,6 @@ public class optionToCarResource {
         if (response.has("option_type")) {
             option_type = response.getString("option_type");
         }
-        System.out.println("carId : " + id);
-        System.out.println(price);
-        System.out.println(value);
         int options_id = Dao.getAllOptions().size() + 1;
         Dao.addOptionToCar(options_id, id, value, price, option_type);
         return response.toString();

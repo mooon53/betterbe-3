@@ -35,7 +35,6 @@ public class CarsResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void addCar(String carString){
-        System.out.println(carString);
         JSONObject responseJSON = new JSONObject(carString);
         Long sessionId = Long.parseLong((String) responseJSON.get("sessionId"));
         Session session = SessionDao.instance.getSession(sessionId);

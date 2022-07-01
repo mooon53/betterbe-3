@@ -20,25 +20,16 @@ public class AccountResource {
 
     String username;
     String password;
-//    public AccountResource(UriInfo uriInfo, Request request, String username, String password) {
-//        this.uriInfo = uriInfo;
-//        this.request = request;
-//        this.username = username;
-//        this.password = password;
-//    }
 
-    //the password match does not work
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String getAccountInfo(String accountString) {
-        System.out.println(accountString);
         JSONObject request = new JSONObject(accountString);
         JSONObject response = new JSONObject();
         String email = "";
         String password = "";
         Long sessionId = Long.parseLong(request.getString("sessionId"));
-        System.out.println(sessionId);
         if (request.has("email")) {
             email = request.getString("email");
         }
@@ -46,11 +37,9 @@ public class AccountResource {
             password = request.getString("password");
         }
         if(password.equals(Dao.getPass(email)) ) {
-            System.out.println("correct password");
             SessionDao.instance.logIn(sessionId, email);
             response.put("success", true);
         } else {
-            System.out.println("wrong password or username");
             response.put("success", false);
         }
         return response.toString();

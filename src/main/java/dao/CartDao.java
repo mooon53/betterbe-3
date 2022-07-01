@@ -28,10 +28,6 @@ public enum CartDao {
         Session session = SessionDao.instance.getSession(sessionId);
         Account account = session.getAccount();
         String email = account.getUsername();
-        System.out.println("getCart");
-        System.out.println(sessionId);
-        System.out.println(email);
-        System.out.println(configurations);
         return configurations.get(email);
     }
 
@@ -46,8 +42,5 @@ public enum CartDao {
         Configuration configuration = new Configuration(carId, (ArrayList<Option>) options);
         configurations.put(email, configuration);
         Dao.addConfiguration(email, configuration);
-        System.out.println(configurations);
-        System.out.println(email);
-        System.out.println(configuration);
     }
 }

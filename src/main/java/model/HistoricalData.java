@@ -1,7 +1,6 @@
 package model;
 
 public class HistoricalData {
-    //o.start_date, c.make, c.model, c.production_year, o.option_type, o.value, o.price
     private Long id;
     private String date;
     private Double basePrice;

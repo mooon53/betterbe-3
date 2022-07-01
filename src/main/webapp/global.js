@@ -2,7 +2,6 @@ var url;
 
 function sessionId() {
 	url = new URL(location.href).origin + "/betterbe_3/rest";
-	console.log(url);
 	let cookieMap = getCookies();
 	if (!cookieMap.has("sessionId") || !sessionValid().valid) setSessionId();
 }
@@ -50,8 +49,6 @@ function sessionValid() {
 			result["account"] = response.account;
 		}
 	}
-	console.log(url);
-	console.log(url + "/sessions/" + session);
 	request.open("GET", "rest/sessions/" + session, false);
 	request.setRequestHeader("Accept", "application/json");
 	request.send()
@@ -92,4 +89,27 @@ function employeeCheck() {
 	request.setRequestHeader("Accept", "application/json");
 	request.send();
 	return employee;
+}
+
+function loggedInCheck() {
+	let session = getSessionId();
+	let request = new XMLHttpRequest();
+	let loggedIn = false;
+	request.onreadystatechange = function() {
+		if (this.readyState === 4 && this.status === 200) {
+			let response = JSON.parse(this.responseText);
+			loggedIn = response.loggedIn;
+		}
+	}
+	request.open("GET", "rest/sessions/" + session, false);
+	request.setRequestHeader("Accept", "application/json");
+	request.send();
+	return loggedIn;
+}
+
+function notLoggedInRedirecter() {
+	if (!loggedInCheck()) {
+		alert("Sorry, you must be logged in to visit this page");
+		location.href = "login.html";
+	}
 }

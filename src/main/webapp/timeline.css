@@ -1,17 +1,15 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins);
 *{
-    margins:0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Poppins;
+    font-family: Poppins, Arial, sans-serif;
 }
 body {
     background: #EAECEE;
     display: flex;
-    vertical_align: middle;
     justify-content: space-around;
     flex-direction: column;
-    font-family: Poppins;
+    font-family: Poppins, Arial, sans-serif;
     margin: 5px 0 30px;
 }
 
@@ -28,7 +26,7 @@ body {
     text-align: left;
     padding: 14px 16px;
     text-decoration: none;
-    font-family: Poppins;
+    font-family: Poppins, Arial, sans-serif;
     font-size: 25px;
 }
 
@@ -113,7 +111,6 @@ body {
 table {
     border: 1px solid #ccc;
     border-collapse: collapse;
-    margin-top: 50px;
     margin:auto;
     padding: 0;
     width: 98%;
@@ -178,10 +175,6 @@ table th {
     }
 
     table td::before {
-        /*
-        * aria-label has no advantage, it won't be read inside a table
-        content: attr(aria-label);
-        */
         content: attr(data-label);
         float: left;
         font-weight: bold;
@@ -209,14 +202,12 @@ table th {
 .options {
     grid-column: 1/1;
     position: static;
-    padding-left: 15px;
     font-size: 15px;
     background-color: #EAECEE;
     border: none;
     border-radius: 15px;
     vertical-align: middle;
     padding: 10px;
-
     justify-content: space-around;
     margin: auto;
     width: 80%;
@@ -228,13 +219,8 @@ table th {
     position: static;
     vertical-align: middle;
     border: none;
-    /*     padding 50 px; */
-
-
     border-radius: 15px;
-    padding-left: 15px;
     background-color: #EAECEE;
-
     justify-content: space-around;
     margin: auto;
     width: 80%;
@@ -246,14 +232,11 @@ table th {
 .info {
     grid-column: 1/1;
     position: static;
-    padding-left: 15px;
     background-color: #EAECEE;
     border: none;
     vertical-align: middle;
-
     margin: auto;
     justify-content: space-around;
-
     width: 80%;
     border-radius: 15px;
     padding: 10px;
@@ -276,8 +259,8 @@ h1 {
     display: block;
     font-size: 2em;
     margin-block-end: 0.67em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
     font-weight: bold;
 }
 #title{

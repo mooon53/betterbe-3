@@ -29,7 +29,6 @@ public class ConfigurationsResource {
     public List<Configuration> getConfigurations(@PathParam("sessionID") String input) {
         Long sessionId = Long.parseLong(input);
         String email = SessionDao.instance.getSession(sessionId).getAccount().getUsername();
-        System.out.println(Dao.getConfigurations(email));
         return jsonStringsToConfigurations(Dao.getConfigurations(email));
     }
 

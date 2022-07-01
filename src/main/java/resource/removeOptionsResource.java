@@ -22,7 +22,6 @@ public class removeOptionsResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String removeOption(String input) {
-        System.out.println(input);
         JSONObject response = new JSONObject(input);
         Long id = null;
         if (response.has("id")) {
