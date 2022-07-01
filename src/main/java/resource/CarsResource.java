@@ -85,7 +85,7 @@ public class CarsResource {
     }
 
     @Path("{car}")
-    public CarResource getCar(@PathParam("car") String id){
+    public CarResource getCar(@PathParam("car") String id) {
         return new CarResource(uriInfo, request, id);
     }
 

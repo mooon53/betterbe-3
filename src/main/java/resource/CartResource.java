@@ -1,63 +1,34 @@
 package resource;
 
 import dao.CartDao;
-import model.Configuration;
-import model.Option;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.UriInfo;
 
-@Path("cart")
 public class CartResource {
+    @Context
+    UriInfo uriInfo;
+    @Context
+    Request request;
+
+    private final Long sessionId;
+
+    public CartResource(UriInfo uriInfo, Request request, String sessionId) {
+        this.uriInfo = uriInfo;
+        this.request = request;
+        this.sessionId = Long.parseLong(sessionId);
+    }
 
     @GET
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
-    public String getCart(String input) {
-        System.out.println(input);
-        Long sessionId = Long.parseLong(input);
+    public String getCart() {
+        System.out.println(sessionId);
         return CartDao.instance.getCart(sessionId).toJSON().toString();
     }
-
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public String addToCart(String input) {
-        JSONObject json = new JSONObject(input);
-        System.out.println(input);
-        Long sessionId = Long.parseLong(json.getString("sessionId"));
-        JSONArray optionsJSON = json.getJSONArray("options");
-        ArrayList<Long> optionIDs = new ArrayList<>();
-        for (int i = 0; i < optionsJSON.length(); i++) {
-            optionIDs.add(optionsJSON.getLong(i));
-        }
-        Long carId = json.getLong("carId");
-        CartDao.instance.addOrder(sessionId, optionIDs, carId);
-        return CartDao.instance.getCart(sessionId).toJSON().toString();
-    }
-
-    @DELETE
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void deleteShoppingCart(String input) {
-        JSONObject response = new JSONObject(input);
-        Long sessionId = Long.parseLong(response.getString("sessionId"));
-        CartDao.instance.emptyCart(sessionId);
-        }
-
-    /*@GET
-    @Consumes(MediaType.TEXT_PLAIN)
-    @Produces(MediaType.TEXT_PLAIN)
-    public double total(String input){
-        Long sessionId = Long.parseLong(input);
-        Cart cart = CartDao.instance.getCart(sessionId);
-        double cost = cart.getCarObj().getPrice();
-        ArrayList<Option> options = cart.getOptions();
-        for(Option option : options){
-            cost += option.getPrice();
-        }
-        return  cost;
-    }*/
 }
