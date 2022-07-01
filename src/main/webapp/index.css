@@ -136,18 +136,24 @@ h3+p {
   flex-direction: column;
 }
 
-a.spam-button:link {
-  border: 1px solid #ccc;
-  border-radius: 20px;
+
+.spam-button {
+  border: 1px solid  rgba(161,48,183,0.40379901960784315);
+  border-radius: 25px;
   text-decoration: none;
-  background-color: #fff;
-  color: #333;
+  background-color: #E73053;
+  color: whitesmoke;
   display: block;
   padding: 5px;
   margin: auto auto 20px;
   width: 90%;
   text-align: center;
 }
+.spam-button:hover {
+  background-color: #0098B5;
+  color: white;
+}
+
 
 .footer {
   background: #D1D4DC;
