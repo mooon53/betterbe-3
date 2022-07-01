@@ -181,3 +181,14 @@ function addRuleToCar() {
     request.setRequestHeader("Accept", "application/json");
     request.send(ruleString);
 }
+
+function removeCar() {
+    let request = new XMLHttpRequest();
+    let string = {carId}
+    let responseString = JSON.stringify(string);
+    console.log(responseString);
+    request.open("POST", "http://localhost:8080/betterbe_3/rest/timeline", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.setRequestHeader("Accept", "application/json");
+    request.send(responseString);
+}

@@ -7,10 +7,7 @@ import model.Rule;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
@@ -51,4 +48,20 @@ public class TimelineResource {
         response.put("rules", rulesJSON);
         return response.toString();
     }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String removeOption(String input) {
+        System.out.println(input);
+        JSONObject response = new JSONObject(input);
+        Long carId = null;
+        if (response.has("carId")) {
+            carId = response.getLong("carId");
+        }
+        Dao.removeCar(carId);
+        Dao.removeOption(carId);
+        return response.toString();
+    }
+
 }

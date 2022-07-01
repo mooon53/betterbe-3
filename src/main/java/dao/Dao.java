@@ -337,7 +337,31 @@ public class Dao {
             e.printStackTrace();
         }
     }
+    public static void removeCar(Long carId) {
+        LocalDateTime now = LocalDateTime.now();
+        String query = "UPDATE car\n" +
+                "SET end_date = '" + now + "'\n" +
+                "WHERE id = " + carId;
+        try {
+            statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void removeOption(Long carId) {
+        LocalDateTime now = LocalDateTime.now();
+        String query = "UPDATE option\n" +
+                "SET end_date = '" + now + "'\n" +
+                "WHERE car_id = " + carId;
+        try {
+            statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
 
 
 
