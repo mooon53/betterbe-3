@@ -149,10 +149,11 @@ public class Dao {
     }
 
     public static void addCar(Car car) {
-        String query = "INSERT INTO car (id, make, model, year, price, layout, type, size)\n" +
+        LocalDateTime now = LocalDateTime.now();
+        String query = "INSERT INTO car (id, make, model, year, price, layout, type, size, start_date)\n" +
                     "VALUES(" + car.getId() + ",'" + car.getMake() + "', '" + car.getModel() + "', " + car.getYear() + ", " + car.getPrice() +
-                    ", '" + car.getLayout() + "', '" + car.getType() + "', '" + car.getSize() +
-                    "');";
+                    ", '" + car.getLayout() + "', '" + car.getType() + "', '" + car.getSize() + "','" +
+                    now + "');";
         try {
             statement.executeQuery(query);
         } catch (SQLException e) {
@@ -161,10 +162,11 @@ public class Dao {
     }
 
     public static void addOption(Option option) {
+        LocalDateTime now = LocalDateTime.now();
         String query = "INSERT INTO option (id, value, manufacturer, car_id, option_type, price, start_date)\n" +
                 "VALUES(" + option.getId() + ",'" + option.getValue() + "','"  + option.getManufacturer() + "'," +
                 option.getCarID() + ",'" + option.getOptionType() + "'," + option.getPrice() + ",'" +
-                option.getStartDate() + "');";
+                now + "');";
         try {
             statement.executeQuery(query);
         } catch (SQLException e) {
@@ -304,7 +306,6 @@ public class Dao {
     }
 
     public static void editOption(Long id) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String query = "UPDATE option\n" +
                 "SET end_date = '" + now + "'\n" +
@@ -317,7 +318,6 @@ public class Dao {
     }
 
     public static void addOptionToCar(int option_id, Long id, String value, int price, String option_type) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         String query = "INSERT INTO option (id, value, manufacturer, car_id, option_type, price, start_date)\n" +
                 "VALUES(" + option_id + ",'" + value + "','null'," +

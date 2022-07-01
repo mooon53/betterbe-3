@@ -40,6 +40,9 @@ public class Car {
         response.put("model", model);
         response.put("year", year);
         response.put("price", price);
+        response.put("layout", layout);
+        response.put("type", type);
+        response.put("size", size);
         return response;
     }
 

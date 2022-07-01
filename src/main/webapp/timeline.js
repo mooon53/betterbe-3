@@ -18,12 +18,22 @@ function onload() {
             console.log(this.responseText);
             //String date, String make, String model, Long year, Double basePrice,
             // String optionType, String optionValue, Double optionPrice
+            let carTable = document.getElementById("table2");
+            let car = response.car;
+            carTable.innerHTML += `<tr>
+                <td>${car.make}</td>
+                <td>${car.model}</td>
+                <td>${car.year}</td>
+                <td>${car.price}</td>
+                <td>${car.layout}</td>
+                <td>${car.type}</td>
+                <td>${car.size}</td>`
             let table = document.getElementById("timeline");
             for (let i in response.options) {
                 let line = response.options[i];
                 console.log(line);
-                if (line.end_date === null) {
-                    line.end_date = "-";
+                if (!line.endDate) {
+                    line.endDate = "-";
                 }
                 optionsNames[line.id] = line.value;
                 table.innerHTML += `<tr>
@@ -35,9 +45,11 @@ function onload() {
                             <td><button class="button" onclick="removeOption(${line.id})">remove option</button></td>
                             <td><button class="button" onclick="editOption(${line.id})">Edit option</button></td>
                         </tr>`;
-                let optionHTML = `<p></p><input type="checkbox" name="` + line.value + `" id="` + line.id + `" class="optionForRule">
+                if(!line.endDate) {
+                    let optionHTML = `<p></p><input type="checkbox" name="` + line.value + `" id="` + line.id + `" class="optionForRule">
                    <label for="` + line.id + `">` + line.optionType + ` : ` + line.value + `</label></>`
-                document.getElementById("optionsForRule").innerHTML += optionHTML;
+                    document.getElementById("optionsForRule").innerHTML += optionHTML;
+                }
             }
             let rulesTable = document.getElementById("rulesTable");
             for (let i in response.rules) {
@@ -99,12 +111,12 @@ function editOption(id) {
             // String optionType, String optionValue, Double optionPrice
             let table = document.getElementById("timeline");
 
-            if (response.end_date === null) {
-                response.end_date = "-";
+            if (!response.endDate) {
+                response.endDate = "-";
             }
             table.innerHTML += `<tr>
-                            <td>${response.start_date}</td>
-                            <td>${response.end_date}</td>
+                            <td>${response.startDate}</td>
+                            <td>${response.endDate}</td>
                             <td>${response.price}</td>
                             <td><input type = "text" id="Type" placeholder=${response.option_type}></td>
                             <td><input type="text" class="option" id="Name" placeholder=${response.value}></td>
