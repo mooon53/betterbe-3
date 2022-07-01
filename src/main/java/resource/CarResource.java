@@ -59,7 +59,7 @@ public class CarResource {
 
     private Response putAndGetResponse(Car car) {
         Response res;
-        List<String> cars = Dao.getCars();
+        List<String> cars = Dao.getAllCars();
         if(cars.size() > car.getId()) {
             res = Response.noContent().build();
         } else {

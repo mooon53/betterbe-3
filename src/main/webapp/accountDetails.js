@@ -7,6 +7,10 @@ function onLoad() {
 	let session = sessionValid();
 	if (!session.loggedIn) {
 		location.href = "login.html";
+	} else {
+		empCheck();
+		displayEmail();
+		addConfigurations();
 	}
 }
 
@@ -35,19 +39,43 @@ function displayEmail(){
 			}
 		}
 	}
-	request.open("GET", url + "/sessions/" + sessionID, false);
+	request.open("GET", "rest/sessions/" + sessionID, false);
 	request.send();
-	document.getElementById("moveToAdd").style.visibility = 'hidden';
-	document.getElementById("moveToCheckout").style.visibility = 'hidden';
-
 }
 
-function empCheck(){
-	if(employeeCheck()){
-		document.getElementById("moveToAdd").style.visibility = 'visible';
+function addConfigurations() {
+	let request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if (this.status === 200 && this.readyState === 4) {
+			let response = JSON.parse(this.responseText);
+			let cars = new Map();
+			for (const i in response) {
+				const configuration = response[i];
+				let carId = configuration.car.id;
+				if (cars.has(carId)) {
+					cars.get(carId).push(configuration);
+				} else {
+					cars.set(carId, [configuration]);
+				}
+			}
+			console.log(cars)
+			for (const i in response) {
+				const configuration = response[i];
+				console.log(configuration);
+				let id = Number(cars.get(configuration.car.id).indexOf(configuration)) + 1;
+				document.getElementById("configs").innerHTML += `<li> ${configuration.car.make} ${configuration.car.model} ` + id + `
+					<button class="ConfigButton" onClick="location.href = 'configuration.html?config=${configuration.id}'"> Open</button>
+				</li>`
+			}
+		}
 	}
-	else{
-		document.getElementById("moveToCheckout").style.visibility = 'visible';
+	request.open("GET", "rest/configurations/" + getSessionId(), true);
+	request.setRequestHeader("Accept", "application/json");
+	request.send();
+}
 
+function empCheck() {
+	if (employeeCheck()) {
+		document.getElementById("add").innerHTML = "<button class=\"UIbutton\" id=\"moveToAdd\" onclick=\"addCarPage()\"> Go to add car page</button>";
 	}
 }

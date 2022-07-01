@@ -2,6 +2,7 @@ var url;
 
 function sessionId() {
 	url = new URL(location.href).origin + "/betterbe_3/rest";
+	console.log(url);
 	let cookieMap = getCookies();
 	if (!cookieMap.has("sessionId") || !sessionValid().valid) setSessionId();
 }
@@ -19,7 +20,7 @@ function setSessionId() {
 			document.cookie = "sessionId=" + response.sessionId + ";expires=" + expiration.toUTCString();
 		}
 	};
-	request.open("GET", url + "/sessions", false);
+	request.open("GET", "rest/sessions", false);
 	request.setRequestHeader("Accept", "application/json");
 	request.setRequestHeader("Content-Type", "application/json")
 	request.send();
@@ -51,7 +52,7 @@ function sessionValid() {
 	}
 	console.log(url);
 	console.log(url + "/sessions/" + session);
-	request.open("GET", url + "/sessions/" + session, false);
+	request.open("GET", "rest/sessions/" + session, false);
 	request.setRequestHeader("Accept", "application/json");
 	request.send()
 	result["valid"] = valid;
@@ -87,7 +88,7 @@ function employeeCheck() {
 			employee = (response.loggedIn && response.account.employee);
 		}
 	}
-	request.open("GET", url + "/sessions/" + session, false);
+	request.open("GET", "rest/sessions/" + session, false);
 	request.setRequestHeader("Accept", "application/json");
 	request.send();
 	return employee;

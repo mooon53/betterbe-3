@@ -1,11 +1,6 @@
 import dao.Dao;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static utils.SQLUtils.intArrayToSqlArray;
+import static utils.SQLUtils.longArrayToSqlArray;
 
 public class Test {
     public static void main(String[] args) {
@@ -21,7 +16,7 @@ public class Test {
         result.append("}");
         System.out.println(result.toString());*/
         Long[] ruleId = new Long[]{5L, 6L, 7L};
-        System.out.println(intArrayToSqlArray(ruleId));
+        System.out.println(longArrayToSqlArray(ruleId));
         Dao.removeRule(ruleId);
     }
 }

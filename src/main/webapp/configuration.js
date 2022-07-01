@@ -17,7 +17,10 @@ function onLoad() {
 			document.getElementById("totalPrice").innerText = "€" + totalPrice.toFixed(2);
 		}
 	}
-	request.open("GET", "rest/cart/" + getSessionId(), false);
+	let localUrl = new URL(location.href); //Get the current url
+	let searchParams = localUrl.searchParams; //Get the search parameters (?carID=<search parameter>)
+	let configID = searchParams.get("config");
+	request.open("GET", "rest/configurations/" + getSessionId() + "/" + configID, true);
 	request.setRequestHeader("Content-Type", "text/plain");
 	request.setRequestHeader("Accept", "application/json");
 	// let json = {"sessionId":getSessionId().toString()};

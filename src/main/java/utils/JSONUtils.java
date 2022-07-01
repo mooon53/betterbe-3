@@ -1,5 +1,6 @@
 package utils;
 
+import dao.Dao;
 import model.*;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -140,4 +141,34 @@ public class JSONUtils {
         return timeline;
     }
 
+    public static Configuration jsonStringToConfiguration(String configurationJSONString) {
+        JSONObject configurationJSON = new JSONObject(configurationJSONString);
+        return jsonToConfiguration(configurationJSON);
+    }
+
+    public static Configuration jsonToConfiguration(JSONObject configurationJSON) {
+        JSONArray optionsJSONArray = configurationJSON.getJSONArray("options");
+        List<Long> optionIDs = new ArrayList<>();
+        for (int i = 0; i < optionsJSONArray.length(); i++) {
+            optionIDs.add(optionsJSONArray.getLong(i));
+        }
+        ArrayList<Option> options =(ArrayList<Option>) jsonStringsToOptions(Dao.getOptions(optionIDs));
+        return new Configuration(configurationJSON.getLong("id"), configurationJSON.getLong("car"), options);
+    }
+
+    public static List<Configuration> jsonStringsToConfigurations(List<String> configurationStrings) {
+        List<Configuration> configurations = new ArrayList<>();
+        for (String configurationString : configurationStrings) {
+            configurations.add(jsonStringToConfiguration(configurationString));
+        }
+        return configurations;
+    }
+
+    public static List<Configuration> jsonsToConfigurations(List<JSONObject> configurationJSONs) {
+        List<Configuration> configurations = new ArrayList<>();
+        for (JSONObject configurationJSON : configurationJSONs) {
+            configurations.add(jsonToConfiguration(configurationJSON));
+        }
+        return configurations;
+    }
 }

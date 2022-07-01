@@ -19,7 +19,7 @@ function onLoad() {
 										${car.make} ${car.model}
 									</div>
 									<div class="image">
-										<img src="images/cars/${car.id}.png"/>
+										<img src="images/cars/${car.id}.png" onerror="if (this.src !== 'images/cars/default.png') this.src = 'images/cars/default.png';">
 									</div>
 									<div class="text">
 										${car.size} ${car.type}
@@ -33,7 +33,7 @@ function onLoad() {
 			}
 		}
 	};
-	getRequest.open("GET", url + "/cars", true); //open the request, set the type and uri
+	getRequest.open("GET", "rest/cars", true); //open the request, set the type and uri
 	getRequest.setRequestHeader("Accept", "application/json"); //Tell the server we're accepting JSON responses only
 	getRequest.send(); //Send the request)
 }

@@ -43,7 +43,7 @@ public class CarsResource {
             JSONObject carJSON = (JSONObject) responseJSON.get("car");
             JSONArray optionsRaw = responseJSON.getJSONArray("options");
             JSONArray rulesRaw = responseJSON.getJSONArray("rules");
-            List<String> cars = Dao.getCars();
+            List<String> cars = Dao.getAllCars();
             JSONObject lastCar = new JSONObject(cars.get(cars.size() - 1));
             Long carId = lastCar.getLong("id") + 1L;
             carJSON.put("id", carId);

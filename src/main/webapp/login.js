@@ -20,7 +20,7 @@ function login() {
     console.log(password);
     console.log(email);
     let responseString = JSON.stringify({sessionId, email, password});
-    request.open("POST", url + "/account", true);
+    request.open("POST", "rest/account", true);
     request.setRequestHeader("Accept", "application/json");
     request.setRequestHeader("Content-Type", "application/json");
     console.log(responseString);
@@ -46,7 +46,7 @@ function signUp() {
         response = {email, password};
     }
     let responseString = JSON.stringify(response);
-    request.open("POST", url + "/signup", true);
+    request.open("POST", "rest/signup", true);
     request.setRequestHeader("Accept", "application/json");
 
     request.setRequestHeader("Content-Type", "application/json");
@@ -58,9 +58,9 @@ function signUp() {
 
 function stringToHashConversion(string) {
     let hashVal = 0;
-    if (string.length == 0) return hashVal;
-    for (i = 0; i < string.length; i++) {
-        char = string.charCodeAt(i);
+    if (string.length === 0) return hashVal;
+    for (let i = 0; i < string.length; i++) {
+        const char = string.charCodeAt(i);
         hashVal = ((hashVal << 5) - hashVal) + char;
         hashVal = hashVal & hashVal;
     }

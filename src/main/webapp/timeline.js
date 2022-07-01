@@ -70,7 +70,7 @@ function onload() {
             }
         }
     }
-    getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/timeline/" + carId, true);
+    getRequest.open("GET", "timeline/" + carId, true);
     getRequest.setRequestHeader("Accept", "application/json");
     getRequest.send();
 }
@@ -82,7 +82,7 @@ function addOptionToCar() {
     let option_type = document.getElementById("Type").value;
     let string = {carId, value, price, option_type}
     let responseString = JSON.stringify(string);
-    request.open("POST", "http://localhost:8080/betterbe_3/rest/addOption", true);
+    request.open("POST", "rest/addOption", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
     request.send(responseString);
@@ -92,7 +92,7 @@ function removeOption(id) {
     let request = new XMLHttpRequest();
     let string = {id}
     let responseString = JSON.stringify(string);
-    request.open("POST", "http://localhost:8080/betterbe_3/rest/remove", true);
+    request.open("POST", "rest/remove", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
     request.send(responseString);
@@ -125,7 +125,7 @@ function editOption(id) {
         }
     }
 
-request.open("POST", "http://localhost:8080/betterbe_3/rest/edit", true);
+request.open("POST", "rest/edit", true);
 request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader("Accept", "application/json");
 request.send(responseString);
@@ -142,7 +142,7 @@ function removeRule() {
     let string = {ruleArray}
     let responseString = JSON.stringify(string);
     console.log(responseString)
-    request.open("POST", "http://localhost:8080/betterbe_3/rest/removeRule", true);
+    request.open("POST", "rest/removeRule", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
     request.send(responseString);
@@ -175,7 +175,7 @@ function addRuleToCar() {
 
     let rule = {options: chosenOptions, mandatory, exclusive, carId};
     let ruleString = JSON.stringify(rule);
-    request.open("POST", "http://localhost:8080/betterbe_3/rest/addRule", true);
+    request.open("POST", "rest/addRule", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
     request.send(ruleString);

@@ -43,10 +43,11 @@ public enum CartDao {
     public void addOrder(Long sessionId, ArrayList<Long> optionIDs, Long carId) {
         String email = getEmail(sessionId);
         List<Option> options = jsonStringsToOptions(Dao.getOptions(optionIDs));
-        configurations.put(email, new Configuration(carId, (ArrayList<Option>) options));
+        Configuration configuration = new Configuration(carId, (ArrayList<Option>) options);
+        configurations.put(email, configuration);
+        Dao.addConfiguration(email, configuration);
         System.out.println(configurations);
         System.out.println(email);
-        Configuration configuration = configurations.get(email);
         System.out.println(configuration);
     }
 }

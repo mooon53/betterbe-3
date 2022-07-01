@@ -83,24 +83,12 @@
   font-size:25px;
   min-height:34px;
   display: inline-block;
-  padding: 0 30px;
-}
-
-#powertrain_text {
-  display: block;
-}
-
-#powertrain_text {
-  display: block;
+  padding: 0 0 0 30px;
 }
 
 #powertrain {
   margin: auto;
   display: inline;
-}
-
-#bodytype_text {
-  display: inline-block;
 }
 
 #trim_level_text {
@@ -114,10 +102,6 @@
 hr.line {
   border-top: 1px solid black;
 
-}
-
-#bodytype{
-  display: block;
 }
 
 .option {
