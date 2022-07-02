@@ -17,14 +17,14 @@ import java.util.List;
 import static utils.JSONUtils.*;
 import static utils.JSONUtils.jsonStringsToRules;
 
-@Path("/timeline")
+@Path("timeline")
 public class TimelineResource {
     @Context
     UriInfo uriInfo;
     @Context
     Request request;
 
-    @Path("/{car}")
+    @Path("{car}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getHistory(@PathParam("car") String id) {

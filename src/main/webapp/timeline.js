@@ -66,7 +66,7 @@ function onload() {
             }
         }
     }
-    getRequest.open("GET", "timeline/" + carId, true);
+    getRequest.open("GET", "rest/timeline/" + carId, true);
     getRequest.setRequestHeader("Accept", "application/json");
     getRequest.send();
 }
@@ -176,7 +176,7 @@ function removeCar() {
     let request = new XMLHttpRequest();
     let string = {carId}
     let responseString = JSON.stringify(string);
-    request.open("POST", "http://localhost:8080/betterbe_3/rest/timeline", true);
+    request.open("POST", "rest/timeline", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
     request.send(responseString);
