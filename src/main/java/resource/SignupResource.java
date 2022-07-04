@@ -33,6 +33,7 @@ public class SignupResource {
             password = response.getString("password");
         }
         if (response.has("code")) {
+            System.out.println(response);
             code = (String) response.get("code");
         }
         addAccount(email, password, code.equals("923375975"));

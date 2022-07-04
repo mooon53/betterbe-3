@@ -34,17 +34,19 @@ function signUp() {
     let password = stringToHashConversion(document.getElementById('signupPassword').value);
     let code = stringToHashConversion(document.getElementById('empCode').value);
     let response;
-    response = {email, password, code};
+    response = {email, password};
+    if (!!code) response["code"] = code;
     let responseString = JSON.stringify(response);
     request.open("POST", "rest/signup", false);
     request.setRequestHeader("Content-Type", "application/json");
     request.send(responseString);
+    console.log(responseString);
     login(email, password);
 }
 
 function stringToHashConversion(string) {
     let hashVal = 0;
-    if (string.length === 0) return hashVal;
+    if (string.length === 0) return null;
     for (let i = 0; i < string.length; i++) {
         const char = string.charCodeAt(i);
         hashVal = ((hashVal << 5) - hashVal) + char;
