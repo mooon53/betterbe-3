@@ -25,9 +25,8 @@ function login(email, password) {
 function signUp() {
     let request = new XMLHttpRequest();
     request.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            response = JSON.parse(this.responseText);
-
+        if (this.readyState === 4 && this.status === 204) {
+            login(email, password);
         }
     };
     let email = document.getElementById('signupEmail').value;
@@ -37,11 +36,10 @@ function signUp() {
     response = {email, password};
     if (!!code) response["code"] = code;
     let responseString = JSON.stringify(response);
-    request.open("POST", "rest/signup", false);
+    request.open("POST", "rest/signup", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.send(responseString);
     console.log(responseString);
-    login(email, password);
 }
 
 function stringToHashConversion(string) {
