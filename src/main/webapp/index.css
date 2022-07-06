@@ -72,6 +72,8 @@ h3+p {
   display: grid;
   grid-gap: 2px;
   grid-auto-rows: minmax(150px, auto);
+  overflow: hidden;
+  position: relative;
 }
 
 /* Style for text within the grid and image formatting (resize) */
@@ -83,6 +85,8 @@ h3+p {
   color: #fff;
 }
 
+
+
 /* First box formatting and imagery  */
 .feature {
   background: rgb(231,48,83);
@@ -90,6 +94,14 @@ h3+p {
   url(https://cdn.pixabay.com/photo/2020/08/18/22/25/golf-4-5499528_960_720.jpg);
   background-position: bottom left;
   color: #fff;
+  transition: all .5s ease;
+
+}
+
+.feature:hover{
+  color: #D1D4DC;
+  background-color: #fff;
+  border: 6px solid white;
 }
 
 .photos {
@@ -97,11 +109,26 @@ h3+p {
   background: linear-gradient(180deg, rgba(231,48,83,0) 0%, rgba(231,48,83,0.40379901960784315) 63%, rgba(60,52,120,0.7371323529411764) 100%),
   url(https://cdn.pixabay.com/photo/2018/03/18/08/33/vip-area-3236038_960_720.jpg);
   color: #fff;
+  transition: all .5s ease;
+}
+
+.photos:hover{
+  color: #D1D4DC;
+  background-color: #fff;
+  border: 6px solid white;
 }
 
 .news {
   background: rgb(231,48,83);
+  transition: all .5s ease;
 }
+
+.news:hover{
+  color: #D1D4DC;
+  background-color: #00809D;
+  border: 6px solid white;
+}
+
 
 .special {
   background: rgb(231,48,83);
@@ -110,6 +137,13 @@ h3+p {
   color: #fff;
   display: flex;
   flex-direction: column;
+  transition: all .5s ease;
+}
+
+.special:hover{
+  color: #D1D4DC;
+  background-color: #fff;
+  border: 6px solid white;
 }
 
 .special h3,
@@ -127,6 +161,13 @@ h3+p {
   color: #fff;
   display: flex;
   flex-direction: column;
+  transition: all .5s ease;
+}
+
+.amazing:hover{
+  color: #D1D4DC;
+  background-color: #fff;
+  border: 6px solid white;
 }
 
 .cta {
@@ -134,6 +175,13 @@ h3+p {
   color: #fff;
   display: flex;
   flex-direction: column;
+  transition: all .5s ease;
+}
+
+.cta:hover{
+  color: #D1D4DC;
+  background-color:#29235C;
+  border: 6px solid white;
 }
 
 
@@ -329,6 +377,13 @@ h3+p {
     /*   box-shadow: 0px 5px 5px #7E838F; */
     text-align: center;
     /*   max-width: 25%; */
+    transition: all .5s ease;
+  }
+
+  .card:hover{
+    color: #0098B5;
+    background-color: #fff;
+    border: 6px solid white;
   }
 
   .card .title{
