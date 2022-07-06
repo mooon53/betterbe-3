@@ -33,6 +33,8 @@ public enum SessionDao {
         return sessions.get(sessionId);
     }
 
+    public boolean hasSession(Long sessionId) {return sessions.containsKey(sessionId);}
+
     public void logIn(Long sessionId, String email) {
         JSONObject account = new JSONObject(getAccount(email));
         Session session = sessions.get(sessionId);

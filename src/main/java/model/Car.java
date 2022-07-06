@@ -11,6 +11,7 @@ public class Car {
     private String layout;
     private String type;
     private String size;
+    private boolean available;
 
     public Car(){}
 
@@ -70,6 +71,7 @@ public class Car {
     public String getSize() {
         return size;
     }
+    public boolean getAvailable() {return available;}
 
     public void setSize(String size) {
         this.size = size;
@@ -95,4 +97,5 @@ public class Car {
     public void setLayout(String layout) {
         this.layout = layout;
     }
+    public void setAvailable(boolean available) {this.available = available;}
 }

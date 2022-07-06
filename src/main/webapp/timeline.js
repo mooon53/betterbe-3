@@ -68,6 +68,8 @@ function onload() {
     }
     getRequest.open("GET", "rest/timeline/" + carId, true);
     getRequest.setRequestHeader("Accept", "application/json");
+    getRequest.setRequestHeader("sessionId", getSessionId());
+    console.log(getRequest);
     getRequest.send();
 }
 

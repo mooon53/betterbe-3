@@ -17,9 +17,15 @@ public class JSONUtils {
     }
 
     public static Car jsonToCar(JSONObject carJSON) {
-        return new Car(carJSON.getLong("id"), carJSON.getLong("year"), carJSON.getDouble("price"),
+        Car car = new Car(carJSON.getLong("id"), carJSON.getLong("year"), carJSON.getDouble("price"),
                 carJSON.getString("make"), carJSON.getString("model"), carJSON.getString("layout"),
                 carJSON.getString("type"), carJSON.getString("size"));
+        try {
+            car.setAvailable(carJSON.get("end_date").getClass().getName().equals("org.json.JSONObject$Null"));
+        } catch (JSONException e) {
+
+        }
+        return car;
     }
 
     public static List<Car> jsonStringsToCars(List<String> carsStrings) {

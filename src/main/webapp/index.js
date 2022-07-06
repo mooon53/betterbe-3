@@ -14,9 +14,11 @@ function onLoad() {
 			let html = document.getElementById("product-container");
 			html.innerHTML = "";
 			for (const car of response) {
+				let info = `${car.make} ${car.model}`;
+				if (!car.available) info += " (UNAVAILABLE)";
 				html.innerHTML += `<div class="card">
 									<div class="title">
-										${car.make} ${car.model}
+										` + info + `
 									</div>
 									<div class="image">
 										<img src="images/cars/${car.id}.png" onerror="if (this.src !== 'images/cars/default.png') this.src = 'images/cars/default.png';">
@@ -35,5 +37,6 @@ function onLoad() {
 	};
 	getRequest.open("GET", "rest/cars", true); //open the request, set the type and uri
 	getRequest.setRequestHeader("Accept", "application/json"); //Tell the server we're accepting JSON responses only
-	getRequest.send(); //Send the request)
+	getRequest.setRequestHeader("sessionId", getSessionId());
+	getRequest.send(); //Send the request
 }

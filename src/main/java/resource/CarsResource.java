@@ -27,9 +27,15 @@ public class CarsResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Car> getCars() {
-        List<String> carsStrings = Dao.getCars();
-        return jsonStringsToCars(carsStrings);
+    public List<Car> getCars(@HeaderParam("sessionId") String sessionIdString) {
+        if (sessionIdString != null) {
+            Long sessionId = Long.parseLong(sessionIdString);
+            if (SessionDao.instance.hasSession(sessionId) && SessionDao.instance.getSession(sessionId).hasAccount() && SessionDao.instance.getSession(sessionId).getAccount().getEmployee()) {
+                return jsonStringsToCars(Dao.getAllCars());
+            } else {
+                return jsonStringsToCars(Dao.getCars());
+            }
+        } else return null;
     }
 
     @POST

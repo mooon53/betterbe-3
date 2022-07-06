@@ -1,6 +1,7 @@
 package resource;
 
 import static dao.Dao.*;
+
 import org.json.JSONObject;
 
 import javax.ws.rs.Consumes;
@@ -25,7 +26,6 @@ public class SignupResource {
         JSONObject response = new JSONObject(signupString);
         String email = "";
         String password = "";
-        String code = "";
         if (response.has("email")) {
             email = (String) response.get("email");
         }
@@ -33,9 +33,8 @@ public class SignupResource {
             password = response.getString("password");
         }
         if (response.has("code")) {
-            System.out.println(response);
-            code = (String) response.get("code");
-        }
-        addAccount(email, password, code.equals("923375975"));
+            String code = (String) response.get("code");
+            if (code.equals("923375975")) addAccount(email, password, true);
+        } else addAccount(email, password);
     }
 }
