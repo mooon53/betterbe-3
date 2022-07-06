@@ -127,18 +127,13 @@ request.setRequestHeader("Accept", "application/json");
 request.send(responseString);
 }
 
-function removeRule(rules) {
+function removeRule(options) {
     let request = new XMLHttpRequest();
-    let ruleArray = [];
-    for(let i in rules) {
-        ruleArray.push(rules[i]);
-    }
-    let string = {ruleArray}
-    let responseString = JSON.stringify(string);
+    let optionsJSON = {options};
     request.open("POST", "rest/removeRule", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
-    request.send(responseString);
+    request.send(JSON.stringify(optionsJSON));
 }
 
 function addRuleToCar() {
