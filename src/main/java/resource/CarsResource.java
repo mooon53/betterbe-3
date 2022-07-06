@@ -27,15 +27,20 @@ public class CarsResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Car> getCars() {
-        List<String> carsStrings = Dao.getCars();
-        return jsonStringsToCars(carsStrings);
+    public List<Car> getCars(@HeaderParam("sessionId") String sessionIdString) {
+        if (sessionIdString != null) {
+            Long sessionId = Long.parseLong(sessionIdString);
+            if (SessionDao.instance.hasSession(sessionId) && SessionDao.instance.getSession(sessionId).hasAccount() && SessionDao.instance.getSession(sessionId).getAccount().getEmployee()) {
+                return jsonStringsToCars(Dao.getAllCars());
+            } else {
+                return jsonStringsToCars(Dao.getCars());
+            }
+        } else return null;
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void addCar(String carString){
-        System.out.println(carString);
         JSONObject responseJSON = new JSONObject(carString);
         Long sessionId = Long.parseLong((String) responseJSON.get("sessionId"));
         Session session = SessionDao.instance.getSession(sessionId);
@@ -43,7 +48,7 @@ public class CarsResource {
             JSONObject carJSON = (JSONObject) responseJSON.get("car");
             JSONArray optionsRaw = responseJSON.getJSONArray("options");
             JSONArray rulesRaw = responseJSON.getJSONArray("rules");
-            List<String> cars = Dao.getCars();
+            List<String> cars = Dao.getAllCars();
             JSONObject lastCar = new JSONObject(cars.get(cars.size() - 1));
             Long carId = lastCar.getLong("id") + 1L;
             carJSON.put("id", carId);

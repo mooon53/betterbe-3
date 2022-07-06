@@ -25,8 +25,6 @@ public class addRuleResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String addRule(Rule rule) {
-        System.out.println(rule);
-//        JSONObject response = new JSONObject(input);
         Dao.addRule(rule);
         return rule.toString();
     }

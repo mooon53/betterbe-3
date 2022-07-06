@@ -33,54 +33,154 @@ html, body {
 
 /* End of header menu style */
 
-.accountDetails {
+/* Checkout */
+
+
+
+.wrapper {
+    position: relative;
+}
+
+.card {
+    position: relative;
     display: flex;
+    top: 0;
 }
 
-.UIbutton {
+.product-left {
+    height: 100%;
+    width: 70%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 4rem;
+    flex-direction: column;
+    background: #3C3478;
+    color: #fff;
+}
+
+.product-right {
+    background: #EAECEE;
+}
+
+.product-right img {
     float: right;
-    color: white;
-    background-color: #e84a67;
-    position: relative;
-    border-radius: 25px;
-    transition-duration: 0.4s;
-    width: 210px;
-    height: 40px;
-    font-size: 18px;
-    border:none;
-    margin: 5px;
-}
-.UIbutton:hover{
-    background-color:  #00809D;
-    color: white;
+    width:  100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.email{
-    color: #333333;
+.header h1 {
+    text-transform: uppercase;
+    margin: 2rem 0;
+    font-size: 2.5rem;
 }
 
-.emailDisplay{
-    color: #E73053;
+/* Price */
+
+.header h2 {
+    margin: 0 0 2rem 0;
+    font-weight: 300;
 }
 
-.picture{
-    max-height: 300px;
-    max-width: 300px;
-    position: relative;
-    flex: 1;
+/* Product Description */
+
+.product-main p {
+    opacity: 0.5;
+    margin: 2rem 0;
+    line-height: 1.45;
 }
 
-@media (max-width:500px)  {
+.focus {
+    text-transform: uppercase;
+    margin: 0 0 1rem 0;
+    padding: 0 0 0.9rem 0;
+    border-bottom: 0.2rem solid rgba(250, 250, 250, 0.3);
+}
 
-    .picture{
-        max-height: 120px;
-        max-width: 120px;
-    }
+.focus span:last-child {
+    margin: 0 0 0 1rem;
+    width: 100%;
+}
 
-    .UIbutton{
-        float: left;
-    }
+.focus span:first-child {
+    border-bottom: 0.2rem solid #fff;
+    padding: 0 0 0.9rem 0;
+}
 
+
+/* Total Price  */
+
+.product-total {
+    margin: 0 0 2rem 0;
+}
+
+.product-total p {
+    font-weight: 700;
+    font-size: 2rem;
+    opacity: 0.5;
+}
+
+.product-total h3{
+    margin: 0 0 1rem 0;
+}
+
+
+/* Add to cart button  */
+
+.product-add {
+    border: 1px solid #fff;
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 5rem;
+    transition: all 0.5s ease-out;
+}
+
+.product-add:hover {
+    background-color: #fff;
+    color: #2e282a;
+}
+
+.product-btns a {
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* End of Checkout */
+
+/* Remove margin between headers and descriptions */
+h3 {
+    margin: 0;
+}
+
+textarea {
+    height: 150px;
+    line-height: 150%;
+    resize:vertical;
+}
+
+.cta {
+    background-color: #3C3478;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+a.spam-button:link {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    text-decoration: none;
+    background-color: #fff;
+    color: #333;
+    display: block;
+    padding: 5px;
+    margin: auto auto 20px;
+    width: 90%;
+    text-align: center;
 }
 
 .image-logo {
@@ -92,13 +192,35 @@ html, body {
     text-decoration: none;
 }
 
+.about-upper-container {
+    padding-top: 25px;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+
+
+.about-text-1 {
+    padding-top: 25px;
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size:  2.4vw;
+}
+
 article {
     display: inline-block;
     width: 100%;
 }
 
+/**
+ * List used for the demo page
+ */
+
 .tilt {
     position: relative;
+
     height: 250px;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -110,30 +232,11 @@ article {
     padding: 16px;
     color: #fff;
     font-size: 18px;
-    background: #959BA9;
+    background: #3C3478;
 }
 
 .tilt li:nth-child(odd) {
-    background:  #7E838F;
-}
-
-
-.ConfigButton{
-    color: white;
-    background-color: #e84a67;
-    position: relative;
-    border-radius: 25px;
-    transition-duration: 0.4s;
-    width: 150px;
-    height: 30px;
-    font-size: 18px;
-    border:none;
-    float: right;
-}
-
-.ConfigButton:hover{
-    background-color:  #00809D;
-    color: white;
+    background: #29235C;
 }
 
 .footer {
@@ -270,12 +373,6 @@ article {
     font-weight:700;
 }
 
-@media (min-width: 500px) {
-    #abouttext {
-        font-size: .8em;
-    }
-
-}
 
 @media (min-width: 850px) {
 

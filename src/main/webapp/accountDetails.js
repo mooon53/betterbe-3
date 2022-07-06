@@ -1,53 +1,73 @@
 let sessionID = getSessionId();
 let acc;
-let response;
+
 function onLoad() {
 	sessionId();
+	notLoggedInRedirecter();
+	displayEmail();
 	changeLogInButton();
-	let session = sessionValid();
-	if (!session.loggedIn) {
-		location.href = "login.html";
-	}
+	empCheck();
+	addConfigurations();
 }
 
-function addCarPage(){
+function addCarPage() {
 	location.href = "addCar.html";
 }
-function checkoutPage(){
+
+function checkoutPage() {
 	location.href = "checkout.html";
 }
 
-function logout(){
-	alert("logged out successfully!")
+function logout() {
+	// alert("logged out successfully!")
 	location.href = "./";
 }
 
-function displayEmail(){
+function displayEmail() {
 	let request = new XMLHttpRequest();
-	request.onreadystatechange = function () {
+	request.onreadystatechange = function() {
 		if (this.readyState === 4 && this.status === 200) {
-			response = JSON.parse(this.responseText);
-			if (sessionValid().valid && response.loggedIn){
-				console.log(response);
-				let email = response.account.email;
-				console.log(email);
-				document.getElementById("emailDisplay").innerHTML = email;
+			let response = JSON.parse(this.responseText);
+			if (sessionValid().valid && response.loggedIn) {
+				document.getElementById("emailDisplay").innerHTML = response.account.email;
 			}
 		}
-	}
-	request.open("GET", url + "/sessions/" + sessionID, false);
+	};
+	request.open("GET", "rest/sessions/" + sessionID, false);
 	request.send();
-	document.getElementById("moveToAdd").style.visibility = 'hidden';
-	document.getElementById("moveToCheckout").style.visibility = 'hidden';
-
 }
 
-function empCheck(){
-	if(employeeCheck()){
-		document.getElementById("moveToAdd").style.visibility = 'visible';
-	}
-	else{
-		document.getElementById("moveToCheckout").style.visibility = 'visible';
+function addConfigurations() {
+	let request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if (this.status === 200 && this.readyState === 4) {
+			let response = JSON.parse(this.responseText);
+			let cars = new Map();
+			for (const i in response) {
+				const configuration = response[i];
+				let carId = configuration.car.id;
+				if (cars.has(carId)) {
+					cars.get(carId).push(configuration);
+				} else {
+					cars.set(carId, [configuration]);
+				}
+			}
+			for (const i in response) {
+				const configuration = response[i];
+				let id = Number(cars.get(configuration.car.id).indexOf(configuration)) + 1;
+				document.getElementById("configs").innerHTML += `<li> ${configuration.car.make} ${configuration.car.model} ` + id + `
+					<button class="ConfigButton" onClick="location.href = 'configuration.html?config=${configuration.id}'"> Open</button>
+				</li>`;
+			}
+		}
+	};
+	request.open("GET", "rest/configurations/" + getSessionId(), true);
+	request.setRequestHeader("Accept", "application/json");
+	request.send();
+}
 
+function empCheck() {
+	if (employeeCheck()) {
+		document.getElementById("add").innerHTML = "<button class=\"UIbutton\" id=\"moveToAdd\" onclick=\"addCarPage()\"> Go to add car page</button>";
 	}
 }

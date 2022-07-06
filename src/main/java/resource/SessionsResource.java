@@ -20,7 +20,6 @@ public class SessionsResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getSessionId() {
-        System.out.println("pog");
         Session session = SessionDao.instance.newSession();
         JSONObject response = new JSONObject();
         response.put("sessionId", session.getSessionId().toString());

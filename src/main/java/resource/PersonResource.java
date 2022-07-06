@@ -28,7 +28,6 @@ public class PersonResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getPersonInfo() {
         JSONObject response = new JSONObject();
-        //Person person = jsonStringToPerson(Dao.getPerson(username));
         return response.toString();
     }
 

@@ -1,5 +1,6 @@
 package utils;
 
+import dao.Dao;
 import model.*;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,9 +17,15 @@ public class JSONUtils {
     }
 
     public static Car jsonToCar(JSONObject carJSON) {
-        return new Car(carJSON.getLong("id"), carJSON.getLong("year"), carJSON.getDouble("price"),
+        Car car = new Car(carJSON.getLong("id"), carJSON.getLong("year"), carJSON.getDouble("price"),
                 carJSON.getString("make"), carJSON.getString("model"), carJSON.getString("layout"),
                 carJSON.getString("type"), carJSON.getString("size"));
+        try {
+            car.setAvailable(carJSON.get("end_date").getClass().getName().equals("org.json.JSONObject$Null"));
+        } catch (JSONException e) {
+
+        }
+        return car;
     }
 
     public static List<Car> jsonStringsToCars(List<String> carsStrings) {
@@ -116,18 +123,14 @@ public class JSONUtils {
     }
 
     public static HistoricalData jsonStringToHistoricalData(String timelineStr) {
-        System.out.println(timelineStr);
         JSONObject timelineJSON = new JSONObject(timelineStr);
-        System.out.println(timelineJSON);
         return jsonToHistoricalData(timelineJSON);
     }
 
-    //o.start_date, c.make, c.model, c.production_year, o.option_type, o.value, o.price
     public static HistoricalData jsonToHistoricalData(JSONObject timelineJSON) {
         try {
             return new HistoricalData(timelineJSON.getLong("id"), timelineJSON.getString("start_date"), timelineJSON.getString("end_date"), timelineJSON.getDouble("price"), timelineJSON.getString("option_type"), timelineJSON.getString("value"), timelineJSON.getDouble("price"));
         } catch (JSONException e) {
-//            e.printStackTrace();
             return new HistoricalData(timelineJSON.getLong("id"), timelineJSON.getString("start_date"), timelineJSON.getDouble("price"), timelineJSON.getString("option_type"), timelineJSON.getString("value"), timelineJSON.getDouble("price"));
         }
     }
@@ -140,4 +143,34 @@ public class JSONUtils {
         return timeline;
     }
 
+    public static Configuration jsonStringToConfiguration(String configurationJSONString) {
+        JSONObject configurationJSON = new JSONObject(configurationJSONString);
+        return jsonToConfiguration(configurationJSON);
+    }
+
+    public static Configuration jsonToConfiguration(JSONObject configurationJSON) {
+        JSONArray optionsJSONArray = configurationJSON.getJSONArray("options");
+        List<Long> optionIDs = new ArrayList<>();
+        for (int i = 0; i < optionsJSONArray.length(); i++) {
+            optionIDs.add(optionsJSONArray.getLong(i));
+        }
+        ArrayList<Option> options =(ArrayList<Option>) jsonStringsToOptions(Dao.getOptions(optionIDs));
+        return new Configuration(configurationJSON.getLong("id"), configurationJSON.getLong("car"), options);
+    }
+
+    public static List<Configuration> jsonStringsToConfigurations(List<String> configurationStrings) {
+        List<Configuration> configurations = new ArrayList<>();
+        for (String configurationString : configurationStrings) {
+            configurations.add(jsonStringToConfiguration(configurationString));
+        }
+        return configurations;
+    }
+
+    public static List<Configuration> jsonsToConfigurations(List<JSONObject> configurationJSONs) {
+        List<Configuration> configurations = new ArrayList<>();
+        for (JSONObject configurationJSON : configurationJSONs) {
+            configurations.add(jsonToConfiguration(configurationJSON));
+        }
+        return configurations;
+    }
 }

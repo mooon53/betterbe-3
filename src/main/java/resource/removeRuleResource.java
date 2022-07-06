@@ -25,7 +25,6 @@ public class removeRuleResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public String removeOption(String input) {
-        System.out.println("input: " + input);
         JSONObject response = new JSONObject(input);
         Long[] id = new Long[0];
         if (response.has("ruleArray")) {
@@ -35,7 +34,6 @@ public class removeRuleResource {
                 id[i] = options.getLong(i);
             }
         }
-        System.out.println(id);
         Dao.removeRule(id);
         return response.toString();
     }

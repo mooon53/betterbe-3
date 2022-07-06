@@ -23,7 +23,6 @@ public class CartsResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String addToCart(String input) {
         JSONObject json = new JSONObject(input);
-        System.out.println(input);
         Long sessionId = Long.parseLong(json.getString("sessionId"));
         JSONArray optionsJSON = json.getJSONArray("options");
         ArrayList<Long> optionIDs = new ArrayList<>();
@@ -42,20 +41,6 @@ public class CartsResource {
         Long sessionId = Long.parseLong(response.getString("sessionId"));
         CartDao.instance.emptyCart(sessionId);
         }
-
-    /*@GET
-    @Consumes(MediaType.TEXT_PLAIN)
-    @Produces(MediaType.TEXT_PLAIN)
-    public double total(String input){
-        Long sessionId = Long.parseLong(input);
-        Cart cart = CartDao.instance.getCart(sessionId);
-        double cost = cart.getCarObj().getPrice();
-        ArrayList<Option> options = cart.getOptions();
-        for(Option option : options){
-            cost += option.getPrice();
-        }
-        return  cost;
-    }*/
 
     @Path("/{sessionId}")
     public CartResource getCart(@PathParam("sessionId") String sessionId) {

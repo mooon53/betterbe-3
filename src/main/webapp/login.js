@@ -1,66 +1,52 @@
 function onLoad() {
     sessionId();
     changeLogInButton();
-    let container = document.getElementById("container");
 }
 
-function login() {
+function login(email, password) {
     let request = new XMLHttpRequest();
     request.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            console.log(this.responseText);
             let response = JSON.parse(this.responseText);
-            if (response.success) alert("Correct :)"); //location.href = "/account.html";
+            if (response.success) location.href = "accountDetails.html";
             else alert("Wrong username or password :(");
         }
     };
-    let email = document.getElementById("email").value;
-    let password = stringToHashConversion(document.getElementById("password").value);
+    if (!email) email = document.getElementById("email").value;
+    if (!password) password = stringToHashConversion(document.getElementById("password").value);
     let sessionId = getSessionId();
-    console.log(password);
-    console.log(email);
     let responseString = JSON.stringify({sessionId, email, password});
-    request.open("POST", url + "/account", true);
+    request.open("POST", "rest/account", true);
     request.setRequestHeader("Accept", "application/json");
     request.setRequestHeader("Content-Type", "application/json");
-    console.log(responseString);
     request.send(responseString);
-    location.href = "accountDetails.html"
 }
 
 function signUp() {
     let request = new XMLHttpRequest();
     request.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-            response = JSON.parse(this.responseText);
-
+        if (this.readyState === 4 && this.status === 204) {
+            login(email, password);
         }
     };
     let email = document.getElementById('signupEmail').value;
     let password = stringToHashConversion(document.getElementById('signupPassword').value);
-    let code = document.getElementById('empCode').value;
+    let code = stringToHashConversion(document.getElementById('empCode').value);
     let response;
-    if (code !== null) {
-        response = {email, password, code};
-    } else {
-        response = {email, password};
-    }
+    response = {email, password};
+    if (!!code) response["code"] = code;
     let responseString = JSON.stringify(response);
-    request.open("POST", url + "/signup", true);
-    request.setRequestHeader("Accept", "application/json");
-
+    request.open("POST", "rest/signup", true);
     request.setRequestHeader("Content-Type", "application/json");
-    console.log(response);
-    console.log(responseString);
     request.send(responseString);
-
+    console.log(responseString);
 }
 
 function stringToHashConversion(string) {
     let hashVal = 0;
-    if (string.length == 0) return hashVal;
-    for (i = 0; i < string.length; i++) {
-        char = string.charCodeAt(i);
+    if (string.length === 0) return null;
+    for (let i = 0; i < string.length; i++) {
+        const char = string.charCodeAt(i);
         hashVal = ((hashVal << 5) - hashVal) + char;
         hashVal = hashVal & hashVal;
     }

@@ -3,8 +3,8 @@ let rules = [];
 
 function onLoad() {
     sessionId();
-    changeLogInButton();
     nonEmployeeDestroyer();
+    changeLogInButton();
 }
 
 function addCar(){
@@ -33,11 +33,10 @@ function addCar(){
     let response = {sessionId, car, options, rules};
     let responseString = JSON.stringify(response);
 
-    request.open("POST", url + "/cars", true);
+    request.open("POST", "rest/cars", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
     request.send(responseString);
-    console.log(responseString)
     options = [];
 }
 
@@ -91,5 +90,4 @@ function addRule() {
     document.getElementById("rulesTable").innerHTML += ruleHTML;
     let rule = {options: chosenOptions, mandatory, exclusive};
     rules.push(rule);
-    console.log(rule);
 }

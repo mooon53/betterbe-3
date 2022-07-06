@@ -19,7 +19,7 @@ function setSessionId() {
 			document.cookie = "sessionId=" + response.sessionId + ";expires=" + expiration.toUTCString();
 		}
 	};
-	request.open("GET", url + "/sessions", false);
+	request.open("GET", "rest/sessions", false);
 	request.setRequestHeader("Accept", "application/json");
 	request.setRequestHeader("Content-Type", "application/json")
 	request.send();
@@ -49,9 +49,7 @@ function sessionValid() {
 			result["account"] = response.account;
 		}
 	}
-	console.log(url);
-	console.log(url + "/sessions/" + session);
-	request.open("GET", url + "/sessions/" + session, false);
+	request.open("GET", "rest/sessions/" + session, false);
 	request.setRequestHeader("Accept", "application/json");
 	request.send()
 	result["valid"] = valid;
@@ -87,8 +85,31 @@ function employeeCheck() {
 			employee = (response.loggedIn && response.account.employee);
 		}
 	}
-	request.open("GET", url + "/sessions/" + session, false);
+	request.open("GET", "rest/sessions/" + session, false);
 	request.setRequestHeader("Accept", "application/json");
 	request.send();
 	return employee;
+}
+
+function loggedInCheck() {
+	let session = getSessionId();
+	let request = new XMLHttpRequest();
+	let loggedIn = false;
+	request.onreadystatechange = function() {
+		if (this.readyState === 4 && this.status === 200) {
+			let response = JSON.parse(this.responseText);
+			loggedIn = response.loggedIn;
+		}
+	}
+	request.open("GET", "rest/sessions/" + session, false);
+	request.setRequestHeader("Accept", "application/json");
+	request.send();
+	return loggedIn;
+}
+
+function notLoggedInRedirecter() {
+	if (!loggedInCheck()) {
+		alert("Sorry, you must be logged in to visit this page");
+		location.href = "login.html";
+	}
 }

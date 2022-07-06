@@ -1,6 +1,9 @@
 package resource;
 
 import dao.CartDao;
+import dao.Dao;
+
+import static utils.JSONUtils.*;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -10,24 +13,23 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
-public class CartResource {
+public class ConfigurationResource {
     @Context
     UriInfo uriInfo;
     @Context
     Request request;
 
-    private final Long sessionId;
+    private final Long configID;
 
-    public CartResource(UriInfo uriInfo, Request request, String sessionId) {
+    public ConfigurationResource(UriInfo uriInfo, Request request, String configID) {
         this.uriInfo = uriInfo;
         this.request = request;
-        this.sessionId = Long.parseLong(sessionId);
+        this.configID = Long.parseLong(configID);
     }
 
     @GET
-    @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
-    public String getCart() {
-        return CartDao.instance.getCart(sessionId).toJSON().toString();
+    public String getConfiguration() {
+        return jsonStringToConfiguration(Dao.getConfiguration(configID)).toJSON().toString();
     }
 }

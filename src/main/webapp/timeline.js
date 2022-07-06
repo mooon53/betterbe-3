@@ -3,8 +3,8 @@ let optionsNames = {};
 let rules = [];
 function onload() {
 	sessionId();
-	changeLogInButton();
 	nonEmployeeDestroyer()
+    changeLogInButton();
 	let urlLocal = new URL(location.href); //Get the current url
 	let searchParams = urlLocal.searchParams; //Get the search parameters (?carID=<search parameter>)
 	carId = searchParams.get("carId"); //Get the id in the search parameters
@@ -14,8 +14,6 @@ function onload() {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("timeline").innerHTML = '' + '';
             let response = JSON.parse(this.responseText);
-            console.log(response);
-            console.log(this.responseText);
             //String date, String make, String model, Long year, Double basePrice,
             // String optionType, String optionValue, Double optionPrice
             let carTable = document.getElementById("table2");
@@ -31,7 +29,6 @@ function onload() {
             let table = document.getElementById("timeline");
             for (let i in response.options) {
                 let line = response.options[i];
-                console.log(line);
                 if (!line.endDate) {
                     line.endDate = "-";
                 }
@@ -60,18 +57,19 @@ function onload() {
                     ruleNames.push(optionsNames[line.options[j]]);
                     rules.push(line.options[j]);
                 }
-                console.log(rules)
                 rulesTable.innerHTML += `<tr>
                             <td>${ruleNames}</td>
                             <td>${line.exclusive}</td>
                             <td>${line.mandatory}</td>
-                            <td><button class="button" onclick="removeRule.apply(this, [` + rules.toString() + `])">remove rule</button></td>
+                            <td><button class="button" onclick="removeRule([` + rules.toString() + `])">remove rule</button></td>
                         </tr>`;
             }
         }
     }
-    getRequest.open("GET", "http://localhost:8080/betterbe_3/rest/timeline/" + carId, true);
+    getRequest.open("GET", "rest/timeline/" + carId, true);
     getRequest.setRequestHeader("Accept", "application/json");
+    getRequest.setRequestHeader("sessionId", getSessionId());
+    console.log(getRequest);
     getRequest.send();
 }
 
@@ -82,7 +80,7 @@ function addOptionToCar() {
     let option_type = document.getElementById("Type").value;
     let string = {carId, value, price, option_type}
     let responseString = JSON.stringify(string);
-    request.open("POST", "http://localhost:8080/betterbe_3/rest/addOption", true);
+    request.open("POST", "rest/addOption", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
     request.send(responseString);
@@ -92,7 +90,7 @@ function removeOption(id) {
     let request = new XMLHttpRequest();
     let string = {id}
     let responseString = JSON.stringify(string);
-    request.open("POST", "http://localhost:8080/betterbe_3/rest/remove", true);
+    request.open("POST", "rest/remove", false);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
     request.send(responseString);
@@ -105,8 +103,6 @@ function editOption(id) {
     request.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             let response = JSON.parse(this.responseText);
-            console.log(response);
-            console.log(this.responseText);
             //String date, String make, String model, Long year, Double basePrice,
             // String optionType, String optionValue, Double optionPrice
             let table = document.getElementById("timeline");
@@ -125,27 +121,19 @@ function editOption(id) {
         }
     }
 
-request.open("POST", "http://localhost:8080/betterbe_3/rest/edit", true);
+request.open("POST", "rest/edit", true);
 request.setRequestHeader("Content-Type", "application/json");
 request.setRequestHeader("Accept", "application/json");
 request.send(responseString);
 }
 
-function removeRule() {
+function removeRule(options) {
     let request = new XMLHttpRequest();
-    console.log(rules)
-    let ruleArray = [];
-    for(let i in rules) {
-        ruleArray.push(rules[i]);
-    }
-    console.log(ruleArray)
-    let string = {ruleArray}
-    let responseString = JSON.stringify(string);
-    console.log(responseString)
-    request.open("POST", "http://localhost:8080/betterbe_3/rest/removeRule", true);
+    let optionsJSON = {options};
+    request.open("POST", "rest/removeRule", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
-    request.send(responseString);
+    request.send(JSON.stringify(optionsJSON));
 }
 
 function addRuleToCar() {
@@ -175,7 +163,7 @@ function addRuleToCar() {
 
     let rule = {options: chosenOptions, mandatory, exclusive, carId};
     let ruleString = JSON.stringify(rule);
-    request.open("POST", "http://localhost:8080/betterbe_3/rest/addRule", true);
+    request.open("POST", "rest/addRule", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
     request.send(ruleString);
@@ -185,8 +173,16 @@ function removeCar() {
     let request = new XMLHttpRequest();
     let string = {carId}
     let responseString = JSON.stringify(string);
-    console.log(responseString);
-    request.open("POST", "http://localhost:8080/betterbe_3/rest/timeline", true);
+    request.onreadystatechange = function() {
+        if (this.status === 200 && this.readyState === 4) {
+            alert("Car deleted successfully");
+            location.reload();
+        } else if (this.readyState === 4) {
+            alert("Something went wrong, please contact a system administrator");
+            location.reload();
+        }
+    }
+    request.open("POST", "rest/timeline", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
     request.send(responseString);

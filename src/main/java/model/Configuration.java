@@ -1,6 +1,7 @@
 package model;
 
 
+import dao.Dao;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -11,6 +12,7 @@ import static utils.JSONUtils.*;
 
 public class Configuration {
 
+    Long id;
     Car car;
     ArrayList<Option> options;
 
@@ -22,12 +24,18 @@ public class Configuration {
     }
 
     public Configuration(Long carId, ArrayList<Option> options) {
-        this.car = getCarObj(carId);
+        this.car = getCar(carId);
         this.options = options;
     }
 
-    private Car getCarObj(Long carID) {
-        return jsonStringToCar(getCar(carID));
+    public Configuration(Long id, Long carId, ArrayList<Option> options) {
+        this.car = getCar(carId);
+        this.options = options;
+        this.id = id;
+    }
+
+    private Car getCar(Long carID) {
+        return jsonStringToCar(Dao.getCar(carID));
     }
 
     public void addOption(Long optionId) {
@@ -42,7 +50,7 @@ public class Configuration {
         return JSON;
     }
 
-    public Car getCarObj() {
+    public Car getCar() {
         return car;
     }
 
@@ -56,5 +64,13 @@ public class Configuration {
 
     public void setOptions(ArrayList<Option> options) {
         this.options = options;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

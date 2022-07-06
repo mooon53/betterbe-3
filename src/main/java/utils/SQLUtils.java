@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SQLUtils {
-    public static String intArrayToSqlArray(Long[] originalList) {
+    public static String longArrayToSqlArray(Long[] originalList) {
         ArrayList<Long> longs = new ArrayList<>(List.of(originalList));
         StringBuilder result = new StringBuilder("{");
         int i =0;

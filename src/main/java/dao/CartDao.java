@@ -28,10 +28,6 @@ public enum CartDao {
         Session session = SessionDao.instance.getSession(sessionId);
         Account account = session.getAccount();
         String email = account.getUsername();
-        System.out.println("getCart");
-        System.out.println(sessionId);
-        System.out.println(email);
-        System.out.println(configurations);
         return configurations.get(email);
     }
 
@@ -43,10 +39,8 @@ public enum CartDao {
     public void addOrder(Long sessionId, ArrayList<Long> optionIDs, Long carId) {
         String email = getEmail(sessionId);
         List<Option> options = jsonStringsToOptions(Dao.getOptions(optionIDs));
-        configurations.put(email, new Configuration(carId, (ArrayList<Option>) options));
-        System.out.println(configurations);
-        System.out.println(email);
-        Configuration configuration = configurations.get(email);
-        System.out.println(configuration);
+        Configuration configuration = new Configuration(carId, (ArrayList<Option>) options);
+        configurations.put(email, configuration);
+        Dao.addConfiguration(email, configuration);
     }
 }

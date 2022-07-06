@@ -1,4 +1,4 @@
 function onLoad() {
-	changeLogInButton();
 	sessionId();
+	changeLogInButton();
 }

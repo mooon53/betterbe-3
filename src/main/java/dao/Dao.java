@@ -5,12 +5,12 @@ import utils.DatabaseConnectionChecker;
 
 import java.sql.*;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import static utils.SQLUtils.*;
+
 
 public class Dao {
     private static Statement statement;
@@ -43,7 +43,7 @@ public class Dao {
         statement = newStatement;
     }
 
-    public static List<String> getCars() {
+    public static List<String> getAllCars() {
         List<String> cars = new ArrayList<>();
         String query = "SELECT row_to_json(car)\n" +
                 "FROM car\n" +
@@ -59,9 +59,26 @@ public class Dao {
         return cars;
     }
 
-    public static String getCar(Long carId){
+    public static List<String> getCars() {
+        List<String> cars = new ArrayList<>();
+        String query = "SELECT row_to_json(car)\n" +
+                "FROM car\n" +
+                "WHERE end_date IS NULL\n" +
+                "ORDER BY id";
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                cars.add(resultSet.getString(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cars;
+    }
+
+    public static String getCar(Long carId) {
         String car = "";
-        String query =  "SELECT row_to_json(car)\n" +
+        String query = "SELECT row_to_json(car)\n" +
                 "FROM car\n" +
                 "WHERE id =" + carId;
         try {
@@ -151,9 +168,9 @@ public class Dao {
     public static void addCar(Car car) {
         LocalDateTime now = LocalDateTime.now();
         String query = "INSERT INTO car (id, make, model, year, price, layout, type, size, start_date)\n" +
-                    "VALUES(" + car.getId() + ",'" + car.getMake() + "', '" + car.getModel() + "', " + car.getYear() + ", " + car.getPrice() +
-                    ", '" + car.getLayout() + "', '" + car.getType() + "', '" + car.getSize() + "','" +
-                    now + "');";
+                "VALUES(" + car.getId() + ",'" + car.getMake() + "', '" + car.getModel() + "', " + car.getYear() + ", " + car.getPrice() +
+                ", '" + car.getLayout() + "', '" + car.getType() + "', '" + car.getSize() + "','" +
+                now + "');";
         try {
             statement.executeQuery(query);
         } catch (SQLException e) {
@@ -164,7 +181,7 @@ public class Dao {
     public static void addOption(Option option) {
         LocalDateTime now = LocalDateTime.now();
         String query = "INSERT INTO option (id, value, manufacturer, car_id, option_type, price, start_date)\n" +
-                "VALUES(" + option.getId() + ",'" + option.getValue() + "','"  + option.getManufacturer() + "'," +
+                "VALUES(" + option.getId() + ",'" + option.getValue() + "','" + option.getManufacturer() + "'," +
                 option.getCarID() + ",'" + option.getOptionType() + "'," + option.getPrice() + ",'" +
                 now + "');";
         try {
@@ -183,7 +200,7 @@ public class Dao {
     public static void addRule(Rule rule) {
 
         String query = "INSERT INTO rule (options, exclusive, mandatory, car_id)\n" +
-                "VALUES('" + intArrayToSqlArray(rule.getOptions()) + "', " + rule.getExclusive() + ", " + rule.getMandatory() + ", " + rule.getCarId() + ");";
+                "VALUES('" + longArrayToSqlArray(rule.getOptions()) + "', " + rule.getExclusive() + ", " + rule.getMandatory() + ", " + rule.getCarId() + ");";
         try {
             statement.executeQuery(query);
         } catch (SQLException e) {
@@ -198,16 +215,16 @@ public class Dao {
     }
 
     //return true if the account exists and password matches
-    public static boolean hasAccount(String username, String password){
+    public static boolean hasAccount(String username, String password) {
         Map<String, String> credentials = new HashMap<>();
-        String query = "SELECT username, password FROM account WHERE username = "+ username +" AND password = "+password;
+        String query = "SELECT username, password FROM account WHERE username = " + username + " AND password = " + password;
         try {
             ResultSet resultSet = statement.executeQuery(query);
             int rowCount = 0;
             while (resultSet.next()) {
                 rowCount++;
             }
-            if(rowCount == 1){
+            if (rowCount == 1) {
                 return true;
             }
         } catch (SQLException e) {
@@ -217,9 +234,8 @@ public class Dao {
     }
 //extract data of configuration from db
 
-    public static void addAccount(String username, String password, boolean employee){
-        String query = "INSERT INTO account (email, password, employee) VALUES ('"+username+"', '"+ password+"'," + employee + " )";
-        System.out.println(query);
+    public static void addAccount(String username, String password, boolean employee) {
+        String query = "INSERT INTO account (email, password, employee) VALUES ('" + username + "', '" + password + "'," + employee + " )";
         try {
             statement.executeQuery(query);
         } catch (SQLException e) {
@@ -231,7 +247,7 @@ public class Dao {
         addAccount(username, password, false);
     }
 
-    public static String getUser(String username){
+    public static String getUser(String username) {
         String person = "";
         String query = "SELECT row_to_json(person)\n" +
                 "FROM person\n" +
@@ -246,7 +262,7 @@ public class Dao {
         return person;
     }
 
-    public static String getAccount(String email){
+    public static String getAccount(String email) {
         String account = "";
         String query = "SELECT row_to_json(account)\n" +
                 "FROM account\n" +
@@ -262,7 +278,7 @@ public class Dao {
     }
 
     public static String getPass(String email) {
-        String query = "SELECT password FROM account WHERE email = '"+ email +"'";
+        String query = "SELECT password FROM account WHERE email = '" + email + "'";
         String password = "";
         try {
             ResultSet resultSet = statement.executeQuery(query);
@@ -275,7 +291,7 @@ public class Dao {
         return password;
     }
 
-    public static List<String> getHistoricalData(Long carId){
+    public static List<String> getHistoricalData(Long carId) {
         List<String> data = new ArrayList<>();
         //change to json output, aka row_to_JSON
 //        SELECT XMLAGG(XMLFOREST(o.start_date,
@@ -329,13 +345,63 @@ public class Dao {
             e.printStackTrace();
         }
     }
+
     public static void removeRule(Long[] ruleId) {
-        String query = "DELETE FROM rule WHERE options = '" + intArrayToSqlArray(ruleId) + "'";
+        String query = "DELETE FROM rule WHERE options = '" + longArrayToSqlArray(ruleId) + "'";
         try {
             statement.executeQuery(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private static Long getHighestConfigID() {
+        Long id = 0L;
+        String query = "SELECT id\n" +
+                "FROM configuration\n" +
+                "ORDER BY id";
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                if (resultSet.getLong("id") > id) id = resultSet.getLong("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    public static List<String> getConfigurations(String user) {
+        List<String> configurations = new ArrayList<>();
+        String query = "SELECT row_to_json(configuration)\n" +
+                "FROM configuration\n" +
+                "WHERE \"user\" = '" + user + "'\n" +
+                "ORDER BY id";
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                configurations.add(resultSet.getString(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return configurations;
+    }
+
+    public static String getConfiguration(Long id) {
+        List<String> configurations = new ArrayList<>();
+        String query = "SELECT row_to_json(configuration)\n" +
+                "FROM configuration\n" +
+                "WHERE id = " + id + "\n" +
+                "ORDER BY id";
+        try {
+            ResultSet resultSet = statement.executeQuery(query);
+            resultSet.next();
+            return resultSet.getString(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
     public static void removeCar(Long carId) {
         LocalDateTime now = LocalDateTime.now();
@@ -360,10 +426,24 @@ public class Dao {
             e.printStackTrace();
         }
     }
-}
 
 
 
 
 //extract data of configuration from db
 
+    public static void addConfiguration(String email, Configuration configuration) {
+        Long id = getHighestConfigID() + 1L;
+        Long[] optionIDs = new Long[configuration.getOptions().size()];
+        for (int i = 0; i < optionIDs.length; i++) {
+            optionIDs[i] = configuration.getOptions().get(i).getId();
+        }
+        String query = "INSERT INTO configuration\n" +
+                "VALUES(" + id + ", '" + email + "'," + configuration.getCar().getId() + ",'" + longArrayToSqlArray(optionIDs) + "');";
+        try {
+            statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}

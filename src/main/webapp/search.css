@@ -11,7 +11,7 @@
 	width:1920px;
 	height:1113px;
 	position:absolute;
-	left:0px;
+	left:0;
 	top:-30px;
 	background-image:url(images/red_landscape_edited_1.png);
 	background-repeat:no-repeat;
@@ -24,7 +24,7 @@
 	position:absolute;
 	left:51px;
 	top:146px;
-	font-family:Poppins;
+	font-family:Poppins, Arial, sans-serif;
 	text-align:left;
 	font-size:40px;
 	letter-spacing:0;
@@ -41,8 +41,8 @@
 	width:1044px;
 	height:76px;
 	position:absolute;
-	left:0px;
-	top:0px;
+	left:0;
+	top:0;
 	font-family:Poppins;
 	text-align:left;
 	font-size:40px;
