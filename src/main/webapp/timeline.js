@@ -61,7 +61,7 @@ function onload() {
                             <td>${ruleNames}</td>
                             <td>${line.exclusive}</td>
                             <td>${line.mandatory}</td>
-                            <td><button class="button" onclick="removeRule.apply(this, [` + rules.toString() + `])">remove rule</button></td>
+                            <td><button class="button" onclick="removeRule([` + rules.toString() + `])">remove rule</button></td>
                         </tr>`;
             }
         }
@@ -90,7 +90,7 @@ function removeOption(id) {
     let request = new XMLHttpRequest();
     let string = {id}
     let responseString = JSON.stringify(string);
-    request.open("POST", "rest/remove", true);
+    request.open("POST", "rest/remove", false);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");
     request.send(responseString);
@@ -127,7 +127,7 @@ request.setRequestHeader("Accept", "application/json");
 request.send(responseString);
 }
 
-function removeRule() {
+function removeRule(rules) {
     let request = new XMLHttpRequest();
     let ruleArray = [];
     for(let i in rules) {
@@ -178,6 +178,15 @@ function removeCar() {
     let request = new XMLHttpRequest();
     let string = {carId}
     let responseString = JSON.stringify(string);
+    request.onreadystatechange = function() {
+        if (this.status === 200 && this.readyState === 4) {
+            alert("Car deleted successfully");
+            location.reload();
+        } else if (this.readyState === 4) {
+            alert("Something went wrong, please contact a system administrator");
+            location.reload();
+        }
+    }
     request.open("POST", "rest/timeline", true);
     request.setRequestHeader("Content-Type", "application/json");
     request.setRequestHeader("Accept", "application/json");

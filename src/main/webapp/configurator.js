@@ -219,7 +219,7 @@ function mandatoryCheck() { //To check if the mandatory options have been chosen
 		}
 		let message = "Sorry, for this configuration to be allowed, please select at least 1 option from each of the following sets:\n";
 		for (const brokenOptionName of brokenOptionsNames) {
-			message += brokenOptionName;
+			message += brokenOptionName + "\n";
 		}
 		alert(message);
 	}
