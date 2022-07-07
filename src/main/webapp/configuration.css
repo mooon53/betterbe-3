@@ -430,7 +430,7 @@ article {
     }
 }
 
-@media (max-width: 660px) {
+@media (max-width: 750px) {
 
     @keyframes fadeInDown {
         0% {

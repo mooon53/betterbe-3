@@ -78,8 +78,8 @@ function loadConfigurator(carId) {
 												<span class="checkmark"></span>
 											</label>`;
 						}
-						(document.getElementById("body"));
-						document.getElementById("body").innerHTML += optionHTML; //add the option's form to the html
+						(document.getElementById("options"));
+						document.getElementById("options").innerHTML += optionHTML; //add the option's form to the html
 					}
 				}
 				document.getElementById("total").innerText = `Total price: €` + carPrice.toFixed(2); //Add the total price, initially this is just the price of the car

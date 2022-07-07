@@ -188,7 +188,7 @@ table{
     width: 80%;
 }
 
-@media (max-width: 660px) {
+@media (max-width: 750px) {
 
     @keyframes fadeInDown {
         0% {

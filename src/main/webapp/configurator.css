@@ -41,9 +41,10 @@
 /* End of header menu style */
 
 .product-detail {
-  width: 60vw;
-  height: 100vh;
-  float: right;
+  /*width: 60%;*/
+  /*height: 100%;*/
+  position: relative;
+  float: left;
 }
 
 .Lease h1,
@@ -59,7 +60,9 @@
 }
 
 .imagery {
-  float:right;
+  float: right;
+  /*width: 60%;*/
+  /*height: 100%;*/
 }
 
 .imagery img{
@@ -83,12 +86,24 @@
   font-size:25px;
   min-height:34px;
   display: inline-block;
-  padding: 0 0 0 30px;
+  padding: 0 30px;
+}
+
+#powertrain_text {
+  display: block;
+}
+
+#powertrain_text {
+  display: block;
 }
 
 #powertrain {
   margin: auto;
   display: inline;
+}
+
+#bodytype_text {
+  display: inline-block;
 }
 
 #trim_level_text {
@@ -104,23 +119,29 @@ hr.line {
 
 }
 
+#bodytype{
+  display: block;
+}
+
 .option {
-  margin-right: 300px;
+  /*float: left;*/
+  font-size: 25px;
+    /*margin-right: 300px;*/
   color: #000000;
   font-family: Poppins, sans-serif;
-  font-size:25px;
+  position: relative;
 }
 
 .btn_grid {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -15px;
+  margin: 0px -15px;
 }
 
 .btn_grid .btn_wrap {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -15px;
+  margin: 0px -15px;
 }
 
 /* CHECKBOXES */
@@ -131,12 +152,11 @@ hr.line {
   padding-left: 35px;
   margin-bottom: 12px;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 25px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  width: 50vw;
 }
 
 /* Hide the browser's default checkbox */
@@ -196,6 +216,8 @@ hr.line {
   height: 10px;
   border: solid white;
   border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 
@@ -207,6 +229,7 @@ hr.line {
 }
 
 .footer .footer-content {
+  /*     border: 1px solid red; */
   height: 350px;
   display: flex;
 
@@ -215,6 +238,8 @@ hr.line {
 .footer .footer-content .footer-section {
   flex: 1;
   padding: 25px;
+
+  /*     border:  1px solid white; */
 }
 
 .footer .footer-bottom {
@@ -225,8 +250,8 @@ hr.line {
   width: 100%;
   text-align: center;
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 0px;
+  left: 0px;
   padding-top: 15px;
 }
 
@@ -323,12 +348,14 @@ hr.line {
   color:white;
   font-size:13px;
   padding-top:10px;
+  /*   padding-bottom:10px; */
   transition: all 0.3s;
+  /*   margin-top:-4px; */
   font-weight:700;
 }
 
 
-@media (max-width: 660px) {
+@media (max-width: 750px) {
 
   @keyframes fadeInDown {
     0% {
@@ -341,11 +368,32 @@ hr.line {
     }
   }
 
+  @media (max-width: 1030px) {
+    /*.option {*/
+    /*  display: none;*/
+    /*  visibility: hidden;*/
+    /*}*/
+    /*.container{*/
+    /*  display: none;*/x
+    /*  visibility: hidden;*/
+    /*}*/
+    /*.line{*/
+    /*  display: none;*/
+    /*  visibility: hidden;*/
+    /*}*/
+    }
+
 
   .image-logo {
     visibility: hidden;
     position: absolute;
   }
+}
+
+#options{
+  /*height: 100%;*/
+  /*width: 100%;*/
+  display: inline-block;
 }
 .button {
   border: none;
